@@ -1,0 +1,19 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile">
+    <pm:view id="menuprincipal">
+        <pm:header title="Menú principal" />
+        <pm:content>
+            <center>
+                <h:form id="formBuscarTipoTransformador">
+                    <p:panelGrid id="panelGridBuscarTipoTransformador" columns="1">
+                        <p:commandButton id="commandButtonNuevoPunto" value="Nuevo punto" type="button" />
+                        <p:commandButton id="commandButtonConsultarPuntos" value="Consultar puntos" type="button" />
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>
