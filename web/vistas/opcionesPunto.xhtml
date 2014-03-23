@@ -1,0 +1,26 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile">
+    
+    <pm:view id="opcionespunto">
+        <pm:header title="Opciones" />
+        <pm:content>
+            <center>
+                <h:form id="formOpcionesPunto">
+                    <p:panelGrid id="panel" columns="1" style="width: 100%;">
+                        <p:menu>
+                            <p:menuitem id="menuitemUbicacion" value="Ubicación" url="#" />
+                            <p:menuitem id="menuitemTransformador" value="Transformador" url="#" />
+                            <p:menuitem id="menuitemLuminaria" value="Luminaria" url="#" />
+                            <p:menuitem id="menuitemBombillo" value="Bombillo" url="#" />
+                            <p:menuitem id="menuitemPoste" value="Poste" url="#" />
+                            <p:menuitem id="menuitemMedidor" value="Medidor" url="#" />
+                        </p:menu>
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>
