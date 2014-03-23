@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package entidades;
+package entidades.inventario;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -19,14 +19,14 @@ import javax.persistence.SequenceGenerator;
  * @author desarrollo8
  */
 @Entity
-public class TipoBombillo implements Serializable {
+public class TipoConexionTransformador implements Serializable {
     private static final long serialVersionUID = 1L;
-    @SequenceGenerator (name = "TipoBombilloSequence", sequenceName = "tipo_bombillo_seq", allocationSize = 1)
+    @SequenceGenerator(name="TipoConexionTransformadorSequence", sequenceName = "tipo_conexion_transformador_seq", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="TipoBombilloSequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="TipoConexionTransformadorSequence")
     private Long id;
     
-    @Column (length = 100, nullable = false)
+    @Column(length = 100, nullable = false)
     private String descripcion;
     @Column (nullable = false)
     private boolean activo;
@@ -45,8 +45,8 @@ public class TipoBombillo implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-    
-     public String getDescripcion() {
+
+    public String getDescripcion() {
         return descripcion;
     }
 
@@ -61,14 +61,16 @@ public class TipoBombillo implements Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+    
+    
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoBombillo)) {
+        if (!(object instanceof TipoConexionTransformador)) {
             return false;
         }
-        TipoBombillo other = (TipoBombillo) object;
+        TipoConexionTransformador other = (TipoConexionTransformador) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

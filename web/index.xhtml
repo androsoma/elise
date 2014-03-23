@@ -29,7 +29,14 @@
             <pm:header title="Inventario" />
             <pm:content>
                 <center>
-                    Inventario.
+                    <h:form id="formBuscarTipoTransformador">
+                        <p:panelGrid id="panelGridBuscarTipoTransformador" columns="1">
+                            <h:outputLabel id="outputLabelDescripcion" value="Descripción a buscar" />
+                            <h:inputText id="inputTextDescripcion" value="#{tipoTrans.cadenaBuscada}" />
+
+                            <p:commandButton id="commandButtonBuscar" value="Buscar" action="#{tipoTrans.buscarPorTipoTransformador()}" />
+                        </p:panelGrid>
+                    </h:form>
                 </center>
             </pm:content>
         </pm:view>

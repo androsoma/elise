@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entidades;
+
+package entidades.inventario;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -18,18 +21,24 @@ import javax.persistence.SequenceGenerator;
  * @author desarrollo8
  */
 @Entity
-public class TipoArrancador implements Serializable {
-
+@NamedQueries({
+    @NamedQuery(name = TipoTransformador.BUSCAR_POR_NOMBRE , query = "SELECT t FROM TipoTransformador t WHERE t.descripcion = :nombre")
+})
+public class TipoTransformador implements Serializable {
+    
+    
+    public static final String BUSCAR_POR_NOMBRE = "TipoTransformador.buscarPorNombre";
+    
     private static final long serialVersionUID = 1L;
-    @SequenceGenerator(name = "TipoArrancadorSequence", sequenceName = "tipo_arrancador_seq", allocationSize = 1)
+    @SequenceGenerator (name = "TipoTransformadorSequence", sequenceName = "tipo_transformador_seq", allocationSize =1 )
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="TipoArrancadorSequence" )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TipoTransformadorSequence")
     private Long id;
-
-    @Column(length = 100, nullable = false)
+    
+    @Column (length = 100, nullable = false)
     private String descripcion;
-
-    @Column(nullable = false)
+     
+    @Column (nullable = false)
     private boolean activo;
 
     public Long getId() {
@@ -46,8 +55,8 @@ public class TipoArrancador implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
-    public String getDescripcion() {
+    
+     public String getDescripcion() {
         return descripcion;
     }
 
@@ -66,10 +75,10 @@ public class TipoArrancador implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoArrancador)) {
+        if (!(object instanceof TipoTransformador)) {
             return false;
         }
-        TipoArrancador other = (TipoArrancador) object;
+        TipoTransformador other = (TipoTransformador) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -80,5 +89,5 @@ public class TipoArrancador implements Serializable {
     public String toString() {
         return descripcion;
     }
-
+    
 }

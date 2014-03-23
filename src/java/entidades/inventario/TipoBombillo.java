@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package entidades;
+package entidades.inventario;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -19,16 +19,15 @@ import javax.persistence.SequenceGenerator;
  * @author desarrollo8
  */
 @Entity
-public class TipoTransformador implements Serializable {
+public class TipoBombillo implements Serializable {
     private static final long serialVersionUID = 1L;
-    @SequenceGenerator (name = "TipoTransformadorSequence", sequenceName = "tipo_transformador_seq", allocationSize =1 )
+    @SequenceGenerator (name = "TipoBombilloSequence", sequenceName = "tipo_bombillo_seq", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TipoTransformadorSequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="TipoBombilloSequence")
     private Long id;
     
     @Column (length = 100, nullable = false)
     private String descripcion;
-     
     @Column (nullable = false)
     private boolean activo;
 
@@ -66,10 +65,10 @@ public class TipoTransformador implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoTransformador)) {
+        if (!(object instanceof TipoBombillo)) {
             return false;
         }
-        TipoTransformador other = (TipoTransformador) object;
+        TipoBombillo other = (TipoBombillo) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package entidades;
+package entidades.inventario;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -19,15 +19,16 @@ import javax.persistence.SequenceGenerator;
  * @author desarrollo8
  */
 @Entity
-public class TipoConexionMedidor implements Serializable {
+public class TipoBalasto implements Serializable {
     private static final long serialVersionUID = 1L;
-    @SequenceGenerator (name = "TipoConexionMedidorSequence", sequenceName = "tipo_conexion_medidor_seq", allocationSize = 1)
+    @SequenceGenerator (name = "TipoBalastoSequence", sequenceName ="tipo_balasto_seq", allocationSize = 1 )
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="TipoConexionMedidorSequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="TipoBalastoSequence" )
     private Long id;
     
     @Column (length = 100, nullable = false)
     private String descripcion;
+     
     @Column (nullable = false)
     private boolean activo;
 
@@ -46,7 +47,7 @@ public class TipoConexionMedidor implements Serializable {
         return hash;
     }
     
-    public String getDescripcion() {
+     public String getDescripcion() {
         return descripcion;
     }
 
@@ -61,20 +62,19 @@ public class TipoConexionMedidor implements Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
+
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoConexionMedidor)) {
+        if (!(object instanceof TipoBalasto)) {
             return false;
         }
-        TipoConexionMedidor other = (TipoConexionMedidor) object;
+        TipoBalasto other = (TipoBalasto) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
-    }   
-    
+    }
 
     @Override
     public String toString() {

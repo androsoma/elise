@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package entidades;
+package entidades.inventario;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -12,24 +12,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 
 /**
  *
  * @author desarrollo8
  */
 @Entity
-public class TipoConexionTransformador implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @SequenceGenerator(name="TipoConexionTransformadorSequence", sequenceName = "tipo_conexion_transformador_seq", allocationSize = 1)
+public class Departamento implements Serializable {
+    private static final long serialVersionUID = 1L;   
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="TipoConexionTransformadorSequence")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(length = 100, nullable = false)
-    private String descripcion;
-    @Column (nullable = false)
-    private boolean activo;
+    @Column(length = 5, nullable = false)
+    private String codigodane;
+    
+    @Column (length = 50, nullable = false)
+    private String nombre;
 
     public Long getId() {
         return id;
@@ -46,20 +45,20 @@ public class TipoConexionTransformador implements Serializable {
         return hash;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getCodigodane() {
+        return codigodane;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setCodigodane(String codigodane) {
+        this.codigodane = codigodane;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
     
@@ -67,10 +66,10 @@ public class TipoConexionTransformador implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoConexionTransformador)) {
+        if (!(object instanceof Departamento)) {
             return false;
         }
-        TipoConexionTransformador other = (TipoConexionTransformador) object;
+        Departamento other = (Departamento) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -79,7 +78,7 @@ public class TipoConexionTransformador implements Serializable {
 
     @Override
     public String toString() {
-        return descripcion;
+        return nombre;
     }
     
 }
