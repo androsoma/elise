@@ -1,0 +1,42 @@
+<f:view renderKitId="PRIMEFACES_MOBILE"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html">
+    <pm:view id="poste">
+        <pm:header title="Poste">
+            <p:commandButton icon="ui-icon-back" value="atrás" action="pm:opcionespunto" />
+        </pm:header>
+        <pm:content>
+            <center>
+                <h:form id="formPoste">
+                    <p:panelGrid id="panelGridPoste" columns="1" style="width: 100%;">
+                        
+                        <h:outputText id="outputTextMaterial" value="Material"/>
+                        <p:selectOneMenu id="selectOneMenuMaterial">
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        </p:selectOneMenu>
+                        
+                        <h:outputText id="outputTextAltura" value="Altura"/>
+                        <p:selectOneMenu id="selectOneMenuAltura">
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        </p:selectOneMenu>
+                                                
+                           <h:outputLabel id="utputLabelReferenciaPoste" value="Referencia"/>
+                        <h:inputText id="inputTextReferenciaPoste" value="" title="Referencia"/>    
+                        
+                        <h:outputText id="outputTextFabricantePoste" value="Fabricante"/>
+                        <p:selectOneMenu id="selectOneMenuFabricantePoste">
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>
