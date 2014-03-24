@@ -1,0 +1,53 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:view id="transformador">
+        <pm:header title="Transformador">
+            <p:commandButton icon="ui-icon-back" value="atrás" action="pm:menuprincipal" />
+        </pm:header>
+        <pm:content>
+            <center>
+                <h:form id="formTransformador">
+                    <p:panelGrid id="panelGridTransformador" columns="1" style="width: 100%;">
+                        <h:outputLabel id="outputLabelExclusivo" value="¿Exclusivo?" />
+                        <p:selectBooleanButton id="selectBooleanButtonExclusivo" value="" onLabel="Sí" offLabel="No" />
+
+                        <h:outputLabel id="outputLabelFase" value="Fase" />
+                        <p:inputText id="inputTextFase" value="" />
+                        <p:slider for="inputTextFase" minValue="1" maxValue="3" />
+
+                        <h:outputLabel id="outputLabelTipoConexion" value="Tipo de conexión" />
+                        <p:selectOneMenu id="selectOneMenuTipoConexion" value="">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItem itemLabel="Tipo 1" itemValue="1" />
+                        </p:selectOneMenu>
+
+                        <h:outputLabel id="outputLabelFabricante" value="Fabricante" />
+                        <p:selectOneMenu id="selectOneMenuFabricante" value="">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItem itemLabel="Tipo 1" itemValue="1" />
+                        </p:selectOneMenu>
+
+                        <h:outputLabel id="outputLabelSerial" value="Fabricante" />
+                        <h:inputText id="inputTextSerial" value="" />
+
+                        <h:outputLabel id="outputLabelVoltajeAlta" value="Voltaje alta" />
+                        <h:inputText id="inputTextVoltajeAlta" value="" />
+
+                        <h:outputLabel id="outputLabelVoltajeBaja" value="Voltaje baja" />
+                        <h:inputText id="inputTextVoltajeBaja" value="" />
+
+                        <h:outputLabel id="outputLabelPotencia" value="Potencia" />
+                        <h:inputText id="inputTextPotencia" value="" />
+
+                        <h:outputLabel id="outputLabelReferencia" value="Referencia" />
+                        <h:inputText id="inputTextReferencia" value="" />
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>

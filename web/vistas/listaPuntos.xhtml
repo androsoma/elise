@@ -6,7 +6,9 @@
         xmlns:pm="http://primefaces.org/mobile"
         contentType="text/html">
     <pm:view id="listapuntos">
-        <pm:header title="Puntos" />
+        <pm:header title="Puntos">
+            <p:commandButton icon="ui-icon-back" value="atrás" action="pm:menuprincipal" />
+        </pm:header>
         <pm:content>
             <center>
                 <h:form id="formListaPuntos">
