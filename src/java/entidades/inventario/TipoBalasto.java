@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 /**
- *
+ * <p>Indica el tipo de balasto de la luminaria</p>
  * @author desarrollo8
  */
 @Entity

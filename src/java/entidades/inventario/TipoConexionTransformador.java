@@ -15,7 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 /**
- *
+ * <p>Indica el tipo de tipo de conexion que posee el transformador</p>
+ * 
  * @author desarrollo8
  */
 @Entity

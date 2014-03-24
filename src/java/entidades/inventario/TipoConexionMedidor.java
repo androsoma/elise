@@ -15,7 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 /**
- *
+ * <p>Indica el tipo de conexion del medidor que posee la luminaria</p>
+ * 
  * @author desarrollo8
  */
 @Entity

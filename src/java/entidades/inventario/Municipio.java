@@ -16,7 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
- *
+ * <p>representa un municipio de un departamento</p>
+ * 
  * @author desarrollo8
  */
 @Entity

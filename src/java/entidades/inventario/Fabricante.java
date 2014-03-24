@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 /**
- *
+ * <p>representa un fabricante de un artefacto electrico o estructural</p>
  * @author Yeison Osorio
  */
 @Entity

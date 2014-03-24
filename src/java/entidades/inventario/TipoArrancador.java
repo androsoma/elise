@@ -14,7 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 /**
- *
+ * <p>indica el tipo de arrancador de un balasto</p>
+ * 
  * @author desarrollo8
  */
 @Entity

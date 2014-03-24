@@ -17,7 +17,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 /**
- *
+ * <p>representa un tipo de transformador</p>
+ * 
  * @author desarrollo8
  */
 @Entity

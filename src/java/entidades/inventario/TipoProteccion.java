@@ -15,7 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 /**
- *
+ * <p>representa el tipo de proteccion electrica que posee las luminarias</p>
+ * 
  * @author desarrollo8
  */
 @Entity
