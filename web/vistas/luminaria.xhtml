@@ -7,7 +7,7 @@
         contentType="text/html">
     <pm:view id="luminaria">
         <pm:header title="Luminaria">
-            <p:commandButton icon="ui-icon-back" value="atrás" action="pm:opcionespunto" />
+            <p:commandButton icon="back" value="atrás" action="pm:opcionespunto" />
         </pm:header>
         <pm:content>
             <center>
@@ -20,10 +20,15 @@
                         </p:menu>
                     </p:panelGrid>
                 </h:form>
-                <h:form id="formLuminaria">
-
+                <h:form id="formLuminaria">          
 
                     <p:panelGrid columns="1" style="width: 100%">
+                        <h:outputText id="outputTextTipoHerraje" value="Tipo herraje"/>
+                        <h:selectOneMenu id="selectOneMenuTipoHerraje">
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        </h:selectOneMenu>
+
                         <h:outputLabel id="utputLabelAlturaLuminaria" value="Altura"/>
                         <h:inputText id="inputTextAlturaLuminaria" value="" title="Altura"/>  
 
