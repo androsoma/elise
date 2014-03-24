@@ -4,41 +4,38 @@
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pm="http://primefaces.org/mobile"
-        contentType="text/html">
+        contentType="text/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <pm:page title="Elise">
         <pm:view id="main">
             <pm:header title="Bienvenido a Elise" />
             <pm:content>
                 <center>
                     <h:form id="formLogin">
-                        <p:panelGrid id="panelGridLogin" columns="1">
+                        <p:panelGrid id="panelGridLogin" columns="1" style="width: 100%;">
                             <h:outputLabel id="outputLabelUsuario" value="Nombre de usuario" />
                             <h:inputText id="inputTextUsuario" value="#{autenticacion.nombreUsuario}" />
 
                             <h:outputLabel id="outputLabelContrasena" value="Contraseña" />
                             <h:inputSecret id="inputSecretContrasena" value="#{autenticacion.contrasena}" />
 
-                            <p:commandButton id="commandButtonIngresar" value="Ingresar" action="#{autenticacion.validarUsuario}" />
+                            <p:commandButton id="commandButtonIngresar" value="Ingresar" action="pm:menuprincipal" />
                         </p:panelGrid>
                     </h:form>
                 </center>
             </pm:content>
         </pm:view>
-
-        <pm:view id="inventario">
-            <pm:header title="Inventario" />
-            <pm:content>
-                <center>
-                    <h:form id="formBuscarTipoTransformador">
-                        <p:panelGrid id="panelGridBuscarTipoTransformador" columns="1">
-                            <h:outputLabel id="outputLabelDescripcion" value="Descripción a buscar" />
-                            <h:inputText id="inputTextDescripcion" value="#{tipoTrans.cadenaBuscada}" />
-
-                            <p:commandButton id="commandButtonBuscar" value="Buscar" action="#{tipoTrans.buscarPorTipoTransformador()}" />
-                        </p:panelGrid>
-                    </h:form>
-                </center>
-            </pm:content>
-        </pm:view>
+        
+        <ui:include src="vistas/menuPrincipal.xhtml"/>
+        <ui:include src="vistas/listaPuntos.xhtml"/>
+        <ui:include src="vistas/opcionesPunto.xhtml"/>
+        <ui:include src="vistas/ubicacionPunto.xhtml"/>
+        <ui:include src="vistas/transformador.xhtml"/>
+        <ui:include src="vistas/bombillo.xhtml"/>
+        <ui:include src="vistas/poste.xhtml"/>        
+        <ui:include src="vistas/luminaria.xhtml"/>        
+        <ui:include src="vistas/luminaria/brazoLuminaria.xhtml"/>        
+        <ui:include src="vistas/luminaria/balasto.xhtml"/>        
+        <ui:include src="vistas/luminaria/arrancador.xhtml"/>        
     </pm:page>
 </f:view>

@@ -1,0 +1,21 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile">
+    <pm:view id="menuprincipal">
+        <pm:header title="Menú principal">
+            <p:commandButton  icon="ui-icon-back" value="Cerrar Sesión" action="pm:main"/>
+        </pm:header>
+        <pm:content>
+            <center>
+                <h:form id="formMenuPrincipal">
+                    <p:panelGrid id="panelGridMenuPrincipal" columns="1" style="width: 100%;">
+                        <p:commandButton id="commandButtonNuevoPunto" value="Nuevo punto" action="pm:opcionespunto" />
+                        <p:commandButton id="commandButtonConsultarPuntos" value="Consultar puntos" action="pm:listapuntos" />
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>

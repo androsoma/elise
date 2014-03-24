@@ -1,0 +1,64 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:view id="medidor">
+        <pm:header title="Medidor de energía">
+            <p:commandButton icon="ui-icon-back" value="atrás" action="pm:opcionespunto" />
+        </pm:header>
+        <pm:content>
+            <center>
+                <h:form id="formMedidor">
+                    <p:panelGrid id="panelGridMedidor" columns="1" style="width: 100%;">
+                        <h:outputLabel id="outputLabelSerialMedidor" value="Serial" />
+                        <h:inputText id="inputTextSerialMedidor" value="" />
+
+                        <h:outputLabel id="outputLabelReferenciaMedidor" value="Serial" />
+                        <h:inputText id="inputTextReferenciaMedidor" value="" />
+
+                        <h:outputLabel id="outputLabelFabricanteMedidor" value="Fabricante" />
+                        <p:selectOneMenu id="selectOneMenuFabricanteMedidor" value="">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItem itemLabel="Tipo 1" itemValue="1" />
+                        </p:selectOneMenu>
+
+                        <h:outputLabel id="outputLabelTipoMedidor" value="Tipo" />
+                        <p:selectOneMenu id="selectOneMenuTipoMedidor" value="">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItem itemLabel="Tipo 1" itemValue="1" />
+                        </p:selectOneMenu>
+
+                        <h:outputLabel id="outputLabelPrecisionMedidor" value="Clase precisión" />
+                        <p:selectOneMenu id="selectOneMenuPrecisionMedidor" value="">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItem itemLabel="Tipo 1" itemValue="1" />
+                        </p:selectOneMenu>
+
+                        <h:outputLabel id="outputLabelTipoConexionMedidor" value="Tipo de conexión red" />
+                        <p:selectOneMenu id="selectOneMenuTipoConexionMedidor" value="">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItem itemLabel="Tipo 1" itemValue="1" />
+                        </p:selectOneMenu>
+
+                        <h:outputLabel id="outputLabelVoltajeMedidor" value="Voltaje" />
+                        <p:inputText id="inputTextVoltajeMedidor" value="" />
+
+                        <h:outputLabel id="outputLabelPotenciaMedidor" value="Potencia máxima a medir" />
+                        <p:inputText id="inputTextPotenciaMedidor" value="" />
+                        
+                        <h:outputLabel id="outputLabelFrecuenciaMedidor" value="Frecuencia" />
+                        <p:inputText id="inputTextFrecuenciaMedidor" value="" />
+                        
+                        <h:outputLabel id="outputLabelTipoProteccionAmbiente" value="Tipo protección ambiente" />
+                        <p:selectOneMenu id="selectOneMenuTipoProteccionAmbiente" value="">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItem itemLabel="Tipo 1" itemValue="1" />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>

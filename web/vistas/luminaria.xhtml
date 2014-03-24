@@ -1,0 +1,26 @@
+<f:view renderKitId="PRIMEFACES_MOBILE"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html">
+    <pm:view id="luminaria">
+        <pm:header title="Luminaria">
+            <p:commandButton icon="ui-icon-back" value="atrás" action="pm:opcionespunto" />
+        </pm:header>
+        <pm:content>
+            <center>
+                <h:form id="formLuminaria">
+                    <p:panelGrid id="panelGridLuminaria" columns="1" style="width: 100%;">
+                        <p:menu>
+                            <p:menuitem id="menuitemBrazoLuminaria" value="Brazo luminaria"  action="pm:brazoluminaria"/>
+                            <p:menuitem id="menuitemTransBalasto" value="Balasto" action="pm:balasto" />
+                            <p:menuitem id="menuitemTransArrancador" value="Arrancador" action="pm:arrancador" />
+                        </p:menu>
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>
