@@ -1,0 +1,42 @@
+<f:view renderKitId="PRIMEFACES_MOBILE"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html">
+    <pm:view id="balasto">
+        <pm:header title="Balasto">
+            <p:commandButton icon="ui-icon-back" value="atrás" action="pm:menuprincipal" />
+        </pm:header>
+        <pm:content>
+            <center>
+                <h:form id="formBalasto">
+                    <p:panelGrid id="panelGridBalasto" columns="1" style="width: 100%;">
+                        
+                       <h:outputLabel id="outputLabelReferenciaBalasto" value="Referencia"/>
+                        <h:inputText id="inputTextReferenciaBalasto" value="" title="Referencia"/>    
+                        
+                        <h:outputText id="outputTextFabricanteBalasto" value="Fabricante"/>
+                        <p:selectOneMenu id="selectOneMenuFabricanteBalasto">
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        </p:selectOneMenu>
+                        
+                        <h:outputText id="outputTextTipoBalasto" value="Tipo balasto lámpara"/>
+                        <p:selectOneMenu id="selectOneMenuTipoBalasto">
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        </p:selectOneMenu>
+                        
+                        <h:outputText id="outputTextTipoProteccion" value="Tipo proteccion ambiente"/>
+                        <p:selectOneMenu id="selectOneMenuTipoProteccion">
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>
