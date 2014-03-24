@@ -1,0 +1,37 @@
+<f:view renderKitId="PRIMEFACES_MOBILE"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html">
+    <pm:view id="arrancador">
+        <pm:header title="Arrancador">
+            <p:commandButton icon="ui-icon-back" value="atrás" action="pm:luminaria" />
+        </pm:header>
+        <pm:content>
+            <center>
+                <h:form id="formArrancador">
+                    <p:panelGrid id="panelGridArrancador" columns="1" style="width: 100%;">
+                        
+                        <h:outputLabel id="outputLabelReferenciaArrancador" value="Referencia"/>
+                        <h:inputText id="inputTextReferenciaArrancador" value="" title="Referencia"/>    
+
+                        <h:outputText id="outputTextFabricanteArrancador" value="Fabricante"/>
+                        <p:selectOneMenu id="selectOneMenuFabricanteArrancador">
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />                               
+                        </p:selectOneMenu>
+                        
+                        <h:outputText id="outputTextTipoArrancador" value="Tipo arrancador"/>
+                        <p:selectOneMenu id="selectOneMenuTipoArrancador">
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />                               
+                        </p:selectOneMenu>                        
+                      
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>
