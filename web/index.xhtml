@@ -8,8 +8,15 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <pm:page title="Elise">
         <pm:view id="main">
-            <pm:header title="Bienvenido a Elise" />
-            <pm:content>
+            <pm:header title="Bienvenido a Elise" >
+                 <pm:navBar>
+                    <p:button value="Inicio" icon="home" href="#main?reverse=true" styleClass="ui-btn-active" />
+                    <p:button value="Información" icon="info" href="#main1?reverse=true" />
+                    <p:button value="Login" icon="gear" href="#main2?reverse=true" />
+                </pm:navBar>  
+            </pm:header>                 
+            
+            <pm:content>               
                 <center>
                     <h:form id="formLogin">
                         <p:panelGrid id="panelGridLogin" columns="1" style="width: 100%;">
@@ -25,7 +32,7 @@
                 </center>
             </pm:content>
         </pm:view>
-        
+
         <ui:include src="vistas/menuPrincipal.xhtml"/>
         <ui:include src="vistas/listaPuntos.xhtml"/>
         <ui:include src="vistas/opcionesPunto.xhtml"/>

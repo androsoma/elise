@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 /**
  * <p>Indica el tipo de tipo de conexion que posee el transformador</p>
  * 
- * @author desarrollo8
+ * @author Cristian Gutierrez
  */
 @Entity
 public class TipoConexionTransformador implements Serializable {

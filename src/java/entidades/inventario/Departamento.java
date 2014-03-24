@@ -16,7 +16,7 @@ import javax.persistence.Id;
 /**
  * <p>representa un departamento de un pais</p>
  * 
- * @author desarrollo8
+ * @author Cristian Gutierrez
  */
 @Entity
 public class Departamento implements Serializable {

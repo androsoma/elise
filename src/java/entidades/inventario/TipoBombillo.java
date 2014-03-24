@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 /**
  * <p>Indica el tipo de bombillo que posee la luminaria</p>
  * 
- * @author desarrollo8
+ * @author Cristian Gutierrez
  */
 @Entity
 public class TipoBombillo implements Serializable {

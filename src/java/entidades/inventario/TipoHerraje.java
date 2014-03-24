@@ -16,7 +16,7 @@ import javax.persistence.SequenceGenerator;
 /**
  * <p>define los artefactos de sujecion de las luminarias</p>
  * 
- * @author desarrollo8
+ * @author Cristian Gutierrez
  */
 @Entity
 public class TipoHerraje implements Serializable {

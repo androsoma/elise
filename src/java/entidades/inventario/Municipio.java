@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 /**
  * <p>representa un municipio de un departamento</p>
  * 
- * @author desarrollo8
+ * @author Cristian Gutierrez
  */
 @Entity
 public class Municipio implements Serializable {

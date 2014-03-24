@@ -16,7 +16,7 @@ import javax.persistence.SequenceGenerator;
 
 /**
  * <p>Indica el tipo de balasto de la luminaria</p>
- * @author desarrollo8
+ * @author Cristian Gutierrez
  */
 @Entity
 public class TipoBalasto implements Serializable {

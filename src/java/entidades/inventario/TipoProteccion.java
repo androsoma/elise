@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 /**
  * <p>representa el tipo de proteccion electrica que posee las luminarias</p>
  * 
- * @author desarrollo8
+ * @author Cristian Gutierrez
  */
 @Entity
 public class TipoProteccion implements Serializable {

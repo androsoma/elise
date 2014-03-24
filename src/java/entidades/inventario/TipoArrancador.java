@@ -16,7 +16,7 @@ import javax.persistence.SequenceGenerator;
 /**
  * <p>indica el tipo de arrancador de un balasto</p>
  * 
- * @author desarrollo8
+ * @author Cristian Gutierrez
  */
 @Entity
 public class TipoArrancador implements Serializable {
