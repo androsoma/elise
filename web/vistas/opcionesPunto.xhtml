@@ -5,13 +5,15 @@
         xmlns:pm="http://primefaces.org/mobile">
     
     <pm:view id="opcionespunto">
-        <pm:header title="Opciones" />
+        <pm:header title="Opciones" >
+            <p:commandButton  icon="ui-icon-back" value="atrás" action="pm:menuprincipal"/>
+        </pm:header>
         <pm:content>
             <center>
                 <h:form id="formOpcionesPunto">
-                    <p:panelGrid id="panel" columns="1" style="width: 100%;">
+                    <p:panelGrid id="panelGridOpcionesPunto" columns="1" style="width: 100%;">
                         <p:menu>
-                            <p:menuitem id="menuitemUbicacion" value="Ubicación" url="#" />
+                            <p:menuitem id="menuitemUbicacion" value="Ubicación"  action="pm:ubicacionpunto"/>
                             <p:menuitem id="menuitemTransformador" value="Transformador" url="#" />
                             <p:menuitem id="menuitemLuminaria" value="Luminaria" url="#" />
                             <p:menuitem id="menuitemBombillo" value="Bombillo" url="#" />

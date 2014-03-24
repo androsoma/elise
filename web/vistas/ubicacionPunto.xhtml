@@ -1,0 +1,36 @@
+<f:view renderKitId="PRIMEFACES_MOBILE"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html">
+    <pm:view id="ubicacionpunto">
+        <pm:header title="Puntos" >
+            <p:commandButton  icon="ui-icon-back" value="atrás" action="pm:opcionespunto"/>
+        </pm:header>
+        <pm:content>
+            <center>
+                <h:form id="formUbicacionPunto">
+                    <p:panelGrid id="panelGridUbicacionpunto" columns="1" style="width: 100%;">
+                        <h:outputText id="outputTextDeparatmento" value="Departamento"/>
+                        <p:selectOneMenu id="selectOneMenuDepartamento">
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        </p:selectOneMenu>
+                        
+                        <h:outputText id="outputTextMunicipio" value="Municipio"/>
+                        <p:selectOneMenu id="selectOneMenuMunicipio">
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        </p:selectOneMenu>
+                        
+                        <h:outputLabel id="utputLabelDireccion" value="Direccion"/>
+                        <h:inputText id="inputTextDireccion" value="Degite la Direccion"/>                         
+                    </p:panelGrid>
+
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>
