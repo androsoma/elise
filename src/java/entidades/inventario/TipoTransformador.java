@@ -31,8 +31,9 @@ public class TipoTransformador implements Serializable {
     public static final String BUSCAR_POR_NOMBRE = "TipoTransformador.buscarPorNombre";
     
     private static final long serialVersionUID = 1L;
-    @SequenceGenerator (name = "TipoTransformadorSequence", sequenceName = "tipo_transformador_seq", allocationSize =1 )
+    
     @Id
+    @SequenceGenerator(name = "TipoTransformadorSequence", sequenceName = "tipo_transformador_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TipoTransformadorSequence")
     private Long id;
     

@@ -10,23 +10,25 @@
         </pm:header>
         <pm:content>
             <center>
-                <h:form id="formTransformador">
+                <h:form id="formTransformador" >
+                    <p:effect type="pulsate" event="load" delay="500" /> 
                     <p:panelGrid id="panelGridTransformador" columns="1" style="width: 100%;">
                         <h:outputLabel id="outputLabelExclusivo" value="¿Exclusivo?" />
                         <pm:switch id="switchExclusivo" value="" onLabel="Sí" offLabel="No" />
 
                         <h:outputLabel id="outputLabelFase" value="Fase" />
-                        <pm:inputRange id="inputRangeFase" value="" minValue="1" maxValue="3" />
-
-                        <h:outputLabel for="selectOneMenuTipoConexionTransformador" value="Tipo de conexión" />
-                        <h:selectOneMenu id="selectOneMenuTipoConexionTransformador" value="" >
+                        <pm:inputRange id="inputRangeFase" value="" minValue="1" maxValue="3" />                       
+                        
+                        <h:outputLabel for="selectOneMenuTipoTransformador" value="Tipo transformador" />
+                        <h:selectOneMenu id="selectOneMenuTipoTransformador" value="#{inventario.tipoTransformadorSeleccionado.id}" rendered="#{inventario.tipo}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.tiposTransformador}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}" />
                         </h:selectOneMenu>
 
                         <h:outputLabel id="outputLabelFabricanteTransformador" value="Fabricante" />
-                        <h:selectOneMenu id="selectOneMenuFabricanteTransformador" value="">
+                        <h:selectOneMenu id="selectOneMenuFabricanteTransformador" value="#{inventario.fabricanteSeleccionado.id}" rendered="#{inventario.tipo}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
-                            <f:selectItem itemLabel="Tipo 1" itemValue="1" />
+                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemLabel="#{fabricante.nombre}" itemValue="#{fabricante.id}" />
                         </h:selectOneMenu>
 
                         <h:outputLabel id="outputLabelSerialTransformador" value="Serial" />

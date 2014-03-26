@@ -3,7 +3,7 @@
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pm="http://primefaces.org/mobile">
-    
+
     <pm:view id="opcionespunto">
         <pm:header title="Opciones" >
             <p:commandButton  icon="home" value="Inicio" action="pm:menuprincipal"/>
@@ -14,7 +14,7 @@
                     <p:panelGrid id="panelGridOpcionesPunto" columns="1" style="width: 100%;">
                         <p:menu>
                             <p:menuitem id="menuitemUbicacion" value="Ubicación"  action="pm:ubicacionpunto"/>
-                            <p:menuitem id="menuitemTransformador" value="Transformador" action="pm:transformador" />
+                            <p:menuitem id="menuitemTransformador" value="Transformador" action="#{inventario.inicializarPunto()}"  update=":formTransformador:panelGridTransformador"/>
                             <p:menuitem id="menuitemLuminaria" value="Luminaria" action="pm:luminaria" />
                             <p:menuitem id="menuitemBombillo" value="Bombillo" action="pm:bombillo" />
                             <p:menuitem id="menuitemPoste" value="Poste" action="pm:poste"/>
@@ -23,6 +23,6 @@
                     </p:panelGrid>
                 </h:form>
             </center>
-        </pm:content>
+        </pm:content>    
     </pm:view>
 </f:view>

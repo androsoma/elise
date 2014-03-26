@@ -8,7 +8,12 @@ package control.inventario;
 
 import ejb.inventario.TipoTransformadorFacade;
 import entidades.inventario.TipoTransformador;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,14 +21,15 @@ import javax.inject.Named;
  *
  * @author lbertel
  */
-@Named("tipoTrans")
-@RequestScoped
-public class TipoTransformadorControl {
-
-    TipoTransformador tt = new TipoTransformador();
-    
+@Named("tipoTransformador")
+@SessionScoped
+public class TipoTransformadorControl implements Serializable {    
+    @EJB
     @Inject
     TipoTransformadorFacade ttf;
+    List<TipoTransformador> tiposTransformador = null;
+    TipoTransformador tipoTransformadorSeleccionado = new TipoTransformador();
+    boolean tipo = false;
     
     private String cadenaBuscada;
 
@@ -36,16 +42,22 @@ public class TipoTransformadorControl {
     }
     
     public TipoTransformadorControl() {
-        
-        
     }
 
-    public TipoTransformador getTt() {
-        return tt;
+    public TipoTransformador getTipoTransformadorSeleccionado() {
+        return tipoTransformadorSeleccionado;
     }
 
-    public void setTt(TipoTransformador tt) {
-        this.tt = tt;
+    public void setTipoTransformadorSeleccionado(TipoTransformador tipoTransformadorSeleccionado) {
+        this.tipoTransformadorSeleccionado = tipoTransformadorSeleccionado;
+    }
+
+    public List<TipoTransformador> getTiposTransformador() {
+        return tiposTransformador;
+    }
+
+    public void setTiposTransformador(List<TipoTransformador> tiposTransformador) {
+        this.tiposTransformador = tiposTransformador;
     }
 
     public TipoTransformadorFacade getTtf() {
@@ -55,11 +67,30 @@ public class TipoTransformadorControl {
     public void setTtf(TipoTransformadorFacade ttf) {
         this.ttf = ttf;
     }
-    
-    public void buscarPorTipoTransformador(){
-         tt = getTtf().buscarPorNombre(cadenaBuscada);
-         
-         System.out.println("Tipo transformador = " + tt.getDescripcion());
+
+    public boolean isTipo() {
+        return tipo;
+    }
+
+    public void setTipo(boolean tipo) {
+        this.tipo = tipo;
     }
     
+    
+    public String buscarTodos(){
+        tiposTransformador = new ArrayList<TipoTransformador>();
+        tiposTransformador = getTtf().findAll();
+        System.out.println("ingrso al metodo buscar");
+        tipo = true;
+        return "pm:transformador";
+    }
+    
+    public void cuantosTipos() {
+        System.out.println("Tipos = " + tiposTransformador.size());
+        tipo = true;
+    }
+    
+    public void buscarPorId() {
+        tipoTransformadorSeleccionado = getTtf().find(tipoTransformadorSeleccionado.getId());
+    }
 }

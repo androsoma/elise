@@ -7,6 +7,7 @@
 package ejb.inventario;
 
 import entidades.inventario.TipoTransformador;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,7 +33,7 @@ public class TipoTransformadorFacade extends AbstractFacade<TipoTransformador> {
     
     /**
      * <p>busca un tipo de transformador por su nombre</p>
-     * @param nombre El nombre del tipo de transformador
+     * @param nombre nombre del tipo de transformador a buscar.
      * @return Un TipoTransformador que corresponda al nombre buscado
      */
     public TipoTransformador buscarPorNombre(String nombre){
