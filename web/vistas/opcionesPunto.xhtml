@@ -12,14 +12,15 @@
             <center>
                 <h:form id="formOpcionesPunto">
                     <p:panelGrid id="panelGridOpcionesPunto" columns="1" style="width: 100%;">
-                        <p:menu>
-                            <p:menuitem id="menuitemUbicacion" value="Ubicación"  action="pm:ubicacionpunto"/>
-                            <p:menuitem id="menuitemTransformador" value="Transformador" action="#{inventario.inicializarPunto()}"  update=":formTransformador:panelGridTransformador"/>
-                            <p:menuitem id="menuitemLuminaria" value="Luminaria" action="pm:luminaria" />
-                            <p:menuitem id="menuitemBombillo" value="Bombillo" action="pm:bombillo" />
-                            <p:menuitem id="menuitemPoste" value="Poste" action="pm:poste"/>
-                            <p:menuitem id="menuitemMedidor" value="Medidor energía" action="pm:medidor" />
-                        </p:menu>
+                        <pm:buttonGroup>
+                            <p:commandButton id="commandButtonUbicacion" value="Ubicación"  action="pm:ubicacionpunto" icon="arrow-r"/>
+                            <p:commandButton id="commandButtonTransformador" value="Transformador" action="#{inventario.inicializarPunto()}"  update=":formTransformador:panelGridTransformador" icon="arrow-r"/>
+                            <p:commandButton id="commandButtonLuminaria" value="Luminaria" action="pm:luminaria" icon="arrow-r" />
+                            <p:commandButton id="commandButtonBombillo" value="Bombillo" action="pm:bombillo" icon="arrow-r"/>
+                            <p:commandButton id="commandButtonPoste" value="Poste" action="pm:poste" icon="arrow-r"/>
+                            <p:commandButton id="commandButtonMedidor" value="Medidor energía" action="pm:medidor"  icon="arrow-r"/>
+                       </pm:buttonGroup>                       
+                    
                     </p:panelGrid>
                 </h:form>
             </center>

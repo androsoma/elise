@@ -13,11 +13,11 @@
             <center>
                 <h:form id="formMenuLuminaria">
                     <p:panelGrid id="panelGridLuminaria" columns="1" style="width: 100%;">
-                        <p:menu>
-                            <p:menuitem id="menuitemBrazoLuminaria" value="Brazo luminaria"  action="pm:brazoluminaria"/>
-                            <p:menuitem id="menuitemTransBalasto" value="Balasto" action="pm:balasto" />
-                            <p:menuitem id="menuitemTransArrancador" value="Arrancador" action="pm:arrancador" />
-                        </p:menu>
+                        <pm:buttonGroup>
+                            <p:commandButton id="commandButtonBrazoLuminaria" value="Brazo luminaria"  action="pm:brazoluminaria" icon="arrow-r" />
+                            <p:commandButton id="commandButtonTransBalasto" value="Balasto" action="pm:balasto" icon="arrow-r"/>
+                            <p:commandButton id="commandButtonTransArrancador" value="Arrancador" action="pm:arrancador" icon="arrow-r"/>
+                        </pm:buttonGroup>
                     </p:panelGrid>
                 </h:form>
                 <h:form id="formLuminaria">          
