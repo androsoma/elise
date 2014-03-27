@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package entidades.inventario;
+package entidades.mantenimiento;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -12,35 +12,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 /**
- * <p>representa un tipo de transformador</p>
- * 
- * @author desarrollo8
+ * <p>define los roles que tienen los integrantes de una cuadrilla</p>
+ * @author lbertel
  */
 @Entity
-@NamedQueries({
-    @NamedQuery(name = TipoTransformador.BUSCAR_POR_NOMBRE , query = "SELECT t FROM TipoTransformador t WHERE t.descripcion = :nombre")
-})
-public class TipoTransformador implements Serializable {
-    
-    
-    public static final String BUSCAR_POR_NOMBRE = "TipoTransformador.buscarPorNombre";
-    public static final String BUSCAR_ACTIVOS = "TipoTransformador.buscarActivos";
-    
+public class RolCuadrilla implements Serializable {
     private static final long serialVersionUID = 1L;
-    
     @Id
-    @SequenceGenerator(name = "TipoTransformadorSequence", sequenceName = "tipo_transformador_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TipoTransformadorSequence")
+    @SequenceGenerator(name = "RolCuadrillaSequence", sequenceName = "rol_Cuadrilla_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RolCuadrillaSequence")
     private Long id;
     
     @Column (length = 100, nullable = false)
     private String descripcion;
-     
+    
     @Column (nullable = false)
     private boolean activo;
 
@@ -52,14 +40,7 @@ public class TipoTransformador implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-    
-     public String getDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
@@ -74,14 +55,21 @@ public class TipoTransformador implements Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoTransformador)) {
+        if (!(object instanceof RolCuadrilla)) {
             return false;
         }
-        TipoTransformador other = (TipoTransformador) object;
+        RolCuadrilla other = (RolCuadrilla) object;
         return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
     }
 
