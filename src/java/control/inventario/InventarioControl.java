@@ -6,9 +6,13 @@
 package control.inventario;
 
 import ejb.inventario.FabricanteFacade;
+import ejb.inventario.TipoConexionTransformadorFacade;
 import ejb.inventario.TipoTransformadorFacade;
+import ejb.inventario.TransformadorFacade;
 import entidades.inventario.Fabricante;
+import entidades.inventario.TipoConexionTransformador;
 import entidades.inventario.TipoTransformador;
+import entidades.inventario.Transformador;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +32,22 @@ public class InventarioControl implements Serializable {
     @EJB
     @Inject
     TipoTransformadorFacade tipoTransformadorFacade;
+
     @EJB
     @Inject
     FabricanteFacade fabricanteFacade;
+
+    @EJB
+    @Inject
+    TipoConexionTransformadorFacade tipoConexionTransformadorFacade;
+
+    @EJB
+    @Inject
+    TransformadorFacade transformadorFacade;
     List<TipoTransformador> tiposTransformador = null;
     List<Fabricante> fabricantes = null;
-    TipoTransformador tipoTransformadorSeleccionado = new TipoTransformador();
-    Fabricante fabricanteSeleccionado = new Fabricante();
+    List<TipoConexionTransformador> tiposConexionTransformador = null;
+    Transformador transformador = new Transformador();
     boolean tipo = false;
 
     /**
@@ -55,8 +68,24 @@ public class InventarioControl implements Serializable {
         return fabricanteFacade;
     }
 
+    public TipoConexionTransformadorFacade getTipoConexionTransformadorFacade() {
+        return tipoConexionTransformadorFacade;
+    }
+
+    public void setTipoConexionTransformadorFacade(TipoConexionTransformadorFacade tipoConexionTransformadorFacade) {
+        this.tipoConexionTransformadorFacade = tipoConexionTransformadorFacade;
+    }
+
     public void setFabricanteFacade(FabricanteFacade fabricanteFacade) {
         this.fabricanteFacade = fabricanteFacade;
+    }
+
+    public TransformadorFacade getTransformadorFacade() {
+        return transformadorFacade;
+    }
+
+    public void setTransformadorFacade(TransformadorFacade transformadorFacade) {
+        this.transformadorFacade = transformadorFacade;
     }
 
     public List<TipoTransformador> getTiposTransformador() {
@@ -67,12 +96,12 @@ public class InventarioControl implements Serializable {
         this.tiposTransformador = tiposTransformador;
     }
 
-    public TipoTransformador getTipoTransformadorSeleccionado() {
-        return tipoTransformadorSeleccionado;
+    public Transformador getTransformador() {
+        return transformador;
     }
 
-    public void setTipoTransformadorSeleccionado(TipoTransformador tipoTransformadorSeleccionado) {
-        this.tipoTransformadorSeleccionado = tipoTransformadorSeleccionado;
+    public void setTransformador(Transformador transformador) {
+        this.transformador = transformador;
     }
 
     public boolean isTipo() {
@@ -91,23 +120,34 @@ public class InventarioControl implements Serializable {
         this.fabricantes = fabricantes;
     }
 
-    public Fabricante getFabricanteSeleccionado() {
-        return fabricanteSeleccionado;
+    public List<TipoConexionTransformador> getTiposConexionTransformador() {
+        return tiposConexionTransformador;
     }
 
-    public void setFabricanteSeleccionado(Fabricante fabricanteSeleccionado) {
-        this.fabricanteSeleccionado = fabricanteSeleccionado;
+    public void setTiposConexionTransformador(List<TipoConexionTransformador> tiposConexionTransformador) {
+        this.tiposConexionTransformador = tiposConexionTransformador;
     }
-    
+
     public String inicializarPunto() {
-        tiposTransformador = new ArrayList<>();
-        fabricantes = new ArrayList<>();
-
-        tiposTransformador = getTipoTransformadorFacade().findAll();
-        fabricantes = getFabricanteFacade().findAll();
-
+        inicializarTipos();
+        transformador = new Transformador();
+        
+        transformador.setTipoTransformador(new TipoTransformador());
+        transformador.setTipoConexionTransformador(new TipoConexionTransformador());
+        transformador.setFabricante(new Fabricante());
+        
         tipo = true;
 
         return "pm:transformador";
+    }
+
+    public void inicializarTipos() {
+        tiposTransformador = new ArrayList<>();
+        tiposConexionTransformador = new ArrayList<>();
+        fabricantes = new ArrayList<>();
+
+        tiposTransformador = getTipoTransformadorFacade().findAll();
+        tiposConexionTransformador = getTipoConexionTransformadorFacade().findAll();
+        fabricantes = getFabricanteFacade().findAll();
     }
 }
