@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ejb.inventario;
 
 import entidades.inventario.TipoTransformador;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,6 +18,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class TipoTransformadorFacade extends AbstractFacade<TipoTransformador> {
+
     @PersistenceContext(unitName = "elisePU")
     private EntityManager em;
 
@@ -29,17 +30,25 @@ public class TipoTransformadorFacade extends AbstractFacade<TipoTransformador> {
     public TipoTransformadorFacade() {
         super(TipoTransformador.class);
     }
-    
+
     /**
-     * <p>busca un tipo de transformador por su nombre</p>
+     * <p>
+     * busca un tipo de transformador por su nombre</p>
+     *
      * @param nombre nombre del tipo de transformador a buscar.
      * @return Un TipoTransformador que corresponda al nombre buscado
      */
-    public TipoTransformador buscarPorNombre(String nombre){
-        Query query = em.createNamedQuery(TipoTransformador.BUSCAR_POR_NOMBRE); query.setParameter("nombre", nombre); 
-        
-        return  (TipoTransformador) query.getSingleResult();
-        
+    public TipoTransformador buscarPorNombre(String nombre) {
+        Query query = em.createNamedQuery(TipoTransformador.BUSCAR_POR_NOMBRE);
+        query.setParameter("nombre", nombre);
+
+        return (TipoTransformador) query.getSingleResult();
+
     }
-    
+
+    public List<TipoTransformador> buscarActivos() {
+        Query query = em.createNamedQuery(TipoTransformador.BUSCAR_ACTIVOS);
+
+        return query.getResultList();
+    }
 }

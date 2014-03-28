@@ -23,7 +23,8 @@ import javax.persistence.SequenceGenerator;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = TipoTransformador.BUSCAR_POR_NOMBRE , query = "SELECT t FROM TipoTransformador t WHERE t.descripcion = :nombre")
+    @NamedQuery(name = TipoTransformador.BUSCAR_POR_NOMBRE , query = "SELECT t FROM TipoTransformador t WHERE t.descripcion = :nombre"),
+    @NamedQuery(name = TipoTransformador.BUSCAR_ACTIVOS , query = "SELECT t FROM TipoTransformador t WHERE t.activo = true")
 })
 public class TipoTransformador implements Serializable {
     

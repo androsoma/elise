@@ -5,13 +5,13 @@
         xmlns:pm="http://primefaces.org/mobile">
     <pm:view id="menuprincipal">
         <pm:header title="Menú principal">
-            <p:commandButton  icon="user" value="Cerrar Sesión" action="pm:main"/>
+            <p:commandButton  icon="user" value="Salir" action="pm:main"/>
         </pm:header>
         <pm:content>
             <center>
                 <h:form id="formMenuPrincipal">
                     <p:panelGrid id="panelGridMenuPrincipal" columns="1" style="width: 100%;">
-                        <p:commandButton id="commandButtonNuevoPunto" value="Nuevo punto" action="pm:opcionespunto" />
+                        <p:commandButton id="commandButtonNuevoPunto" value="Nuevo punto" action="pm:ubicacionpunto" />
                         <p:commandButton id="commandButtonConsultarPuntos" value="Consultar puntos" action="pm:listapuntos" />
                     </p:panelGrid>
                 </h:form>

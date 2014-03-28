@@ -7,30 +7,36 @@
         contentType="text/html">
     <pm:view id="ubicacionpunto">
         <pm:header title="Puntos" >
-            <p:commandButton  icon="back" value="atrás" action="pm:opcionespunto"/>
+            <p:commandButton  icon="back" value="atrás" action="pm:menuprincipal"/>
+
         </pm:header>
         <pm:content>
             <center>
                 <h:form id="formUbicacionPunto">
                     <p:panelGrid id="panelGridUbicacionpunto" columns="1" style="width: 100%;">
-                        <h:outputText id="outputTextDeparatmento" value="Departamento"/>
+                        <h:outputLabel for="selectOneMenuDepartamento" value="Departamento"/>
                         <h:selectOneMenu id="selectOneMenuDepartamento">
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
-                        </h:selectOneMenu>
-                        
-                        <h:outputText id="outputTextMunicipio" value="Municipio"/>
-                        <h:selectOneMenu id="selectOneMenuMunicipio">
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
-                        </h:selectOneMenu>
-                        
-                        <h:outputLabel id="utputLabelDireccion" value="Direccion"/>
-                        <h:inputText id="inputTextDireccion" value="" title="Digite Dirección"/>                         
-                    </p:panelGrid>
+                            <f:selectItem itemLabel="Caldas" itemValue="" />  
 
+                        </h:selectOneMenu>
+
+                        <h:outputLabel for="selectOneMenuMunicipio" value="Municipio"/>
+                        <h:selectOneMenu id="selectOneMenuMunicipio">
+                            <f:selectItem itemLabel="Manizales" itemValue="" />                        
+                        </h:selectOneMenu>
+
+                        <h:outputLabel id="outputLabelDireccion" value="Dirección"/>
+                        <h:inputText id="inputTextDireccion" value="" title="Digite Dirección"/>
+
+                        <p:gmap id="gmapUbicacionPunto" center="5.074065, -75.49767" zoom="12" type="HYBRID" style="width: 200px; height: 200px;" />
+                    </p:panelGrid>
                 </h:form>
             </center>
         </pm:content>
+
+        <pm:footer fixed="true" style="text-align: right;">
+            <p:commandButton value="Continuar" action="pm:opcionespunto" icon="arrow-r" iconPos="right" />
+
+        </pm:footer>
     </pm:view>
 </f:view>
