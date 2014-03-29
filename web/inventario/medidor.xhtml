@@ -13,46 +13,46 @@
                 <h:form id="formMedidor">
                     <p:panelGrid id="panelGridMedidor" columns="1" style="width: 100%;">
                         <h:outputLabel id="outputLabelSerialMedidor" value="Serial" />
-                        <h:inputText id="inputTextSerialMedidor" value="" />
+                        <h:inputText id="inputTextSerialMedidor" value="#{inventario.puntoLuz.medidorEnergia.serial}" />
 
                         <h:outputLabel id="outputLabelReferenciaMedidor" value="Referencia" />
-                        <h:inputText id="inputTextReferenciaMedidor" value="" />
+                        <h:inputText id="inputTextReferenciaMedidor" value="#{inventario.puntoLuz.medidorEnergia.referencia}" />
 
                         <h:outputLabel id="outputLabelFabricanteMedidor" value="Fabricante" />
-                        <h:selectOneMenu id="selectOneMenuFabricanteMedidor" value="">
+                        <h:selectOneMenu id="selectOneMenuFabricanteMedidor" value="#{inventario.puntoLuz.medidorEnergia.fabricante.id}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItem itemLabel="Tipo 1" itemValue="1" />
                         </h:selectOneMenu>
 
                         <h:outputLabel id="outputLabelTipoMedidor" value="Tipo" />
-                        <h:selectOneMenu id="selectOneMenuTipoMedidor" value="">
+                        <h:selectOneMenu id="selectOneMenuTipoMedidor" value="#{inventario.puntoLuz.medidorEnergia.tipoMedidor.id}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItem itemLabel="Tipo 1" itemValue="1" />
                         </h:selectOneMenu>
 
                         <h:outputLabel id="outputLabelPrecisionMedidor" value="Clase precisión" />
-                        <h:selectOneMenu id="selectOneMenuPrecisionMedidor" value="">
+                        <h:selectOneMenu id="selectOneMenuPrecisionMedidor" value="#{inventario.puntoLuz.medidorEnergia.clasePrecision.id}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItem itemLabel="Tipo 1" itemValue="1" />
                         </h:selectOneMenu>
 
                         <h:outputLabel id="outputLabelTipoConexionMedidor" value="Tipo de conexión red" />
-                        <h:selectOneMenu id="selectOneMenuTipoConexionMedidor" value="">
+                        <h:selectOneMenu id="selectOneMenuTipoConexionMedidor" value="#{inventario.puntoLuz.medidorEnergia.tipoConexionMedidor.id}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItem itemLabel="Tipo 1" itemValue="1" />
                         </h:selectOneMenu>
 
                         <h:outputLabel id="outputLabelVoltajeMedidor" value="Voltaje" />
-                        <p:inputText id="inputTextVoltajeMedidor" value="" />
+                        <p:inputText id="inputTextVoltajeMedidor" value="#{inventario.puntoLuz.medidorEnergia.voltaje}" />
 
                         <h:outputLabel id="outputLabelPotenciaMedidor" value="Potencia máxima a medir" />
-                        <p:inputText id="inputTextPotenciaMedidor" value="" />
+                        <p:inputText id="inputTextPotenciaMedidor" value="#{inventario.puntoLuz.medidorEnergia.potenciaMaxima}" />
                         
                         <h:outputLabel id="outputLabelFrecuenciaMedidor" value="Frecuencia" />
-                        <p:inputText id="inputTextFrecuenciaMedidor" value="" />
+                        <p:inputText id="inputTextFrecuenciaMedidor" value="#{inventario.puntoLuz.medidorEnergia.frecuencia}" />
                         
                         <h:outputLabel id="outputLabelTipoProteccionAmbiente" value="Tipo protección ambiente" />
-                        <h:selectOneMenu id="selectOneMenuTipoProteccionAmbiente" value="">
+                        <h:selectOneMenu id="selectOneMenuTipoProteccionAmbiente" value="#{inventario.puntoLuz.medidorEnergia.frecuencia}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItem itemLabel="Tipo 1" itemValue="1" />
                         </h:selectOneMenu>

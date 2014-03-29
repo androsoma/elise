@@ -15,25 +15,25 @@
                     <p:panelGrid id="panelGridbombillo" columns="1" style="width: 100%;">
                         
                         <h:outputLabel id="utputLabelFlujoLuminoso" value="Flujo Luminoso:"/>
-                        <h:inputText id="inputTextFlujoLuminoso" value="" title="Flujo Luminoso"/>    
+                        <h:inputText id="inputTextFlujoLuminoso" value="#{inventario.puntoLuz.bombillo.flujoLuminoso}" title="Flujo Luminoso"/>    
 
                         <h:outputLabel id="utputLabelPotencia" value="Potencia"/>
-                        <h:inputText id="inputTextPotencia" value="" title="Potencia"/>  
+                        <h:inputText id="inputTextPotencia" value="#{inventario.puntoLuz.bombillo.potencia}" title="Potencia"/>  
 
                         <h:outputLabel id="utputLabelVidaUtil" value="Vida útil"/>
-                        <h:inputText id="inputTextVidaUtil" value="" title="Vida útil"/>
+                        <h:inputText id="inputTextVidaUtil" value="#{inventario.puntoLuz.bombillo.vidaUtil}" title="Vida útil"/>
                         
                         <h:outputText id="outputTextTipoBombillo" value="Tipo bombillo"/>
-                        <h:selectOneMenu id="selectOneMenuTipoBombillo">
+                        <h:selectOneMenu id="selectOneMenuTipoBombillo" value="#{inventario.puntoLuz.bombillo.tipoBombillo.id}">
                             <f:selectItem itemLabel="Select One" itemValue="" />  
                             <f:selectItem itemLabel="Option 1" itemValue="1" />                              
                         </h:selectOneMenu>
 
                         <h:outputLabel id="outputLabelReferenciaBombillo" value="Referencia"/>
-                        <h:inputText id="inputTextReferenciaBombillo" value="" title="Referencia"/>    
+                        <h:inputText id="inputTextReferenciaBombillo" value="#{inventario.puntoLuz.bombillo.referencia}" title="Referencia"/>    
                         
                         <h:outputText id="outputTextFabricanteBombillo" value="Fabricante"/>
-                        <h:selectOneMenu id="selectOneMenuFabricanteBombillo">
+                        <h:selectOneMenu id="selectOneMenuFabricanteBombillo" value="#{inventario.puntoLuz.bombillo.fabricante.id}">
                             <f:selectItem itemLabel="Select One" itemValue="" />  
                             <f:selectItem itemLabel="Option 1" itemValue="1" />                              
                         </h:selectOneMenu>

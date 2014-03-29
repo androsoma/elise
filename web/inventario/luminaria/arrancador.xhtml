@@ -15,16 +15,16 @@
                     <p:panelGrid id="panelGridArrancador" columns="1" style="width: 100%;">
                         
                         <h:outputLabel id="outputLabelReferenciaArrancador" value="Referencia"/>
-                        <h:inputText id="inputTextReferenciaArrancador" value="" title="Referencia"/>    
+                        <h:inputText id="inputTextReferenciaArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.referencia}" title="Referencia"/>    
 
                         <h:outputText id="outputTextFabricanteArrancador" value="Fabricante"/>
-                        <h:selectOneMenu id="selectOneMenuFabricanteArrancador">
+                        <h:selectOneMenu id="selectOneMenuFabricanteArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.fabricante.id}">
                             <f:selectItem itemLabel="Select One" itemValue="" />  
                             <f:selectItem itemLabel="Option 1" itemValue="1" />                               
                         </h:selectOneMenu>
                         
                         <h:outputText id="outputTextTipoArrancador" value="Tipo arrancador"/>
-                        <h:selectOneMenu id="selectOneMenuTipoArrancador">
+                        <h:selectOneMenu id="selectOneMenuTipoArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.tipoArrancador.id}">
                             <f:selectItem itemLabel="Select One" itemValue="" />  
                             <f:selectItem itemLabel="Option 1" itemValue="1" />                               
                         </h:selectOneMenu>                        

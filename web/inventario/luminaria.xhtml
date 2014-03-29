@@ -24,25 +24,25 @@
 
                     <p:panelGrid columns="1" style="width: 100%">
                         <h:outputText id="outputTextTipoHerraje" value="Tipo herraje"/>
-                        <h:selectOneMenu id="selectOneMenuTipoHerraje">
+                        <h:selectOneMenu id="selectOneMenuTipoHerraje" value="#{inventario.puntoLuz.luminaria.tipoHerraje.id}">
                             <f:selectItem itemLabel="Select One" itemValue="" />  
                             <f:selectItem itemLabel="Option 1" itemValue="1" />                              
                         </h:selectOneMenu>
 
                         <h:outputLabel id="utputLabelAlturaLuminaria" value="Altura"/>
-                        <h:inputText id="inputTextAlturaLuminaria" value="" title="Altura"/>  
+                        <h:inputText id="inputTextAlturaLuminaria" value="#{inventario.puntoLuz.luminaria.altura}" title="Altura"/>  
 
                         <h:outputLabel id="utputLabelNivelIluminacion" value="Nivel de iluminación"/>
-                        <h:inputText id="inputTextNivelIluminacion" value="" title="Nivel de iluminación"/> 
+                        <h:inputText id="inputTextNivelIluminacion" value="#{inventario.puntoLuz.luminaria.nivelIluminacion}" title="Nivel de iluminación"/> 
 
                         <h:outputLabel id="utputLabelPotenciaLuminaria" value="Potencia"/>
-                        <h:inputText id="inputTextPotenciaLuminaria" value="" title="Potencia"/> 
+                        <h:inputText id="inputTextPotenciaLuminaria" value="#{inventario.puntoLuz.luminaria.potencia}" title="Potencia"/> 
 
                         <h:outputLabel id="utputLabelReferenciaLuminaria" value="Referencia"/>
-                        <h:inputText id="inputTextReferenciaLuminaria" value="" title="Referencia"/>  
+                        <h:inputText id="inputTextReferenciaLuminaria" value="#{inventario.puntoLuz.luminaria.referencia}" title="Referencia"/>  
 
                         <h:outputText id="outputTextFabricanteLuminaria" value="Fabricante"/>
-                        <h:selectOneMenu id="selectOneMenuFabricanteLuminaria">
+                        <h:selectOneMenu id="selectOneMenuFabricanteLuminaria" value="#{inventario.puntoLuz.luminaria.fabricante}">
                             <f:selectItem itemLabel="Select One" itemValue="" />  
                             <f:selectItem itemLabel="Option 1" itemValue="1" />                              
                         </h:selectOneMenu>

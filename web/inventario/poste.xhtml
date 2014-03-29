@@ -15,22 +15,22 @@
                     <p:panelGrid id="panelGridPoste" columns="1" style="width: 100%;">
                         
                         <h:outputText id="outputTextMaterial" value="Material"/>
-                        <h:selectOneMenu id="selectOneMenuMaterial">
+                        <h:selectOneMenu id="selectOneMenuMaterial" value="#{inventario.puntoLuz.poste.material.id}">
                             <f:selectItem itemLabel="Select One" itemValue="" />  
                             <f:selectItem itemLabel="Option 1" itemValue="1" />                              
                         </h:selectOneMenu>
                         
                         <h:outputText id="outputTextAltura" value="Altura"/>
-                        <h:selectOneMenu id="selectOneMenuAltura">
+                        <h:selectOneMenu id="selectOneMenuAltura" value="#{inventario.puntoLuz.poste.alturaPoste.id}">
                             <f:selectItem itemLabel="Select One" itemValue="" />  
                             <f:selectItem itemLabel="Option 1" itemValue="1" />                              
                         </h:selectOneMenu>
                                                 
                            <h:outputLabel id="utputLabelReferenciaPoste" value="Referencia"/>
-                        <h:inputText id="inputTextReferenciaPoste" value="" title="Referencia"/>    
+                           <h:inputText id="inputTextReferenciaPoste" value="#{inventario.puntoLuz.poste.referencia}" title="Referencia"/>    
                         
                         <h:outputText id="outputTextFabricantePoste" value="Fabricante"/>
-                        <h:selectOneMenu id="selectOneMenuFabricantePoste">
+                        <h:selectOneMenu id="selectOneMenuFabricantePoste" value="#{inventario.puntoLuz.poste.fabricante.id}">
                             <f:selectItem itemLabel="Select One" itemValue="" />  
                             <f:selectItem itemLabel="Option 1" itemValue="1" />                              
                         </h:selectOneMenu>
