@@ -10,6 +10,7 @@ import ejb.inventario.TipoConexionTransformadorFacade;
 import ejb.inventario.TipoTransformadorFacade;
 import ejb.inventario.TransformadorFacade;
 import entidades.inventario.Fabricante;
+import entidades.inventario.PuntoLuz;
 import entidades.inventario.TipoConexionTransformador;
 import entidades.inventario.TipoTransformador;
 import entidades.inventario.Transformador;
@@ -47,8 +48,8 @@ public class InventarioControl implements Serializable {
     List<TipoTransformador> tiposTransformador = null;
     List<Fabricante> fabricantes = null;
     List<TipoConexionTransformador> tiposConexionTransformador = null;
-    Transformador transformador = new Transformador();
-    boolean tipo = false;
+    private PuntoLuz puntoLuz;
+    boolean mostrarTiposTransformador = false;
 
     /**
      * Creates a new instance of InventarioControl
@@ -96,20 +97,20 @@ public class InventarioControl implements Serializable {
         this.tiposTransformador = tiposTransformador;
     }
 
-    public Transformador getTransformador() {
-        return transformador;
+    public PuntoLuz getPuntoLuz() {
+        return puntoLuz;
     }
 
-    public void setTransformador(Transformador transformador) {
-        this.transformador = transformador;
+    public void setPuntoLuz(PuntoLuz puntoLuz) {
+        this.puntoLuz = puntoLuz;
     }
 
-    public boolean isTipo() {
-        return tipo;
+    public boolean isMostrarTiposTransformador() {
+        return mostrarTiposTransformador;
     }
 
-    public void setTipo(boolean tipo) {
-        this.tipo = tipo;
+    public void setMostrarTiposTransformador(boolean mostrarTiposTransformador) {
+        this.mostrarTiposTransformador = mostrarTiposTransformador;
     }
 
     public List<Fabricante> getFabricantes() {
@@ -129,19 +130,12 @@ public class InventarioControl implements Serializable {
     }
 
     public String inicializarPunto() {
-        inicializarTipos();
-        transformador = new Transformador();
+        puntoLuz = new PuntoLuz();
         
-        transformador.setTipoTransformador(new TipoTransformador());
-        transformador.setTipoConexionTransformador(new TipoConexionTransformador());
-        transformador.setFabricante(new Fabricante());
-        
-        tipo = true;
-
-        return "pm:transformador";
+        return "pm:ubicacionpunto";
     }
     
-    public void inicializarTipos() {
+    public String inicializarTiposTransformador() {
         tiposTransformador = new ArrayList<>();
         tiposConexionTransformador = new ArrayList<>();
         fabricantes = new ArrayList<>();
@@ -149,5 +143,9 @@ public class InventarioControl implements Serializable {
         tiposTransformador = getTipoTransformadorFacade().findAll();
         tiposConexionTransformador = getTipoConexionTransformadorFacade().findAll();
         fabricantes = getFabricanteFacade().findAll();
+        
+        mostrarTiposTransformador = true;
+        
+        return "pm:transformador";
     }
 }

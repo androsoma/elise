@@ -13,46 +13,46 @@
                 <h:form id="formTransformador">
                     <p:panelGrid id="panelGridTransformador" columns="1" style="width: 100%;">
                         <h:outputLabel id="outputLabelExclusivo" value="¿Exclusivo?" />
-                        <pm:switch id="switchExclusivo" value="#{inventario.transformador.exclusivo}" onLabel="Sí" offLabel="No" />
+                        <pm:switch id="switchExclusivo" value="#{inventario.puntoLuz.transformador.exclusivo}" onLabel="Sí" offLabel="No" />
 
                         <h:outputLabel for="inputTextFrecuenciaTransformador" value="Frecuencia" />
-                        <h:inputText id="inputTextFrecuenciaTransformador" value="#{inventario.transformador.frecuencia}" />
+                        <h:inputText id="inputTextFrecuenciaTransformador" value="#{inventario.puntoLuz.transformador.frecuencia}" />
 
                         <h:outputLabel id="outputLabelFase" value="Fase" />
                         <pm:inputRange id="inputRangeFase" value="" minValue="1" maxValue="3" />  
 
                         <h:outputLabel for="selectOneMenuTipoTransformador" value="Tipo transformador" />
-                        <h:selectOneMenu id="selectOneMenuTipoTransformador" value="#{inventario.transformador.tipoTransformador.id}" rendered="#{inventario.tipo}" >
+                        <h:selectOneMenu id="selectOneMenuTipoTransformador" value="#{inventario.puntoLuz.transformador.tipoTransformador.id}" rendered="#{inventario.mostrarTiposTransformador}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.tiposTransformador}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}" />
                         </h:selectOneMenu>
 
                         <h:outputLabel for="selectOneMenuTipoConexionTransformador" value="Tipo conexión" />
-                        <h:selectOneMenu id="selectOneMenuTipoConexionTransformador" value="#{inventario.transformador.tipoConexionTransformador.id}" rendered="#{inventario.tipo}">
+                        <h:selectOneMenu id="selectOneMenuTipoConexionTransformador" value="#{inventario.puntoLuz.transformador.tipoConexionTransformador.id}" rendered="#{inventario.mostrarTiposTransformador}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.tiposConexionTransformador}" var="tipoconexion" itemLabel="#{tipoconexion.descripcion}" itemValue="#{tipoconexion.id}" />
                         </h:selectOneMenu>
 
                         <h:outputLabel for="selectOneMenuFabricanteTransformador" value="Fabricante" />
-                        <h:selectOneMenu id="selectOneMenuFabricanteTransformador" value="#{inventario.transformador.fabricante.id}" rendered="#{inventario.tipo}">
+                        <h:selectOneMenu id="selectOneMenuFabricanteTransformador" value="#{inventario.puntoLuz.transformador.fabricante.id}" rendered="#{inventario.mostrarTiposTransformador}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemLabel="#{fabricante.nombre}" itemValue="#{fabricante.id}" />
                         </h:selectOneMenu>
 
                         <h:outputLabel for="inputTextSerialTransformador" value="Serial" />
-                        <h:inputText id="inputTextSerialTransformador" value="#{inventario.transformador.serial}" />
+                        <h:inputText id="inputTextSerialTransformador" value="#{inventario.puntoLuz.transformador.serial}" />
 
                         <h:outputLabel for="inputTextVoltajeAlta" value="Voltaje alta" />
-                        <h:inputText id="inputTextVoltajeAlta" value="#{inventario.transformador.voltajeAlta}" />
+                        <h:inputText id="inputTextVoltajeAlta" value="#{inventario.puntoLuz.transformador.voltajeAlta}" />
 
                         <h:outputLabel for="inputTextVoltajeBaja" value="Voltaje baja" />
-                        <h:inputText id="inputTextVoltajeBaja" value="#{inventario.transformador.voltajeBaja}" />
+                        <h:inputText id="inputTextVoltajeBaja" value="#{inventario.puntoLuz.transformador.voltajeBaja}" />
 
                         <h:outputLabel for="inputTextPotenciaTransformador" value="Potencia" />
-                        <h:inputText id="inputTextPotenciaTransformador" value="#{inventario.transformador.potencia}" />
+                        <h:inputText id="inputTextPotenciaTransformador" value="#{inventario.puntoLuz.transformador.potencia}" />
 
                         <h:outputLabel for="inputTextReferenciaTransformador" value="Referencia" />
-                        <h:inputText id="inputTextReferenciaTransformador" value="#{inventario.transformador.referencia}" />
+                        <h:inputText id="inputTextReferenciaTransformador" value="#{inventario.puntoLuz.transformador.referencia}" />
                     </p:panelGrid>
                 </h:form>
             </center>

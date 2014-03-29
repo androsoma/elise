@@ -25,7 +25,7 @@
                         </h:selectOneMenu>
 
                         <h:outputLabel id="outputLabelDireccion" value="Dirección"/>
-                        <h:inputText id="inputTextDireccion" value="" title="Digite Dirección"/>
+                        <h:inputText id="inputTextDireccion" value="#{inventario.puntoLuz.ubicacionPunto.direccion}" title="Digite Dirección"/>
 
                         <p:gmap id="gmapUbicacionPunto" center="5.074065,-75.49767" zoom="20" widgetVar="gmap" type="HYBRID" style="width: 400px; height: 400px;"  />
                     </p:panelGrid>
