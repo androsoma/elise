@@ -8,21 +8,22 @@
         <pm:header title="Transformador">
             <p:commandButton icon="back" value="atrás" action="pm:opcionespunto" />
         </pm:header>
+        
         <pm:content>
             <center>
                 <h:form id="formTransformador">
                     <p:panelGrid id="panelGridTransformador" columns="1" style="width: 100%;">
-                        <h:outputLabel id="outputLabelExclusivo" value="¿Exclusivo?" />
+                        <h:outputLabel for="switchExclusivo" value="¿Exclusivo?" />
                         <pm:switch id="switchExclusivo" value="#{inventario.puntoLuz.transformador.exclusivo}" onLabel="Sí" offLabel="No" />
 
                         <h:outputLabel for="inputTextFrecuenciaTransformador" value="Frecuencia" />
                         <h:inputText id="inputTextFrecuenciaTransformador" value="#{inventario.puntoLuz.transformador.frecuencia}" />
 
-                        <h:outputLabel id="outputLabelFase" value="Fase" />
+                        <h:outputLabel for="inputRangeFase" value="Fase" />
                         <pm:inputRange id="inputRangeFase" value="" minValue="1" maxValue="3" />  
 
                         <h:outputLabel for="selectOneMenuTipoTransformador" value="Tipo transformador" />
-                        <h:selectOneMenu id="selectOneMenuTipoTransformador" value="#{inventario.puntoLuz.transformador.tipoTransformador.id}" rendered="#{inventario.mostrarTiposTransformador}" >
+                        <h:selectOneMenu id="selectOneMenuTipoTransformador" value="#{inventario.puntoLuz.transformador.tipoTransformador.id}" rendered="#{inventario.mostrarTiposTransformador}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.tiposTransformador}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}" />
                         </h:selectOneMenu>

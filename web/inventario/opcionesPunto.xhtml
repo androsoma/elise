@@ -8,16 +8,17 @@
         <pm:header title="Opciones" >
             <p:commandButton icon="back" value="atrás" action="pm:ubicacionpunto"/>
         </pm:header>
+        
         <pm:content>
             <center>
                 <h:form id="formOpcionesPunto">
                     <p:panelGrid id="panelGridOpcionesPunto" columns="1" style="width: 100%;">
                         <pm:buttonGroup>
                             <p:commandButton id="commandButtonTransformador" value="Transformador" action="#{inventario.inicializarTiposTransformador()}"  update=":formTransformador:panelGridTransformador" icon="arrow-r" iconPos="right" />
-                            <p:commandButton id="commandButtonLuminaria" value="Luminaria" action="pm:luminaria" icon="arrow-r" iconPos="right" />
-                            <p:commandButton id="commandButtonBombillo" value="Bombillo" action="pm:bombillo" icon="arrow-r" iconPos="right" />
-                            <p:commandButton id="commandButtonPoste" value="Poste" action="pm:poste" icon="arrow-r" iconPos="right" />
-                            <p:commandButton id="commandButtonMedidor" value="Medidor energía" action="pm:medidor"  icon="arrow-r" iconPos="right" />
+                            <p:commandButton id="commandButtonLuminaria" value="Luminaria" action="#{inventario.inicializarTiposLuminaria()}" update=":formLuminaria:panelGridLuminaria :formBrazoLuminaria:panelGridBrazoLuminaria :formBalasto:panelGridBalasto" icon="arrow-r" iconPos="right" />
+                            <p:commandButton id="commandButtonBombillo" value="Bombillo" action="#{inventario.inicializarTiposBombillo()}" update=":formBombillo:panelGridBombillo" icon="arrow-r" iconPos="right" />
+                            <p:commandButton id="commandButtonPoste" value="Poste" action="#{inventario.inicializarTiposPoste()}" update=":formPoste:panelGridPoste" icon="arrow-r" iconPos="right" />
+                            <p:commandButton id="commandButtonMedidor" value="Medidor energía" action="#{inventario.inicializarTiposMedidor()}" update=":formMedidor:panelGridMedidor" icon="arrow-r" iconPos="right" />
                        </pm:buttonGroup>                       
                     
                     </p:panelGrid>

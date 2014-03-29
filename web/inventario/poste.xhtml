@@ -5,34 +5,35 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pm="http://primefaces.org/mobile"
         contentType="text/html">
+
     <pm:view id="poste">
         <pm:header title="Poste">
             <p:commandButton icon="back" value="atrás" action="pm:opcionespunto" />
         </pm:header>
+
         <pm:content>
             <center>
                 <h:form id="formPoste">
                     <p:panelGrid id="panelGridPoste" columns="1" style="width: 100%;">
-                        
-                        <h:outputText id="outputTextMaterial" value="Material"/>
-                        <h:selectOneMenu id="selectOneMenuMaterial" value="#{inventario.puntoLuz.poste.material.id}">
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        <h:outputLabel for="selectOneMenuMaterial" value="Material" />
+                        <h:selectOneMenu id="selectOneMenuMaterial" value="#{inventario.puntoLuz.poste.material.id}" rendered="#{inventario.mostrarTiposPoste}">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.materialesPoste}" var="material" itemValue="#{material.id}" itemLabel="#{material.descripcion}" />
                         </h:selectOneMenu>
-                        
-                        <h:outputText id="outputTextAltura" value="Altura"/>
-                        <h:selectOneMenu id="selectOneMenuAltura" value="#{inventario.puntoLuz.poste.alturaPoste.id}">
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+
+                        <h:outputLabel for="selectOneMenuAltura" value="Altura" />
+                        <h:selectOneMenu id="selectOneMenuAltura" value="#{inventario.puntoLuz.poste.alturaPoste.id}" rendered="#{inventario.mostrarTiposPoste}">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.alturasPoste}" var="altura" itemValue="#{altura.id}" itemLabel="#{altura.descripcion}" />
                         </h:selectOneMenu>
-                                                
-                           <h:outputLabel id="utputLabelReferenciaPoste" value="Referencia"/>
-                           <h:inputText id="inputTextReferenciaPoste" value="#{inventario.puntoLuz.poste.referencia}" title="Referencia"/>    
-                        
-                        <h:outputText id="outputTextFabricantePoste" value="Fabricante"/>
-                        <h:selectOneMenu id="selectOneMenuFabricantePoste" value="#{inventario.puntoLuz.poste.fabricante.id}">
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+
+                        <h:outputLabel for="inputTextReferenciaPoste" value="Referencia" />
+                        <h:inputText id="inputTextReferenciaPoste" value="#{inventario.puntoLuz.poste.referencia}" title="Referencia" />
+
+                        <h:outputLabel for="selectOneMenuFabricantePoste" value="Fabricante" />
+                        <h:selectOneMenu id="selectOneMenuFabricantePoste" value="#{inventario.puntoLuz.poste.fabricante.id}" rendered="#{inventario.mostrarTiposPoste}">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
                         </h:selectOneMenu>
                     </p:panelGrid>
                 </h:form>

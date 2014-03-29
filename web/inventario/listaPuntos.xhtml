@@ -5,15 +5,17 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pm="http://primefaces.org/mobile"
         contentType="text/html">
+    
     <pm:view id="listapuntos">
         <pm:header title="Puntos">
             <p:commandButton icon="home" value="Inicio" action="pm:menuprincipal" />
         </pm:header>
+        
         <pm:content>
             <center>
                 <h:form id="formListaPuntos">
                     <p:panelGrid id="panelGridListaPuntos" columns="1" style="width: 100%;">
-                        Selecciones el punto a consultar.
+                        Seleccione el punto a consultar.
                     </p:panelGrid>
                 </h:form>
             </center>

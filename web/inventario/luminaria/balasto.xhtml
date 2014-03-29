@@ -5,34 +5,35 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pm="http://primefaces.org/mobile"
         contentType="text/html">
+
     <pm:view id="balasto">
         <pm:header title="Balasto">
             <p:commandButton icon="back" value="atrás" action="pm:luminaria" />
         </pm:header>
+
         <pm:content>
             <center>
                 <h:form id="formBalasto">
                     <p:panelGrid id="panelGridBalasto" columns="1" style="width: 100%;">
-                        
-                       <h:outputLabel id="outputLabelReferenciaBalasto" value="Referencia"/>
-                       <h:inputText id="inputTextReferenciaBalasto" value="#{inventario.puntoLuz.luminaria.balasto.referencia}" title="Referencia"/>    
-                        
-                        <h:outputText id="outputTextFabricanteBalasto" value="Fabricante"/>
-                        <h:selectOneMenu id="selectOneMenuFabricanteBalasto" value="#{inventario.puntoLuz.luminaria.balasto.fabricante.id}" >
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        <h:outputLabel for="inputTextReferenciaBalasto" value="Referencia" />
+                        <h:inputText id="inputTextReferenciaBalasto" value="#{inventario.puntoLuz.luminaria.balasto.referencia}" title="Referencia" />
+
+                        <h:outputLabel for="selectOneMenuFabricanteBalasto" value="Fabricante" />
+                        <h:selectOneMenu id="selectOneMenuFabricanteBalasto" value="#{inventario.puntoLuz.luminaria.balasto.fabricante.id}" rendered="#{inventario.mostrarTiposLuminaria}">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
                         </h:selectOneMenu>
-                        
-                        <h:outputText id="outputTextTipoBalasto" value="Tipo balasto lámpara"/>
-                        <h:selectOneMenu id="selectOneMenuTipoBalasto" value="#{inventario.puntoLuz.luminaria.balasto.tipoBalasto.id}">
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+
+                        <h:outputLabel for="selectOneMenuTipoBalasto" value="Tipo balasto lámpara" />
+                        <h:selectOneMenu id="selectOneMenuTipoBalasto" value="#{inventario.puntoLuz.luminaria.balasto.tipoBalasto.id}" rendered="#{inventario.mostrarTiposLuminaria}">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.tiposBalasto}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
                         </h:selectOneMenu>
-                        
-                        <h:outputText id="outputTextTipoProteccion" value="Tipo proteccion ambiente"/>
-                        <h:selectOneMenu id="selectOneMenuTipoProteccion" value="#{inventario.puntoLuz.luminaria.balasto.tipoProteccion.id}">
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+
+                        <h:outputLabel for="selectOneMenuTipoProteccion" value="Tipo protección ambiente" />
+                        <h:selectOneMenu id="selectOneMenuTipoProteccion" value="#{inventario.puntoLuz.luminaria.balasto.tipoProteccion.id}" rendered="#{inventario.mostrarTiposLuminaria}">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.tiposProteccion}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
                         </h:selectOneMenu>
                     </p:panelGrid>
                 </h:form>

@@ -5,20 +5,21 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pm="http://primefaces.org/mobile"
         contentType="text/html">
+    
     <pm:view id="brazoluminaria">
         <pm:header title="Brazo Luminaria">
             <p:commandButton icon="back" value="atrás" action="pm:luminaria" />
         </pm:header>
+        
         <pm:content>
             <center>
                 <h:form id="formBrazoLuminaria">
                     <p:panelGrid id="panelGridBrazoLuminaria" columns="1" style="width: 100%;">
-                        
-                       <h:outputLabel id="utputLabelLargo" value="Largo[metros]"/>
-                       <h:inputText id="inputTextLargo" value="#{inventario.puntoLuz.luminaria.brazoLuminaria.largo}" title="Largo[metros]"/>  
-                        
-                         <h:outputLabel id="utputLabelDiametro" value="Diámetro[pulgadas]"/>
-                         <h:inputText id="inputTextDiametro" value="#{inventario.puntoLuz.luminaria.brazoLuminaria.diametro}" title="Diámetro[pulgadas]"/>  
+                        <h:outputLabel for="inputTextLargo" value="Largo [metros]" />
+                        <h:inputText id="inputTextLargo" value="#{inventario.puntoLuz.luminaria.brazoLuminaria.largo}" title="Largo [metros]" />
+
+                        <h:outputLabel for="inputTextDiametro" value="Diámetro [pulgadas]" />
+                        <h:inputText id="inputTextDiametro" value="#{inventario.puntoLuz.luminaria.brazoLuminaria.diametro}" title="Diámetro [pulgadas]" />
                     </p:panelGrid>
                 </h:form>
             </center>

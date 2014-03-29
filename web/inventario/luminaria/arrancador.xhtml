@@ -5,30 +5,30 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pm="http://primefaces.org/mobile"
         contentType="text/html">
+    
     <pm:view id="arrancador">
         <pm:header title="Arrancador">
             <p:commandButton icon="back" value="atrás" action="pm:luminaria" />
         </pm:header>
+        
         <pm:content>
             <center>
                 <h:form id="formArrancador">
                     <p:panelGrid id="panelGridArrancador" columns="1" style="width: 100%;">
-                        
-                        <h:outputLabel id="outputLabelReferenciaArrancador" value="Referencia"/>
-                        <h:inputText id="inputTextReferenciaArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.referencia}" title="Referencia"/>    
+                        <h:outputLabel for="inputTextReferenciaArrancador" value="Referencia" />
+                        <h:inputText id="inputTextReferenciaArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.referencia}" title="Referencia" />
 
-                        <h:outputText id="outputTextFabricanteArrancador" value="Fabricante"/>
-                        <h:selectOneMenu id="selectOneMenuFabricanteArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.fabricante.id}">
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                               
+                        <h:outputLabel for="selectOneMenuFabricanteArrancador" value="Fabricante" />
+                        <h:selectOneMenu id="selectOneMenuFabricanteArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.fabricante.id}" rendered="#{inventario.mostrarTiposLuminaria}">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
                         </h:selectOneMenu>
                         
-                        <h:outputText id="outputTextTipoArrancador" value="Tipo arrancador"/>
-                        <h:selectOneMenu id="selectOneMenuTipoArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.tipoArrancador.id}">
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                               
+                        <h:outputLabel for="selectOneMenuTipoArrancador" value="Tipo arrancador" />
+                        <h:selectOneMenu id="selectOneMenuTipoArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.tipoArrancador.id}" rendered="#{inventario.mostrarTiposLuminaria}">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.tiposArrancador}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
                         </h:selectOneMenu>                        
-                      
                     </p:panelGrid>
                 </h:form>
             </center>

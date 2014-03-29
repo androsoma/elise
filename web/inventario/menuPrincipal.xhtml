@@ -3,16 +3,18 @@
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pm="http://primefaces.org/mobile">
+    
     <pm:view id="menuprincipal">
         <pm:header title="Menú principal">
             <p:commandButton  icon="user" value="Salir" action="pm:main"/>
         </pm:header>
+        
         <pm:content>
             <center>
                 <h:form id="formMenuPrincipal">
                     <p:panelGrid id="panelGridMenuPrincipal" columns="1" style="width: 100%;">
                         <pm:buttonGroup>
-                            <p:commandButton id="commandButtonNuevoPunto" value="Nuevo punto" action="pm:ubicacionpunto" icon="arrow-r" iconPos="right" />
+                            <p:commandButton id="commandButtonNuevoPunto" value="Nuevo punto" action="#{inventario.inicializarPunto()}" icon="arrow-r" iconPos="right" />
                             <p:commandButton id="commandButtonConsultarPuntos" value="Consultar puntos" action="pm:listapuntos" icon="arrow-r" iconPos="right" />
                         </pm:buttonGroup>
                     </p:panelGrid>

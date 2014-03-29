@@ -5,46 +5,48 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pm="http://primefaces.org/mobile"
         contentType="text/html">
+    
     <pm:view id="luminaria">
         <pm:header title="Luminaria">
             <p:commandButton icon="back" value="atrás" action="pm:opcionespunto" />
         </pm:header>
+        
         <pm:content>
             <center>
                 <h:form id="formMenuLuminaria">
-                    <p:panelGrid id="panelGridLuminaria" columns="1" style="width: 100%;">
+                    <p:panelGrid id="panelGridMenuLuminaria" columns="1" style="width: 100%;">
                         <pm:buttonGroup>
-                            <p:commandButton id="commandButtonBrazoLuminaria" value="Brazo luminaria" action="pm:brazoluminaria" icon="arrow-r" iconPos="right" />
+                            <p:commandButton id="commandButtonBrazoLuminaria" value="Brazo luminaria" action="pm:brazoluminaria" actionListener="#{inventario.imprimirValoresLuminaria()}" icon="arrow-r" iconPos="right" />
                             <p:commandButton id="commandButtonTransBalasto" value="Balasto" action="pm:balasto" icon="arrow-r" iconPos="right" />
                             <p:commandButton id="commandButtonTransArrancador" value="Arrancador" action="pm:arrancador" icon="arrow-r" iconPos="right" />
                         </pm:buttonGroup>
                     </p:panelGrid>
                 </h:form>
+                
                 <h:form id="formLuminaria">          
-
-                    <p:panelGrid columns="1" style="width: 100%">
-                        <h:outputText id="outputTextTipoHerraje" value="Tipo herraje"/>
-                        <h:selectOneMenu id="selectOneMenuTipoHerraje" value="#{inventario.puntoLuz.luminaria.tipoHerraje.id}">
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                    <p:panelGrid id="panelGridLuminaria" columns="1" style="width: 100%">
+                        <h:outputLabel for="selectOneMenuTipoHerraje" value="Tipo herraje" />
+                        <h:selectOneMenu id="selectOneMenuTipoHerraje" value="#{inventario.puntoLuz.luminaria.tipoHerraje.id}" rendered="#{inventario.mostrarTiposLuminaria}">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.tiposHerraje}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
                         </h:selectOneMenu>
 
-                        <h:outputLabel id="utputLabelAlturaLuminaria" value="Altura"/>
-                        <h:inputText id="inputTextAlturaLuminaria" value="#{inventario.puntoLuz.luminaria.altura}" title="Altura"/>  
+                        <h:outputLabel for="inputTextAlturaLuminaria" value="Altura" />
+                        <h:inputText id="inputTextAlturaLuminaria" value="#{inventario.puntoLuz.luminaria.altura}" title="Altura" />
 
-                        <h:outputLabel id="utputLabelNivelIluminacion" value="Nivel de iluminación"/>
-                        <h:inputText id="inputTextNivelIluminacion" value="#{inventario.puntoLuz.luminaria.nivelIluminacion}" title="Nivel de iluminación"/> 
+                        <h:outputLabel for="inputTextNivelIluminacion" value="Nivel de iluminación" />
+                        <h:inputText id="inputTextNivelIluminacion" value="#{inventario.puntoLuz.luminaria.nivelIluminacion}" title="Nivel de iluminación" />
 
-                        <h:outputLabel id="utputLabelPotenciaLuminaria" value="Potencia"/>
-                        <h:inputText id="inputTextPotenciaLuminaria" value="#{inventario.puntoLuz.luminaria.potencia}" title="Potencia"/> 
+                        <h:outputLabel for="inputTextPotenciaLuminaria" value="Potencia" />
+                        <h:inputText id="inputTextPotenciaLuminaria" value="#{inventario.puntoLuz.luminaria.potencia}" title="Potencia" /> 
 
-                        <h:outputLabel id="utputLabelReferenciaLuminaria" value="Referencia"/>
-                        <h:inputText id="inputTextReferenciaLuminaria" value="#{inventario.puntoLuz.luminaria.referencia}" title="Referencia"/>  
+                        <h:outputLabel for="inputTextReferenciaLuminaria" value="Referencia" />
+                        <h:inputText id="inputTextReferenciaLuminaria" value="#{inventario.puntoLuz.luminaria.referencia}" title="Referencia" />
 
-                        <h:outputText id="outputTextFabricanteLuminaria" value="Fabricante"/>
-                        <h:selectOneMenu id="selectOneMenuFabricanteLuminaria" value="#{inventario.puntoLuz.luminaria.fabricante}">
-                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />                              
+                        <h:outputLabel for="selectOneMenuFabricanteLuminaria" value="Fabricante" />
+                        <h:selectOneMenu id="selectOneMenuFabricanteLuminaria" value="#{inventario.puntoLuz.luminaria.fabricante.id}" rendered="#{inventario.mostrarTiposLuminaria}">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
                         </h:selectOneMenu>
                     </p:panelGrid>              
                 </h:form>
