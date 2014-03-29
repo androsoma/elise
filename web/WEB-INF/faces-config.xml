@@ -18,11 +18,6 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>tipoTransformador</managed-bean-name>
-        <managed-bean-class>control.inventario.TipoTransformadorControl</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
         <managed-bean-name>inventario</managed-bean-name>
         <managed-bean-class>control.inventario.InventarioControl</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>

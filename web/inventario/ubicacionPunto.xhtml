@@ -6,18 +6,17 @@
         xmlns:pm="http://primefaces.org/mobile"
         contentType="text/html">
     <pm:view id="ubicacionpunto">
-        <pm:header title="Puntos" >
+        <pm:header title="Ubicación" >
             <p:commandButton  icon="back" value="atrás" action="pm:menuprincipal"/>
 
         </pm:header>
         <pm:content>
             <center>
                 <h:form id="formUbicacionPunto">
-                    <p:panelGrid id="panelGridUbicacionpunto" columns="1" style="width: 100%;">
-                        <h:outputLabel for="selectOneMenuDepartamento" value="Departamento"/>
+                    <p:panelGrid id="panelGridUbicacionPunto" columns="1" style="width: 100%;">
+                        <h:outputLabel for="selectOneMenuDepartamento" value="Departamento" />
                         <h:selectOneMenu id="selectOneMenuDepartamento">
                             <f:selectItem itemLabel="Caldas" itemValue="" />  
-
                         </h:selectOneMenu>
 
                         <h:outputLabel for="selectOneMenuMunicipio" value="Municipio"/>
@@ -28,7 +27,7 @@
                         <h:outputLabel id="outputLabelDireccion" value="Dirección"/>
                         <h:inputText id="inputTextDireccion" value="" title="Digite Dirección"/>
 
-                        <p:gmap id="gmapUbicacionPunto" center="5.074065, -75.49767" zoom="12" type="HYBRID" style="width: 200px; height: 200px;" />
+                        <p:gmap id="gmapUbicacionPunto" center="5.074065,-75.49767" zoom="20" widgetVar="gmap" type="HYBRID" style="width: 400px; height: 400px;"  />
                     </p:panelGrid>
                 </h:form>
             </center>
@@ -36,7 +35,6 @@
 
         <pm:footer fixed="true" style="text-align: right;">
             <p:commandButton value="Continuar" action="pm:opcionespunto" icon="arrow-r" iconPos="right" />
-
         </pm:footer>
     </pm:view>
 </f:view>

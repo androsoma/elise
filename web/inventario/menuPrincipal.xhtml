@@ -11,8 +11,10 @@
             <center>
                 <h:form id="formMenuPrincipal">
                     <p:panelGrid id="panelGridMenuPrincipal" columns="1" style="width: 100%;">
-                        <p:commandButton id="commandButtonNuevoPunto" value="Nuevo punto" action="pm:ubicacionpunto" />
-                        <p:commandButton id="commandButtonConsultarPuntos" value="Consultar puntos" action="pm:listapuntos" />
+                        <pm:buttonGroup>
+                            <p:commandButton id="commandButtonNuevoPunto" value="Nuevo punto" action="pm:ubicacionpunto" icon="arrow-r" iconPos="right" />
+                            <p:commandButton id="commandButtonConsultarPuntos" value="Consultar puntos" action="pm:listapuntos" icon="arrow-r" iconPos="right" />
+                        </pm:buttonGroup>
                     </p:panelGrid>
                 </h:form>
             </center>

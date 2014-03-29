@@ -140,7 +140,7 @@ public class InventarioControl implements Serializable {
 
         return "pm:transformador";
     }
-
+    
     public void inicializarTipos() {
         tiposTransformador = new ArrayList<>();
         tiposConexionTransformador = new ArrayList<>();
