@@ -48,7 +48,7 @@ public class InventarioControl implements Serializable {
     List<TipoTransformador> tiposTransformador = null;
     List<Fabricante> fabricantes = null;
     List<TipoConexionTransformador> tiposConexionTransformador = null;
-    private PuntoLuz puntoLuz;
+    private PuntoLuz puntoLuz = new PuntoLuz();
     boolean mostrarTiposTransformador = false;
 
     /**
