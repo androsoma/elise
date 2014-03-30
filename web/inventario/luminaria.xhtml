@@ -3,32 +3,32 @@
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:pm="http://primefaces.org/mobile"
-        contentType="text/html">
-    
+        xmlns:pm="http://primefaces.org/mobile">
+
     <pm:view id="luminaria">
         <pm:header title="Luminaria">
             <p:commandButton icon="back" value="atrás" action="pm:opcionespunto" />
         </pm:header>
-        
+
         <pm:content>
             <center>
                 <h:form id="formMenuLuminaria">
                     <p:panelGrid id="panelGridMenuLuminaria" columns="1" style="width: 100%;">
                         <pm:buttonGroup>
-                            <p:commandButton id="commandButtonBrazoLuminaria" value="Brazo luminaria" action="pm:brazoluminaria" actionListener="#{inventario.imprimirValoresLuminaria()}" icon="arrow-r" iconPos="right" />
+                            <p:commandButton id="commandButtonBrazoLuminaria" value="Brazo luminaria" action="pm:brazoluminaria" actionListener="#{autenticacion.inicializarBrazoLuminaria()}" update=":formBrazoLuminaria:panelGridBrazoLuminaria" icon="arrow-r" iconPos="right" />
                             <p:commandButton id="commandButtonTransBalasto" value="Balasto" action="pm:balasto" icon="arrow-r" iconPos="right" />
                             <p:commandButton id="commandButtonTransArrancador" value="Arrancador" action="pm:arrancador" icon="arrow-r" iconPos="right" />
                         </pm:buttonGroup>
                     </p:panelGrid>
                 </h:form>
-                
+
                 <h:form id="formLuminaria">          
                     <p:panelGrid id="panelGridLuminaria" columns="1" style="width: 100%">
                         <h:outputLabel for="selectOneMenuTipoHerraje" value="Tipo herraje" />
-                        <h:selectOneMenu id="selectOneMenuTipoHerraje" value="#{inventario.puntoLuz.luminaria.tipoHerraje.id}" rendered="#{inventario.mostrarTiposLuminaria}">
+                        <h:selectOneMenu id="selectOneMenuTipoHerraje" value="#{inventario.puntoLuz.luminaria.tipoHerraje.id}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.tiposHerraje}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+                            <p:ajax event="change"  />
                         </h:selectOneMenu>
 
                         <h:outputLabel for="inputTextAlturaLuminaria" value="Altura" />
@@ -44,9 +44,10 @@
                         <h:inputText id="inputTextReferenciaLuminaria" value="#{inventario.puntoLuz.luminaria.referencia}" title="Referencia" />
 
                         <h:outputLabel for="selectOneMenuFabricanteLuminaria" value="Fabricante" />
-                        <h:selectOneMenu id="selectOneMenuFabricanteLuminaria" value="#{inventario.puntoLuz.luminaria.fabricante.id}" rendered="#{inventario.mostrarTiposLuminaria}">
+                        <h:selectOneMenu id="selectOneMenuFabricanteLuminaria" value="#{inventario.puntoLuz.luminaria.fabricante.id}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
+                            <p:ajax event="change"  />
                         </h:selectOneMenu>
                     </p:panelGrid>              
                 </h:form>
