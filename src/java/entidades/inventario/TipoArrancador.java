@@ -22,10 +22,11 @@ import javax.persistence.SequenceGenerator;
 public class TipoArrancador implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @SequenceGenerator(name = "TipoArrancadorSequence", sequenceName = "tipo_arrancador_seq", allocationSize = 1)
+    
     @Id
+    @SequenceGenerator(name = "TipoArrancadorSequence", sequenceName = "tipo_arrancador_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="TipoArrancadorSequence" )
-    private Long id;
+    private int id;
 
     @Column(length = 100, nullable = false)
     private String descripcion;
@@ -33,21 +34,14 @@ public class TipoArrancador implements Serializable {
     @Column(nullable = false)
     private boolean activo;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
+    
     public String getDescripcion() {
         return descripcion;
     }
@@ -64,14 +58,25 @@ public class TipoArrancador implements Serializable {
         this.activo = activo;
     }
 
+
+
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoArrancador)) {
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        TipoArrancador other = (TipoArrancador) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TipoArrancador other = (TipoArrancador) obj;
+        if (this.id != other.id) {
             return false;
         }
         return true;

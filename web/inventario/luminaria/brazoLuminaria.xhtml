@@ -16,10 +16,12 @@
                 <h:form id="formBrazoLuminaria">
                     <p:panelGrid id="panelGridBrazoLuminaria" columns="1" style="width: 100%;">
                         <h:outputLabel for="inputTextLargo" value="Largo [metros]" />
-                        <h:inputText id="inputTextLargo" value="#{inventario.puntoLuz.luminaria.brazoLuminaria.largo}" title="Largo [metros]" />
+                        <h:inputText id="inputTextLargo" value="#{autenticacion.brazoLuminaria.largo}" title="Largo [metros]" />
 
                         <h:outputLabel for="inputTextDiametro" value="Diámetro [pulgadas]" />
-                        <h:inputText id="inputTextDiametro" value="#{inventario.puntoLuz.luminaria.brazoLuminaria.diametro}" title="Diámetro [pulgadas]" />
+                        <h:inputText id="inputTextDiametro" value="#{autenticacion.brazoLuminaria.diametro}" title="Diámetro [pulgadas]" />
+                        
+                        <p:commandButton value="Mostrar valores" action="#{autenticacion.guardarBrazoLuminaria()}" update="formBrazoLuminaria" />
                     </p:panelGrid>
                 </h:form>
             </center>

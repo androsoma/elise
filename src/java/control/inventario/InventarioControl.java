@@ -6,6 +6,7 @@
 package control.inventario;
 
 import ejb.inventario.AlturaPosteFacade;
+import ejb.inventario.BrazoLuminariaFacade;
 import ejb.inventario.ClasePrecisionFacade;
 import ejb.inventario.FabricanteFacade;
 import ejb.inventario.MaterialPosteFacade;
@@ -55,9 +56,8 @@ import javax.inject.Named;
  *
  * @author Yeison Osorio
  */
-@Named("inventario")
-@SessionScoped
-public class InventarioControl implements Serializable {
+
+public class InventarioControl {
 
     @EJB
     @Inject
@@ -114,7 +114,11 @@ public class InventarioControl implements Serializable {
     @EJB
     @Inject
     TransformadorFacade transformadorFacade;
-
+    
+    @EJB
+    @Inject
+    BrazoLuminariaFacade brazoLuminariaFacade;
+    
     List<TipoTransformador> tiposTransformador = null;
     List<Fabricante> fabricantes = null;
     List<TipoConexionTransformador> tiposConexionTransformador = null;
@@ -254,6 +258,14 @@ public class InventarioControl implements Serializable {
         this.transformadorFacade = transformadorFacade;
     }
 
+    public BrazoLuminariaFacade getBrazoLuminariaFacade() {
+        return brazoLuminariaFacade;
+    }
+
+    public void setBrazoLuminariaFacade(BrazoLuminariaFacade brazoLuminariaFacade) {
+        this.brazoLuminariaFacade = brazoLuminariaFacade;
+    }
+    
     public List<TipoTransformador> getTiposTransformador() {
         return tiposTransformador;
     }
@@ -558,5 +570,11 @@ public class InventarioControl implements Serializable {
         }
 
         return "pm:medidor";
+    }
+    
+    public void guardarBrazoLuminaria() {
+        System.out.println("Voy a guardar brazo luminaria.");
+        
+        getBrazoLuminariaFacade().create(puntoLuz.getLuminaria().getBrazoLuminaria());
     }
 }

@@ -3,19 +3,31 @@
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:pm="http://primefaces.org/mobile"
-        contentType="text/html">
-    
+        xmlns:pm="http://primefaces.org/mobile">
+
     <pm:view id="listapuntos">
         <pm:header title="Puntos">
             <p:commandButton icon="home" value="Inicio" action="pm:menuprincipal" />
         </pm:header>
-        
+
         <pm:content>
             <center>
                 <h:form id="formListaPuntos">
                     <p:panelGrid id="panelGridListaPuntos" columns="1" style="width: 100%;">
-                        Seleccione el punto a consultar.
+                        <h:outputLabel for="inputTextLargoBrazoLuminaria" value="Largo" />
+                        <h:inputText id="inputTextLargoBrazoLuminaria" value="#{autenticacion.brazoLuminaria.largo}" />
+
+                        <h:outputLabel for="inputTextDiametroBrazoLuminaria" value="Diámetro" />
+                        <h:inputText id="inputTextDiametroBrazoLuminaria" value="#{autenticacion.brazoLuminaria.diametro}" />
+
+                        <h:outputLabel for="selectOneMenuTipoArrancadorLuminaria" value="Tipo arrancador" />
+                        <h:selectOneMenu id="selectOneMenuTipoArrancadorLuminaria" value="#{autenticacion.tipoArrancador.id}">
+                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
+                            <f:selectItems value="#{autenticacion.tiposArrancador}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}"  />
+                            <p:ajax event="change"  />
+                        </h:selectOneMenu>                        
+                      
+                        <p:commandButton id="commandButtonGuardarBrazo" value="Guardar" action="#{autenticacion.mostrarDatos()}" immediate="true" />
                     </p:panelGrid>
                 </h:form>
             </center>

@@ -16,24 +16,27 @@
                 <h:form id="formPoste">
                     <p:panelGrid id="panelGridPoste" columns="1" style="width: 100%;">
                         <h:outputLabel for="selectOneMenuMaterial" value="Material" />
-                        <h:selectOneMenu id="selectOneMenuMaterial" value="#{inventario.puntoLuz.poste.material.id}" rendered="#{inventario.mostrarTiposPoste}">
+                        <h:selectOneMenu id="selectOneMenuMaterial" value="#{inventario.puntoLuz.poste.material.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.materialesPoste}" var="material" itemValue="#{material.id}" itemLabel="#{material.descripcion}" />
+                            <p:ajax event="change"  />
                         </h:selectOneMenu>
 
                         <h:outputLabel for="selectOneMenuAltura" value="Altura" />
-                        <h:selectOneMenu id="selectOneMenuAltura" value="#{inventario.puntoLuz.poste.alturaPoste.id}" rendered="#{inventario.mostrarTiposPoste}">
+                        <h:selectOneMenu id="selectOneMenuAltura" value="#{inventario.puntoLuz.poste.alturaPoste.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.alturasPoste}" var="altura" itemValue="#{altura.id}" itemLabel="#{altura.descripcion}" />
+                            <p:ajax event="change"  />
                         </h:selectOneMenu>
 
                         <h:outputLabel for="inputTextReferenciaPoste" value="Referencia" />
                         <h:inputText id="inputTextReferenciaPoste" value="#{inventario.puntoLuz.poste.referencia}" title="Referencia" />
 
                         <h:outputLabel for="selectOneMenuFabricantePoste" value="Fabricante" />
-                        <h:selectOneMenu id="selectOneMenuFabricantePoste" value="#{inventario.puntoLuz.poste.fabricante.id}" rendered="#{inventario.mostrarTiposPoste}">
+                        <h:selectOneMenu id="selectOneMenuFabricantePoste" value="#{inventario.puntoLuz.poste.fabricante.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
+                            <p:ajax event="change"  />
                         </h:selectOneMenu>
                     </p:panelGrid>
                 </h:form>
