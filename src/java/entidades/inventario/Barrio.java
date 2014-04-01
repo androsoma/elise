@@ -32,10 +32,9 @@ public class Barrio implements Serializable {
     
     @Column(length = 50, nullable = false)
     private String nombre;
-
     
     @ManyToOne
-    @JoinColumn(name = "fk_barrio", nullable = false)
+    @JoinColumn(name = "fk_municipio", nullable = false)
     private Municipio municipio;
     
     @ManyToOne
