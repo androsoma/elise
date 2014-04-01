@@ -6,8 +6,9 @@
 
 package entidades.mantenimiento;
 
+import entidades.inventario.Tercero;
 import java.io.Serializable;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,23 +19,20 @@ import javax.persistence.SequenceGenerator;
 
 /**
  *
- * @author lbertel
+ * @author LENOVO
  */
 @Entity
-public class Cuadrilla implements Serializable {
+public class Ciudadano implements Serializable {
     private static final long serialVersionUID = 1L;
-   
+    
     @Id
-    @SequenceGenerator(name = "CuadrillaSequence", sequenceName = "cuadrilla_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CuadrillaSequence")
+    @SequenceGenerator(name = "CiudadanoSequence", sequenceName = "ciudadano_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CiudadanoSequence")
     private Long id;
     
-    @Column(length = 50, nullable = false)
-    private String descripcion;
-    
-    @ManyToOne
-    @JoinColumn(name = "fk_zona", nullable = true)
-    private Zona zona;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fk_tercero", nullable = false)
+    private Tercero tercero;   
 
     public Long getId() {
         return id;
@@ -44,22 +42,6 @@ public class Cuadrilla implements Serializable {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    
-    public Zona getZona() {
-        return zona;
-    }
-
-    public void setZona(Zona zona) {
-        this.zona = zona;
-    }
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -69,16 +51,20 @@ public class Cuadrilla implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Cuadrilla)) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Ciudadano)) {
             return false;
         }
-        Cuadrilla other = (Cuadrilla) object;
-        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
+        Ciudadano other = (Ciudadano) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return zona.getNombreZona();
+        return tercero.getNombres() + " " + tercero.getApellidos();
     }
     
 }

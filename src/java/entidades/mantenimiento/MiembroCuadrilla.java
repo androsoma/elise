@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entidades.mantenimiento;
 
+import entidades.inventario.Tercero;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -22,76 +25,37 @@ import javax.persistence.ManyToOne;
 public class MiembroCuadrilla implements Serializable {
     private static final long serialVersionUID = 1L;
 
-   @Id
-   @Column(length = 15, nullable = false)
-   private String cedula;
-   
-   @Column(length = 50, nullable = false)
-   private String nombres;
+    @Id
+    @SequenceGenerator(name = "MiembroCuadrillaSequence", sequenceName = "miembro_cuadrilla_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MiembroCuadrillaSequence")
+    private Long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "fk_tercero", nullable = false)
+    private Tercero tercero;
 
-   @Column(length = 50, nullable = false)
-   private String apellidos;
-   
-   @Column(length = 15)
-   private String movil;
-   
-   @Column(length = 15)
-   private String telefono;
-   
     @ManyToOne
     @JoinColumn(name = "fk_cuadrilla", nullable = true)
     private Cuadrilla cuadrilla;
-   
+
     @ManyToOne
-    @JoinColumn(name = "fk_MiembroCuadrilla", nullable = true)
+    @JoinColumn(name = "fk_rolcuadrilla", nullable = true)
     private RolCuadrilla rolCuadrilla;
 
-    public String getCedula() {
-        return cedula;
+    public Long getId() {
+        return id;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getNombres() {
-        return nombres;
+    public Tercero getTercero() {
+        return tercero;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getMovil() {
-        return movil;
-    }
-
-    public void setMovil(String movil) {
-        this.movil = movil;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public RolCuadrilla getRolCuadrilla() {
-        return rolCuadrilla;
-    }
-
-    public void setRolCuadrilla(RolCuadrilla rolCuadrilla) {
-        this.rolCuadrilla = rolCuadrilla;
+    public void setTercero(Tercero tercero) {
+        this.tercero = tercero;
     }
 
     public Cuadrilla getCuadrilla() {
@@ -101,14 +65,13 @@ public class MiembroCuadrilla implements Serializable {
     public void setCuadrilla(Cuadrilla cuadrilla) {
         this.cuadrilla = cuadrilla;
     }
-    
-    
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.cedula);
-        return hash;
+    public RolCuadrilla getRolCuadrilla() {
+        return rolCuadrilla;
+    }
+
+    public void setRolCuadrilla(RolCuadrilla rolCuadrilla) {
+        this.rolCuadrilla = rolCuadrilla;
     }
 
     @Override
@@ -120,13 +83,22 @@ public class MiembroCuadrilla implements Serializable {
             return false;
         }
         final MiembroCuadrilla other = (MiembroCuadrilla) obj;
-        return Objects.equals(this.cedula, other.cedula);
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
-    
-   
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
     @Override
     public String toString() {
-        return nombres + " " + apellidos;
+        return tercero.getNombres() + " " + tercero.getApellidos();
     }
-    
+
 }

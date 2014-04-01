@@ -30,7 +30,9 @@
                         </h:selectOneMenu>
 
                         <h:outputLabel for="inputTextReferenciaPoste" value="Referencia" />
-                        <h:inputText id="inputTextReferenciaPoste" value="#{inventario.puntoLuz.poste.referencia}" title="Referencia" />
+                        <h:inputText id="inputTextReferenciaPoste" value="#{inventario.puntoLuz.poste.referencia}" title="Referencia">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="selectOneMenuFabricantePoste" value="Fabricante" />
                         <h:selectOneMenu id="selectOneMenuFabricantePoste" value="#{inventario.puntoLuz.poste.fabricante.id}" >

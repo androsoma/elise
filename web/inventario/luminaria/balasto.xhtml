@@ -16,7 +16,9 @@
                 <h:form id="formBalasto">
                     <p:panelGrid id="panelGridBalasto" columns="1" style="width: 100%;">
                         <h:outputLabel for="inputTextReferenciaBalasto" value="Referencia" />
-                        <h:inputText id="inputTextReferenciaBalasto" value="#{inventario.puntoLuz.luminaria.balasto.referencia}" title="Referencia" />
+                        <h:inputText id="inputTextReferenciaBalasto" value="#{inventario.puntoLuz.luminaria.balasto.referencia}" title="Referencia">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="selectOneMenuFabricanteBalasto" value="Fabricante" />
                         <h:selectOneMenu id="selectOneMenuFabricanteBalasto" value="#{inventario.puntoLuz.luminaria.balasto.fabricante.id}" >

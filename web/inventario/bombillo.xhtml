@@ -10,19 +10,25 @@
         <pm:header title="Bombillo" >
             <p:commandButton  icon="back" value="atrás" action="pm:opcionespunto" />
         </pm:header>
-        
+
         <pm:content>
             <center>
                 <h:form id="formBombillo">
                     <p:panelGrid id="panelGridBombillo" columns="1" style="width: 100%;">
                         <h:outputLabel for="inputTextFlujoLuminoso" value="Flujo luminoso" />
-                        <h:inputText id="inputTextFlujoLuminoso" value="#{inventario.puntoLuz.bombillo.flujoLuminoso}" title="Flujo luminoso" />
+                        <h:inputText id="inputTextFlujoLuminoso" value="#{inventario.puntoLuz.bombillo.flujoLuminoso}" title="Flujo luminoso">
+                            <p:ajax event="blur" />
+                        </h:inputText>                        
 
                         <h:outputLabel for="inputTextPotencia" value="Potencia" />
-                        <h:inputText id="inputTextPotencia" value="#{inventario.puntoLuz.bombillo.potencia}" title="Potencia" />
+                        <h:inputText id="inputTextPotencia" value="#{inventario.puntoLuz.bombillo.potencia}" title="Potencia">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="inputTextVidaUtil" value="Vida útil" />
-                        <h:inputText id="inputTextVidaUtil" value="#{inventario.puntoLuz.bombillo.vidaUtil}" title="Vida útil" />
+                        <h:inputText id="inputTextVidaUtil" value="#{inventario.puntoLuz.bombillo.vidaUtil}" title="Vida útil">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="selectOneMenuTipoBombillo" value="Tipo bombillo" />
                         <h:selectOneMenu id="selectOneMenuTipoBombillo" value="#{inventario.puntoLuz.bombillo.tipoBombillo.id}" >
@@ -32,7 +38,9 @@
                         </h:selectOneMenu>
 
                         <h:outputLabel for="inputTextReferenciaBombillo" value="Referencia"/>
-                        <h:inputText id="inputTextReferenciaBombillo" value="#{inventario.puntoLuz.bombillo.referencia}" title="Referencia"/>    
+                        <h:inputText id="inputTextReferenciaBombillo" value="#{inventario.puntoLuz.bombillo.referencia}" title="Referencia">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="selectOneMenuFabricanteBombillo" value="Fabricante"/>
                         <h:selectOneMenu id="selectOneMenuFabricanteBombillo" value="#{inventario.puntoLuz.bombillo.fabricante.id}" >

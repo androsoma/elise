@@ -14,10 +14,14 @@
                 <h:form id="formMedidor">
                     <p:panelGrid id="panelGridMedidor" columns="1" style="width: 100%;">
                         <h:outputLabel for="inputTextSerialMedidor" value="Serial" />
-                        <h:inputText id="inputTextSerialMedidor" value="#{inventario.puntoLuz.medidorEnergia.serial}" />
+                        <h:inputText id="inputTextSerialMedidor" value="#{inventario.puntoLuz.medidorEnergia.serial}">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="inputTextReferenciaMedidor" value="Referencia" />
-                        <h:inputText id="inputTextReferenciaMedidor" value="#{inventario.puntoLuz.medidorEnergia.referencia}" />
+                        <h:inputText id="inputTextReferenciaMedidor" value="#{inventario.puntoLuz.medidorEnergia.referencia}">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="selectOneMenuFabricanteMedidor" value="Fabricante" />
                         <h:selectOneMenu id="selectOneMenuFabricanteMedidor" value="#{inventario.puntoLuz.medidorEnergia.fabricante.id}" >
@@ -48,18 +52,25 @@
                         </h:selectOneMenu>
 
                         <h:outputLabel for="inputTextVoltajeMedidor" value="Voltaje" />
-                        <p:inputText id="inputTextVoltajeMedidor" value="#{inventario.puntoLuz.medidorEnergia.voltaje}" />
+                        <h:inputText id="inputTextVoltajeMedidor" value="#{inventario.puntoLuz.medidorEnergia.voltaje}">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="inputTextPotenciaMedidor" value="Potencia máxima a medir" />
-                        <p:inputText id="inputTextPotenciaMedidor" value="#{inventario.puntoLuz.medidorEnergia.potenciaMaxima}" />
+                        <h:inputText id="inputTextPotenciaMedidor" value="#{inventario.puntoLuz.medidorEnergia.potenciaMaxima}">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="inputTextFrecuenciaMedidor" value="Frecuencia" />
-                        <p:inputText id="inputTextFrecuenciaMedidor" value="#{inventario.puntoLuz.medidorEnergia.frecuencia}" />
+                        <h:inputText id="inputTextFrecuenciaMedidor" value="#{inventario.puntoLuz.medidorEnergia.frecuencia}">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="selectOneMenuTipoProteccionAmbiente" value="Tipo protección ambiente" />
                         <h:selectOneMenu id="selectOneMenuTipoProteccionAmbiente" value="#{inventario.puntoLuz.medidorEnergia.tipoProteccion.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.tiposProteccion}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
                     </p:panelGrid>

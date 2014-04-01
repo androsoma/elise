@@ -15,16 +15,20 @@
                 <h:form id="formListaPuntos">
                     <p:panelGrid id="panelGridListaPuntos" columns="1" style="width: 100%;">
                         <h:outputLabel for="inputTextLargoBrazoLuminaria" value="Largo" />
-                        <h:inputText id="inputTextLargoBrazoLuminaria" value="#{autenticacion.brazoLuminaria.largo}" />
+                        <h:inputText id="inputTextLargoBrazoLuminaria" value="#{autenticacion.brazoLuminaria.largo}">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="inputTextDiametroBrazoLuminaria" value="Diámetro" />
-                        <h:inputText id="inputTextDiametroBrazoLuminaria" value="#{autenticacion.brazoLuminaria.diametro}" />
+                        <h:inputText id="inputTextDiametroBrazoLuminaria" value="#{autenticacion.brazoLuminaria.diametro}">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="selectOneMenuTipoArrancadorLuminaria" value="Tipo arrancador" />
                         <h:selectOneMenu id="selectOneMenuTipoArrancadorLuminaria" value="#{autenticacion.tipoArrancador.id}">
                             <f:selectItem itemValue="" itemLabel="Seleccione..." />
                             <f:selectItems value="#{autenticacion.tiposArrancador}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}"  />
-                            <p:ajax event="change"  />
+                            <p:ajax event="change" update="panelGridListaPuntos"  />
                         </h:selectOneMenu>                        
                       
                         <p:commandButton id="commandButtonGuardarBrazo" value="Guardar" action="#{autenticacion.mostrarDatos()}" immediate="true" />

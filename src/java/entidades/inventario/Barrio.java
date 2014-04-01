@@ -6,6 +6,7 @@
 
 package entidades.inventario;
 
+import entidades.mantenimiento.Zona;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,8 +35,12 @@ public class Barrio implements Serializable {
 
     
     @ManyToOne
-    @JoinColumn(name = "fk_barrio")
+    @JoinColumn(name = "fk_barrio", nullable = false)
     private Municipio municipio;
+    
+    @ManyToOne
+    @JoinColumn(name = "fk_zona", nullable = false)
+    private Zona zona;
     
     public Long getId() {
         return id;
@@ -59,6 +64,14 @@ public class Barrio implements Serializable {
 
     public void setMunicipio(Municipio municipio) {
         this.municipio = municipio;
+    }
+
+    public Zona getZona() {
+        return zona;
+    }
+
+    public void setZona(Zona zona) {
+        this.zona = zona;
     }
     
     @Override

@@ -32,10 +32,6 @@ public class Zona implements Serializable {
     
     @Column(length = 50, nullable = false)
     private String nombreZona;
-    
-    @ManyToOne
-    @JoinColumn(name = "fk_zona")
-    private Barrio barrio;
 
     public Long getId() {
         return id;
@@ -52,16 +48,6 @@ public class Zona implements Serializable {
     public void setNombreZona(String nombreZona) {
         this.nombreZona = nombreZona;
     }
-
-    public Barrio getBarrio() {
-        return barrio;
-    }
-
-    public void setBarrio(Barrio barrio) {
-        this.barrio = barrio;
-    }
-    
-    
 
     @Override
     public int hashCode() {

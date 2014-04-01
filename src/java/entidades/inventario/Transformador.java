@@ -6,10 +6,8 @@
 
 package entidades.inventario;
 
-import entidades.inventario.Fabricante;
-import entidades.inventario.TipoConexionTransformador;
-import entidades.inventario.TipoTransformador;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -28,18 +27,9 @@ public class Transformador implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TransformadorSequence")
     @SequenceGenerator(name = "TransformadorSequence", sequenceName = "transformador_seq", allocationSize = 1)
     private Long id;
-    
-    @Column(nullable = true)
-    private boolean exclusivo;
-    
-    @Column(length = 255, nullable = true)
-    private String frecuencia;
-    
-    @Column(nullable = true)
-    private int fase;
     
     @ManyToOne
     @JoinColumn(name = "fk_tipotransformador", nullable = true)
@@ -53,20 +43,34 @@ public class Transformador implements Serializable {
     @JoinColumn(name = "fk_fabricante", nullable = true)
     private Fabricante fabricante;
     
+    @ManyToOne
+    @JoinColumn(name = "fk_frecuencia", nullable = true)
+    private Frecuencia frecuencia;
+    
+    @ManyToOne
+    @JoinColumn(name = "fk_voltaje", nullable = true)
+    private Voltaje voltaje;
+    
+    @ManyToOne
+    @JoinColumn(name = "fk_potencia", nullable = true)
+    private Potencia potencia;
+    
+    @ManyToOne
+    @JoinColumn(name = "fk_fase", nullable = true)
+    private Fase fase;
+    
+    @Column(nullable = true)
+    private boolean exclusivo;
+    
     @Column(length = 255, nullable = true)
     private String serial;
     
     @Column(length = 255, nullable = true)
-    private String voltajeAlta;
-    
-    @Column(length = 255, nullable = true)
-    private String voltajeBaja;
-    
-    @Column(length = 255, nullable = true)
-    private String potencia;
-    
-    @Column(length = 255, nullable = true)
     private String referencia;
+    
+    @Column(nullable = true)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaRegistro;
 
     public Long getId() {
         return id;
@@ -82,22 +86,6 @@ public class Transformador implements Serializable {
 
     public void setExclusivo(boolean exclusivo) {
         this.exclusivo = exclusivo;
-    }
-
-    public String getFrecuencia() {
-        return frecuencia;
-    }
-
-    public void setFrecuencia(String frecuencia) {
-        this.frecuencia = frecuencia;
-    }
-
-    public int getFase() {
-        return fase;
-    }
-
-    public void setFase(int fase) {
-        this.fase = fase;
     }
 
     public TipoTransformador getTipoTransformador() {
@@ -132,36 +120,52 @@ public class Transformador implements Serializable {
         this.serial = serial;
     }
 
-    public String getVoltajeAlta() {
-        return voltajeAlta;
-    }
-
-    public void setVoltajeAlta(String voltajeAlta) {
-        this.voltajeAlta = voltajeAlta;
-    }
-
-    public String getVoltajeBaja() {
-        return voltajeBaja;
-    }
-
-    public void setVoltajeBaja(String voltajeBaja) {
-        this.voltajeBaja = voltajeBaja;
-    }
-
-    public String getPotencia() {
-        return potencia;
-    }
-
-    public void setPotencia(String potencia) {
-        this.potencia = potencia;
-    }
-
     public String getReferencia() {
         return referencia;
     }
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
+    }
+
+    public Frecuencia getFrecuencia() {
+        return frecuencia;
+    }
+
+    public void setFrecuencia(Frecuencia frecuencia) {
+        this.frecuencia = frecuencia;
+    }
+
+    public Voltaje getVoltaje() {
+        return voltaje;
+    }
+
+    public void setVoltaje(Voltaje voltaje) {
+        this.voltaje = voltaje;
+    }
+
+    public Potencia getPotencia() {
+        return potencia;
+    }
+
+    public void setPotencia(Potencia potencia) {
+        this.potencia = potencia;
+    }
+
+    public Fase getFase() {
+        return fase;
+    }
+
+    public void setFase(Fase fase) {
+        this.fase = fase;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     @Override

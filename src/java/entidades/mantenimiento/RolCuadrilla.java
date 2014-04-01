@@ -21,6 +21,7 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class RolCuadrilla implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @SequenceGenerator(name = "RolCuadrillaSequence", sequenceName = "rol_Cuadrilla_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RolCuadrillaSequence")

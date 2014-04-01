@@ -6,10 +6,14 @@
 package control.inventario;
 
 import ejb.inventario.AlturaPosteFacade;
+import ejb.inventario.ArrancadorFacade;
 import ejb.inventario.BrazoLuminariaFacade;
 import ejb.inventario.ClasePrecisionFacade;
 import ejb.inventario.FabricanteFacade;
+import ejb.inventario.FaseFacade;
+import ejb.inventario.FrecuenciaFacade;
 import ejb.inventario.MaterialPosteFacade;
+import ejb.inventario.PotenciaFacade;
 import ejb.inventario.TipoArrancadorFacade;
 import ejb.inventario.TipoBalastoFacade;
 import ejb.inventario.TipoBombilloFacade;
@@ -20,6 +24,7 @@ import ejb.inventario.TipoMedidorFacade;
 import ejb.inventario.TipoProteccionFacade;
 import ejb.inventario.TipoTransformadorFacade;
 import ejb.inventario.TransformadorFacade;
+import ejb.inventario.VoltajeFacade;
 import entidades.inventario.AlturaPoste;
 import entidades.inventario.Arrancador;
 import entidades.inventario.Balasto;
@@ -27,11 +32,14 @@ import entidades.inventario.Bombillo;
 import entidades.inventario.BrazoLuminaria;
 import entidades.inventario.ClasePrecision;
 import entidades.inventario.Fabricante;
+import entidades.inventario.Fase;
+import entidades.inventario.Frecuencia;
 import entidades.inventario.Luminaria;
 import entidades.inventario.MaterialPoste;
 import entidades.inventario.MedidorEnergia;
 import entidades.inventario.Municipio;
 import entidades.inventario.Poste;
+import entidades.inventario.Potencia;
 import entidades.inventario.PuntoLuz;
 import entidades.inventario.TipoArrancador;
 import entidades.inventario.TipoBalasto;
@@ -44,6 +52,7 @@ import entidades.inventario.TipoProteccion;
 import entidades.inventario.TipoTransformador;
 import entidades.inventario.Transformador;
 import entidades.inventario.UbicacionPunto;
+import entidades.inventario.Voltaje;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +65,6 @@ import javax.inject.Named;
  *
  * @author Yeison Osorio
  */
-
 public class InventarioControl {
 
     @EJB
@@ -114,11 +122,31 @@ public class InventarioControl {
     @EJB
     @Inject
     TransformadorFacade transformadorFacade;
-    
+
     @EJB
     @Inject
     BrazoLuminariaFacade brazoLuminariaFacade;
-    
+
+    @EJB
+    @Inject
+    ArrancadorFacade arrancadorFacade;
+
+    @EJB
+    @Inject
+    FrecuenciaFacade frecuenciaFacade;
+
+    @EJB
+    @Inject
+    VoltajeFacade voltajeFacade;
+
+    @EJB
+    @Inject
+    PotenciaFacade potenciaFacade;
+
+    @EJB
+    @Inject
+    FaseFacade faseFacade;
+
     List<TipoTransformador> tiposTransformador = null;
     List<Fabricante> fabricantes = null;
     List<TipoConexionTransformador> tiposConexionTransformador = null;
@@ -132,13 +160,12 @@ public class InventarioControl {
     List<TipoMedidor> tiposMedidor = null;
     List<ClasePrecision> clasesPrecision = null;
     List<TipoConexionMedidor> tiposConexionMedidor = null;
+    List<Frecuencia> frecuencias = null;
+    List<Voltaje> voltajes = null;
+    List<Potencia> potencias = null;
+    List<Fase> fases = null;
 
     private PuntoLuz puntoLuz;
-    private boolean mostrarTiposTransformador;
-    private boolean mostrarTiposLuminaria;
-    private boolean mostrarTiposBombillo;
-    private boolean mostrarTiposPoste;
-    private boolean mostrarTiposMedidorEnergia;
 
     /**
      * Creates a new instance of InventarioControl
@@ -265,9 +292,49 @@ public class InventarioControl {
     public void setBrazoLuminariaFacade(BrazoLuminariaFacade brazoLuminariaFacade) {
         this.brazoLuminariaFacade = brazoLuminariaFacade;
     }
-    
+
     public List<TipoTransformador> getTiposTransformador() {
         return tiposTransformador;
+    }
+
+    public ArrancadorFacade getArrancadorFacade() {
+        return arrancadorFacade;
+    }
+
+    public void setArrancadorFacade(ArrancadorFacade arrancadorFacade) {
+        this.arrancadorFacade = arrancadorFacade;
+    }
+
+    public FrecuenciaFacade getFrecuenciaFacade() {
+        return frecuenciaFacade;
+    }
+
+    public void setFrecuenciaFacade(FrecuenciaFacade frecuenciaFacade) {
+        this.frecuenciaFacade = frecuenciaFacade;
+    }
+
+    public VoltajeFacade getVoltajeFacade() {
+        return voltajeFacade;
+    }
+
+    public void setVoltajeFacade(VoltajeFacade voltajeFacade) {
+        this.voltajeFacade = voltajeFacade;
+    }
+
+    public PotenciaFacade getPotenciaFacade() {
+        return potenciaFacade;
+    }
+
+    public void setPotenciaFacade(PotenciaFacade potenciaFacade) {
+        this.potenciaFacade = potenciaFacade;
+    }
+
+    public FaseFacade getFaseFacade() {
+        return faseFacade;
+    }
+
+    public void setFaseFacade(FaseFacade faseFacade) {
+        this.faseFacade = faseFacade;
     }
 
     public void setTiposTransformador(List<TipoTransformador> tiposTransformador) {
@@ -370,38 +437,6 @@ public class InventarioControl {
         this.tiposConexionMedidor = tiposConexionMedidor;
     }
 
-    public boolean isMostrarTiposTransformador() {
-        return mostrarTiposTransformador;
-    }
-
-    public void setMostrarTiposTransformador(boolean mostrarTiposTransformador) {
-        this.mostrarTiposTransformador = mostrarTiposTransformador;
-    }
-
-    public boolean isMostrarTiposLuminaria() {
-        return mostrarTiposLuminaria;
-    }
-
-    public void setMostrarTiposLuminaria(boolean mostrarTiposLuminaria) {
-        this.mostrarTiposLuminaria = mostrarTiposLuminaria;
-    }
-
-    public boolean isMostrarTiposBombillo() {
-        return mostrarTiposBombillo;
-    }
-
-    public void setMostrarTiposBombillo(boolean mostrarTiposBombillo) {
-        this.mostrarTiposBombillo = mostrarTiposBombillo;
-    }
-
-    public boolean isMostrarTiposPoste() {
-        return mostrarTiposPoste;
-    }
-
-    public void setMostrarTiposPoste(boolean mostrarTiposPoste) {
-        this.mostrarTiposPoste = mostrarTiposPoste;
-    }
-
     public List<ClasePrecision> getClasesPrecision() {
         return clasesPrecision;
     }
@@ -410,12 +445,36 @@ public class InventarioControl {
         this.clasesPrecision = clasesPrecision;
     }
 
-    public boolean isMostrarTiposMedidorEnergia() {
-        return mostrarTiposMedidorEnergia;
+    public List<Frecuencia> getFrecuencias() {
+        return frecuencias;
     }
 
-    public void setMostrarTiposMedidorEnergia(boolean mostrarTiposMedidorEnergia) {
-        this.mostrarTiposMedidorEnergia = mostrarTiposMedidorEnergia;
+    public void setFrecuencias(List<Frecuencia> frecuencias) {
+        this.frecuencias = frecuencias;
+    }
+
+    public List<Voltaje> getVoltajes() {
+        return voltajes;
+    }
+
+    public void setVoltajes(List<Voltaje> voltajes) {
+        this.voltajes = voltajes;
+    }
+
+    public List<Potencia> getPotencias() {
+        return potencias;
+    }
+
+    public void setPotencias(List<Potencia> potencias) {
+        this.potencias = potencias;
+    }
+
+    public List<Fase> getFases() {
+        return fases;
+    }
+
+    public void setFases(List<Fase> fases) {
+        this.fases = fases;
     }
 
     public String inicializarPunto() {
@@ -430,6 +489,10 @@ public class InventarioControl {
         puntoLuz.getTransformador().setFabricante(new Fabricante());
         puntoLuz.getTransformador().setTipoTransformador(new TipoTransformador());
         puntoLuz.getTransformador().setTipoConexionTransformador(new TipoConexionTransformador());
+        puntoLuz.getTransformador().setFase(new Fase());
+        puntoLuz.getTransformador().setFrecuencia(new Frecuencia());
+        puntoLuz.getTransformador().setPotencia(new Potencia());
+        puntoLuz.getTransformador().setVoltaje(new Voltaje());
 
         puntoLuz.setLuminaria(new Luminaria());
         puntoLuz.getLuminaria().setTipoHerraje(new TipoHerraje());
@@ -459,122 +522,133 @@ public class InventarioControl {
         puntoLuz.getMedidorEnergia().setTipoConexionMedidor(new TipoConexionMedidor());
         puntoLuz.getMedidorEnergia().setTipoProteccion(new TipoProteccion());
 
-        desactivarMostrarTipos();
-
         return "pm:ubicacionpunto";
     }
 
-    private void desactivarMostrarTipos() {
-        mostrarTiposTransformador = false;
-        mostrarTiposLuminaria = false;
-        mostrarTiposBombillo = false;
-        mostrarTiposPoste = false;
-        mostrarTiposMedidorEnergia = false;
-    }
-
     public String inicializarTiposTransformador() {
-        if (!mostrarTiposTransformador) {
-            System.out.println("Inicializar listas transforamdor.");
-            tiposTransformador = new ArrayList<>();
-            tiposConexionTransformador = new ArrayList<>();
-            fabricantes = new ArrayList<>();
+        System.out.println("Inicializar listas transforamdor.");
+        tiposTransformador = new ArrayList<>();
+        tiposConexionTransformador = new ArrayList<>();
+        fabricantes = new ArrayList<>();
+        frecuencias = new ArrayList<>();
+        voltajes = new ArrayList<>();
+        potencias = new ArrayList<>();
+        fases = new ArrayList<>();
 
-            tiposTransformador = getTipoTransformadorFacade().findAll();
-            tiposConexionTransformador = getTipoConexionTransformadorFacade().findAll();
-            fabricantes = getFabricanteFacade().findAll();
-
-            mostrarTiposTransformador = true;
-        }
+        tiposTransformador = getTipoTransformadorFacade().findAll();
+        tiposConexionTransformador = getTipoConexionTransformadorFacade().findAll();
+        fabricantes = getFabricanteFacade().findAll();
+        frecuencias = getFrecuenciaFacade().findAll();
+        voltajes = getVoltajeFacade().findAll();
+        potencias = getPotenciaFacade().findAll();
+        fases = getFaseFacade().findAll();
 
         return "pm:transformador";
     }
 
     public String inicializarTiposLuminaria() {
-        if (!mostrarTiposLuminaria) {
-            System.out.println("Inicializar listas luminaria.");
-            tiposHerraje = new ArrayList<>();
-            fabricantes = new ArrayList<>();
-            tiposBalasto = new ArrayList<>();
-            tiposProteccion = new ArrayList<>();
-            tiposArrancador = new ArrayList<>();
+        System.out.println("Inicializar listas luminaria.");
+        tiposHerraje = new ArrayList<>();
+        fabricantes = new ArrayList<>();
+        tiposBalasto = new ArrayList<>();
+        tiposProteccion = new ArrayList<>();
+        tiposArrancador = new ArrayList<>();
 
-            tiposHerraje = getTipoHerrajeFacade().findAll();
-            fabricantes = getFabricanteFacade().findAll();
-            tiposBalasto = getTipoBalastoFacade().findAll();
-            tiposProteccion = getTipoProteccionFacade().findAll();
-            tiposArrancador = getTipoArrancadorFacade().findAll();
-
-            mostrarTiposLuminaria = true;
-        }
-        
-        imprimirValoresLuminaria();
+        tiposHerraje = getTipoHerrajeFacade().findAll();
+        fabricantes = getFabricanteFacade().findAll();
+        tiposBalasto = getTipoBalastoFacade().findAll();
+        tiposProteccion = getTipoProteccionFacade().findAll();
+        tiposArrancador = getTipoArrancadorFacade().findAll();
 
         return "pm:luminaria";
     }
 
-    public void imprimirValoresLuminaria() {
+    public String imprimirValoresLuminaria() {
         System.out.println("Diametro brazo = " + puntoLuz.getLuminaria().getBrazoLuminaria().getDiametro());
-        System.out.println("Fabricante balasto = " + puntoLuz.getLuminaria().getBalasto().getFabricante().getNombre());
+        System.out.println("Largo brazo = " + puntoLuz.getLuminaria().getBrazoLuminaria().getLargo());
+        System.out.println("Tipo balasto = " + puntoLuz.getLuminaria().getBalasto().getTipoBalasto().getId());
+        System.out.println("Fabricante balasto = " + puntoLuz.getLuminaria().getBalasto().getFabricante().getId());
+        System.out.println("Tipo arrancador = " + puntoLuz.getLuminaria().getArrancador().getTipoArrancador().getId());
+        System.out.println("Referencia  arrancador = " + puntoLuz.getLuminaria().getArrancador().getReferencia());
+
+        return null;
+    }
+    
+    public String imprimirValoresTransformador() {
+        System.out.println("Tipo transformador: " + puntoLuz.getTransformador().getTipoTransformador().getId());
+        System.out.println("Exclusivo: " + puntoLuz.getTransformador().isExclusivo());
+        System.out.println("Fase: " + puntoLuz.getTransformador().getFase().getId());
+        System.out.println("Serial: " + puntoLuz.getTransformador().getSerial());     
+        
+        return null;
     }
 
     public String inicializarTiposBombillo() {
-        if (!mostrarTiposBombillo) {
-            System.out.println("Inicializar listas bombillo.");
-            tiposBombillo = new ArrayList<>();
-            fabricantes = new ArrayList<>();
+        System.out.println("Inicializar listas bombillo.");
+        tiposBombillo = new ArrayList<>();
+        fabricantes = new ArrayList<>();
 
-            tiposBombillo = getTipoBombilloFacade().findAll();
-            fabricantes = getFabricanteFacade().findAll();
-
-            mostrarTiposBombillo = true;
-        }
+        tiposBombillo = getTipoBombilloFacade().findAll();
+        fabricantes = getFabricanteFacade().findAll();
 
         return "pm:bombillo";
     }
 
     public String inicializarTiposPoste() {
-        if (!mostrarTiposPoste) {
-            System.out.println("Inicializar listas poste.");
+        System.out.println("Inicializar listas poste.");
 
-            materialesPoste = new ArrayList<>();
-            alturasPoste = new ArrayList<>();
-            fabricantes = new ArrayList<>();
+        materialesPoste = new ArrayList<>();
+        alturasPoste = new ArrayList<>();
+        fabricantes = new ArrayList<>();
 
-            materialesPoste = getMaterialPosteFacade().findAll();
-            alturasPoste = getAlturaPosteFacade().findAll();
-            fabricantes = getFabricanteFacade().findAll();
-
-            mostrarTiposPoste = true;
-        }
+        materialesPoste = getMaterialPosteFacade().findAll();
+        alturasPoste = getAlturaPosteFacade().findAll();
+        fabricantes = getFabricanteFacade().findAll();
 
         return "pm:poste";
     }
 
     public String inicializarTiposMedidor() {
-        if (!mostrarTiposMedidorEnergia) {
-            System.out.println("Inicializar listas medidor.");
+        System.out.println("Inicializar listas medidor.");
 
-            fabricantes = new ArrayList<>();
-            tiposMedidor = new ArrayList<>();
-            clasesPrecision = new ArrayList<>();
-            tiposConexionMedidor = new ArrayList<>();
-            tiposProteccion = new ArrayList<>();
+        fabricantes = new ArrayList<>();
+        tiposMedidor = new ArrayList<>();
+        clasesPrecision = new ArrayList<>();
+        tiposConexionMedidor = new ArrayList<>();
+        tiposProteccion = new ArrayList<>();
 
-            fabricantes = getFabricanteFacade().findAll();
-            tiposMedidor = getTipoMedidorFacade().findAll();
-            clasesPrecision = getClasePrecisionFacade().findAll();
-            tiposConexionMedidor = getTipoConexionMedidorFacade().findAll();
-            tiposProteccion = getTipoProteccionFacade().findAll();
-
-            mostrarTiposMedidorEnergia = true;
-        }
+        fabricantes = getFabricanteFacade().findAll();
+        tiposMedidor = getTipoMedidorFacade().findAll();
+        clasesPrecision = getClasePrecisionFacade().findAll();
+        tiposConexionMedidor = getTipoConexionMedidorFacade().findAll();
+        tiposProteccion = getTipoProteccionFacade().findAll();
 
         return "pm:medidor";
     }
-    
+
     public void guardarBrazoLuminaria() {
         System.out.println("Voy a guardar brazo luminaria.");
-        
+
         getBrazoLuminariaFacade().create(puntoLuz.getLuminaria().getBrazoLuminaria());
+    }
+
+    public void editarBrazoLuminaria() {
+        System.out.println("Voy a editar brazo luminaria.");
+
+        getBrazoLuminariaFacade().edit(puntoLuz.getLuminaria().getBrazoLuminaria());
+    }
+
+    public void guardarArrancador() {
+        System.out.println("Voy a guardar el arrancador.");
+
+        if (puntoLuz.getLuminaria().getArrancador().getId() == null) {
+            getArrancadorFacade().create(puntoLuz.getLuminaria().getArrancador());
+
+            System.out.println("Id del arrancador creado: " + puntoLuz.getLuminaria().getArrancador().getId());
+        } else {
+            getArrancadorFacade().edit(puntoLuz.getLuminaria().getArrancador());
+
+            System.out.println("Id del arrancador editado: " + puntoLuz.getLuminaria().getArrancador().getId());
+        }
     }
 }

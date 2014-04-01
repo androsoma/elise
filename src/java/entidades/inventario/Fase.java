@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package entidades.mantenimiento;
+package entidades.inventario;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -12,29 +11,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 /**
  *
- * @author lbertel
+ * @author Yeison Osorio
  */
 @Entity
-public class Cuadrilla implements Serializable {
+public class Fase implements Serializable {
     private static final long serialVersionUID = 1L;
-   
+
     @Id
-    @SequenceGenerator(name = "CuadrillaSequence", sequenceName = "cuadrilla_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CuadrillaSequence")
+    @SequenceGenerator(name = "FaseSequence", sequenceName = "fase_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FaseSequence")
     private Long id;
-    
-    @Column(length = 50, nullable = false)
+
+    @Column(length = 255, nullable = false)
     private String descripcion;
-    
-    @ManyToOne
-    @JoinColumn(name = "fk_zona", nullable = true)
-    private Zona zona;
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private boolean activo;
 
     public Long getId() {
         return id;
@@ -51,15 +47,15 @@ public class Cuadrilla implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    public Zona getZona() {
-        return zona;
+
+    public boolean isActivo() {
+        return activo;
     }
 
-    public void setZona(Zona zona) {
-        this.zona = zona;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -69,16 +65,20 @@ public class Cuadrilla implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Cuadrilla)) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Fase)) {
             return false;
         }
-        Cuadrilla other = (Cuadrilla) object;
-        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
+        Fase other = (Fase) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return zona.getNombreZona();
+        return "entidades.inventario.Fase[ id=" + id + " ]";
     }
-    
+
 }

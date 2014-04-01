@@ -128,7 +128,8 @@ public class Autenticacion {
     }
     
     public String mostrarDatos() {
-        System.out.println("ingreso al metod");
+        System.out.println("Largo = " + brazoLuminaria.getLargo());
+        System.out.println("Diámetro = " + brazoLuminaria.getDiametro());
         System.out.println("opcion seleccionada= " + getTipoArrancador().getId());
         System.out.println("opcion seleccionada= " + getTipoArrancador().getDescripcion());
         
