@@ -32,16 +32,24 @@
                         </h:selectOneMenu>
 
                         <h:outputLabel for="inputTextAlturaLuminaria" value="Altura" />
-                        <h:inputText id="inputTextAlturaLuminaria" value="#{inventario.puntoLuz.luminaria.altura}" title="Altura" />
+                        <h:inputText id="inputTextAlturaLuminaria" value="#{inventario.puntoLuz.luminaria.altura}" title="Altura" >
+                            <p:ajax event="blur"/>
+                        </h:inputText>
 
                         <h:outputLabel for="inputTextNivelIluminacion" value="Nivel de iluminación" />
-                        <h:inputText id="inputTextNivelIluminacion" value="#{inventario.puntoLuz.luminaria.nivelIluminacion}" title="Nivel de iluminación" />
+                        <h:inputText id="inputTextNivelIluminacion" value="#{inventario.puntoLuz.luminaria.nivelIluminacion}" title="Nivel de iluminación" >
+                            <p:ajax event="blur"/>
+                        </h:inputText>
 
                         <h:outputLabel for="inputTextPotenciaLuminaria" value="Potencia" />
-                        <h:inputText id="inputTextPotenciaLuminaria" value="#{inventario.puntoLuz.luminaria.potencia}" title="Potencia" /> 
+                        <h:inputText id="inputTextPotenciaLuminaria" value="#{inventario.puntoLuz.luminaria.potencia}" title="Potencia" >
+                            <p:ajax event="blur"/>
+                        </h:inputText>
 
                         <h:outputLabel for="inputTextReferenciaLuminaria" value="Referencia" />
-                        <h:inputText id="inputTextReferenciaLuminaria" value="#{inventario.puntoLuz.luminaria.referencia}" title="Referencia" />
+                        <h:inputText id="inputTextReferenciaLuminaria" value="#{inventario.puntoLuz.luminaria.referencia}" title="Referencia" >
+                            <p:ajax event="blur"/>
+                        </h:inputText>
 
                         <h:outputLabel for="selectOneMenuFabricanteLuminaria" value="Fabricante" />
                         <h:selectOneMenu id="selectOneMenuFabricanteLuminaria" value="#{inventario.puntoLuz.luminaria.fabricante.id}">
