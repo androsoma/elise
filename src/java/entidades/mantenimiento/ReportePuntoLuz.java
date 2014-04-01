@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
@@ -35,15 +36,15 @@ public class ReportePuntoLuz implements Serializable {
     private String codigo;
     
     @ManyToOne
-    @Column(name = "fk_ciudadano", nullable = false)
+    @JoinColumn(name = "fk_ciudadano", nullable = false)
     private Ciudadano ciudadano;
     
     @ManyToOne
-    @Column(name = "fk_puntoluz", nullable = false)
+    @JoinColumn(name = "fk_puntoluz", nullable = false)
     private PuntoLuz puntoLuz;
     
     @ManyToOne
-    @Column(name = "fk_tipoincidente", nullable = false)
+    @JoinColumn(name = "fk_tipoincidente", nullable = false)
     private TipoIncidente tipoIncidente;
     
     @Column(nullable = false)
