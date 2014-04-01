@@ -22,8 +22,20 @@
                     </p:panelGrid>
                 </h:form>
 
-                <h:form id="formLuminaria">          
+                <h:form id="formLuminaria">   
                     <p:panelGrid id="panelGridLuminaria" columns="1" style="width: 100%">
+                        <h:outputLabel for="selectOneMenuFabricanteLuminaria" value="Fabricante" />
+                        <h:selectOneMenu id="selectOneMenuFabricanteLuminaria" value="#{inventario.puntoLuz.luminaria.fabricante.id}">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
+                            <p:ajax event="change"  />
+                        </h:selectOneMenu>
+
+                        <h:outputLabel for="inputTextReferenciaLuminaria" value="Referencia" />
+                        <h:inputText id="inputTextReferenciaLuminaria" value="#{inventario.puntoLuz.luminaria.referencia}" title="Referencia" >
+                            <p:ajax event="blur"/>
+                        </h:inputText>
+
                         <h:outputLabel for="selectOneMenuTipoHerraje" value="Tipo herraje" />
                         <h:selectOneMenu id="selectOneMenuTipoHerraje" value="#{inventario.puntoLuz.luminaria.tipoHerraje.id}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
@@ -41,22 +53,12 @@
                             <p:ajax event="blur"/>
                         </h:inputText>
 
-                        <h:outputLabel for="inputTextPotenciaLuminaria" value="Potencia" />
-                        <h:inputText id="inputTextPotenciaLuminaria" value="#{inventario.puntoLuz.luminaria.potencia}" title="Potencia" >
-                            <p:ajax event="blur"/>
-                        </h:inputText>
-
-                        <h:outputLabel for="inputTextReferenciaLuminaria" value="Referencia" />
-                        <h:inputText id="inputTextReferenciaLuminaria" value="#{inventario.puntoLuz.luminaria.referencia}" title="Referencia" >
-                            <p:ajax event="blur"/>
-                        </h:inputText>
-
-                        <h:outputLabel for="selectOneMenuFabricanteLuminaria" value="Fabricante" />
-                        <h:selectOneMenu id="selectOneMenuFabricanteLuminaria" value="#{inventario.puntoLuz.luminaria.fabricante.id}">
-                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
-                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
-                            <p:ajax event="change"  />
-                        </h:selectOneMenu>
+                        <h:outputLabel for="selectOneMenuPotenciaLuminaria" value="Potencia" />
+                        <h:selectOneMenu id="selectOneMenuPotenciaLuminaria" validator="#{inventario.puntoLuz.luminaria.potencia.id}">
+                            <f:selectItem itemLabel="Seleccione.." itemValue=""/>
+                            <f:selectItems value="#{inventario.potencias}" var="potencia" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}"/>
+                            <p:ajax event="change"/>
+                        </h:selectOneMenu>                   
                     </p:panelGrid>              
                 </h:form>
             </center>

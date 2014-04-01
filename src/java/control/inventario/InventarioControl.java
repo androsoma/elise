@@ -505,11 +505,12 @@ public class InventarioControl {
         puntoLuz.getLuminaria().setArrancador(new Arrancador());
         puntoLuz.getLuminaria().getArrancador().setFabricante(new Fabricante());
         puntoLuz.getLuminaria().getArrancador().setTipoArrancador(new TipoArrancador());
+        puntoLuz.getLuminaria().setPotencia(new Potencia());
 
         puntoLuz.setBombillo(new Bombillo());
         puntoLuz.getBombillo().setFabricante(new Fabricante());
         puntoLuz.getBombillo().setTipoBombillo(new TipoBombillo());
-
+        puntoLuz.getBombillo().setPotencia(new Potencia());
         puntoLuz.setPoste(new Poste());
         puntoLuz.getPoste().setFabricante(new Fabricante());
         puntoLuz.getPoste().setAlturaPoste(new AlturaPoste());
@@ -521,6 +522,9 @@ public class InventarioControl {
         puntoLuz.getMedidorEnergia().setTipoMedidor(new TipoMedidor());
         puntoLuz.getMedidorEnergia().setTipoConexionMedidor(new TipoConexionMedidor());
         puntoLuz.getMedidorEnergia().setTipoProteccion(new TipoProteccion());
+        puntoLuz.getMedidorEnergia().setVoltaje(new Voltaje());
+        puntoLuz.getMedidorEnergia().setFrecuencia(new Frecuencia());
+        puntoLuz.getMedidorEnergia().setPotenciaMaxima(new Potencia());
 
         return "pm:ubicacionpunto";
     }
@@ -553,12 +557,14 @@ public class InventarioControl {
         tiposBalasto = new ArrayList<>();
         tiposProteccion = new ArrayList<>();
         tiposArrancador = new ArrayList<>();
+        potencias = new ArrayList<>();
 
         tiposHerraje = getTipoHerrajeFacade().findAll();
         fabricantes = getFabricanteFacade().findAll();
         tiposBalasto = getTipoBalastoFacade().findAll();
         tiposProteccion = getTipoProteccionFacade().findAll();
         tiposArrancador = getTipoArrancadorFacade().findAll();
+        potencias = getPotenciaFacade().findAll();
 
         return "pm:luminaria";
     }
@@ -587,9 +593,11 @@ public class InventarioControl {
         System.out.println("Inicializar listas bombillo.");
         tiposBombillo = new ArrayList<>();
         fabricantes = new ArrayList<>();
-
+        potencias = new ArrayList<>();
+        
         tiposBombillo = getTipoBombilloFacade().findAll();
         fabricantes = getFabricanteFacade().findAll();
+        potencias = getPotenciaFacade().findAll();
 
         return "pm:bombillo";
     }
@@ -616,12 +624,18 @@ public class InventarioControl {
         clasesPrecision = new ArrayList<>();
         tiposConexionMedidor = new ArrayList<>();
         tiposProteccion = new ArrayList<>();
+        voltajes = new ArrayList<>();
+        frecuencias = new ArrayList<>();
+        potencias = new ArrayList<>();
 
         fabricantes = getFabricanteFacade().findAll();
         tiposMedidor = getTipoMedidorFacade().findAll();
         clasesPrecision = getClasePrecisionFacade().findAll();
         tiposConexionMedidor = getTipoConexionMedidorFacade().findAll();
         tiposProteccion = getTipoProteccionFacade().findAll();
+        voltajes = getVoltajeFacade().findAll();
+        frecuencias = getFrecuenciaFacade().findAll();
+        potencias = getPotenciaFacade().findAll();
 
         return "pm:medidor";
     }

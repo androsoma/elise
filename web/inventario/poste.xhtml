@@ -15,6 +15,13 @@
             <center>
                 <h:form id="formPoste">
                     <p:panelGrid id="panelGridPoste" columns="1" style="width: 100%;">
+                        <h:outputLabel for="selectOneMenuFabricantePoste" value="Fabricante" />
+                        <h:selectOneMenu id="selectOneMenuFabricantePoste" value="#{inventario.puntoLuz.poste.fabricante.id}" >
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
+                            <p:ajax event="change"  />
+                        </h:selectOneMenu>
+
                         <h:outputLabel for="selectOneMenuMaterial" value="Material" />
                         <h:selectOneMenu id="selectOneMenuMaterial" value="#{inventario.puntoLuz.poste.material.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
@@ -34,12 +41,6 @@
                             <p:ajax event="blur" />
                         </h:inputText>
 
-                        <h:outputLabel for="selectOneMenuFabricantePoste" value="Fabricante" />
-                        <h:selectOneMenu id="selectOneMenuFabricantePoste" value="#{inventario.puntoLuz.poste.fabricante.id}" >
-                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
-                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
-                            <p:ajax event="change"  />
-                        </h:selectOneMenu>
                     </p:panelGrid>
                 </h:form>
             </center>

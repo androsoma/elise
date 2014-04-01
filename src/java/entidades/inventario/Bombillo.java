@@ -40,8 +40,9 @@ public class Bombillo implements Serializable {
     @Column(length = 255, nullable = true)
     private String flujoLuminoso;
     
-    @Column(length = 255, nullable = true)
-    private String potencia;
+    @ManyToOne
+    @JoinColumn(name = "fk_potencia", nullable = true)
+    private Potencia potencia;
     
     @Column(length = 255, nullable = true)
     private String vidaUtil;
@@ -81,11 +82,11 @@ public class Bombillo implements Serializable {
         this.flujoLuminoso = flujoLuminoso;
     }
 
-    public String getPotencia() {
+    public Potencia getPotencia() {
         return potencia;
     }
 
-    public void setPotencia(String potencia) {
+    public void setPotencia(Potencia potencia) {
         this.potencia = potencia;
     }
 

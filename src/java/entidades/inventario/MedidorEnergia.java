@@ -55,14 +55,17 @@ public class MedidorEnergia implements Serializable {
     @Column(length = 255, nullable = true)
     private String referencia;
     
-    @Column(length = 50, nullable = true)
-    private String voltaje;
+    @ManyToOne
+    @JoinColumn(name = "fk_voltaje", nullable = true)
+    private Voltaje voltaje;
     
-    @Column(length = 50, nullable = true)
-    private String potenciaMaxima;
+    @ManyToOne
+    @JoinColumn(name = "fk_potencia", nullable = true)
+    private Potencia potenciaMaxima;
     
-    @Column(length = 50, nullable = true)
-    private String frecuencia;
+    @ManyToOne
+    @JoinColumn(name = "fk_frecuencia", nullable = true)
+    private Frecuencia frecuencia;
     
     public Long getId() {
         return id;
@@ -128,27 +131,27 @@ public class MedidorEnergia implements Serializable {
         this.referencia = referencia;
     }
 
-    public String getVoltaje() {
+    public Voltaje getVoltaje() {
         return voltaje;
     }
 
-    public void setVoltaje(String voltaje) {
+    public void setVoltaje(Voltaje voltaje) {
         this.voltaje = voltaje;
     }
 
-    public String getPotenciaMaxima() {
+    public Potencia getPotenciaMaxima() {
         return potenciaMaxima;
     }
 
-    public void setPotenciaMaxima(String potenciaMaxima) {
+    public void setPotenciaMaxima(Potencia potenciaMaxima) {
         this.potenciaMaxima = potenciaMaxima;
     }
 
-    public String getFrecuencia() {
+    public Frecuencia getFrecuencia() {
         return frecuencia;
     }
 
-    public void setFrecuencia(String frecuencia) {
+    public void setFrecuencia(Frecuencia frecuencia) {
         this.frecuencia = frecuencia;
     }
 

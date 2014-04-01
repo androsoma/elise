@@ -15,25 +15,17 @@
             <center>
                 <h:form id="formBombillo">
                     <p:panelGrid id="panelGridBombillo" columns="1" style="width: 100%;">
-                        <h:outputLabel for="inputTextFlujoLuminoso" value="Flujo luminoso" />
-                        <h:inputText id="inputTextFlujoLuminoso" value="#{inventario.puntoLuz.bombillo.flujoLuminoso}" title="Flujo luminoso">
-                            <p:ajax event="blur" />
-                        </h:inputText>                        
-
-                        <h:outputLabel for="inputTextPotencia" value="Potencia" />
-                        <h:inputText id="inputTextPotencia" value="#{inventario.puntoLuz.bombillo.potencia}" title="Potencia">
-                            <p:ajax event="blur" />
-                        </h:inputText>
-
-                        <h:outputLabel for="inputTextVidaUtil" value="Vida útil" />
-                        <h:inputText id="inputTextVidaUtil" value="#{inventario.puntoLuz.bombillo.vidaUtil}" title="Vida útil">
-                            <p:ajax event="blur" />
-                        </h:inputText>
-
                         <h:outputLabel for="selectOneMenuTipoBombillo" value="Tipo bombillo" />
                         <h:selectOneMenu id="selectOneMenuTipoBombillo" value="#{inventario.puntoLuz.bombillo.tipoBombillo.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />  
                             <f:selectItems value="#{inventario.tiposBombillo}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+                            <p:ajax event="change"  />
+                        </h:selectOneMenu>
+
+                        <h:outputLabel for="selectOneMenuFabricanteBombillo" value="Fabricante"/>
+                        <h:selectOneMenu id="selectOneMenuFabricanteBombillo" value="#{inventario.puntoLuz.bombillo.fabricante.id}" >
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
@@ -42,12 +34,23 @@
                             <p:ajax event="blur" />
                         </h:inputText>
 
-                        <h:outputLabel for="selectOneMenuFabricanteBombillo" value="Fabricante"/>
-                        <h:selectOneMenu id="selectOneMenuFabricanteBombillo" value="#{inventario.puntoLuz.bombillo.fabricante.id}" >
-                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
-                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
+                        <h:outputLabel for="inputTextFlujoLuminoso" value="Flujo luminoso" />
+                        <h:inputText id="inputTextFlujoLuminoso" value="#{inventario.puntoLuz.bombillo.flujoLuminoso}" title="Flujo luminoso">
+                            <p:ajax event="blur" />
+                        </h:inputText>                        
+
+                        <h:outputLabel for="selectOneMenuPotencia" value="Potencia" />
+                        <h:selectOneMenu id="selectOneMenuPotencia" value="#{inventario.puntoLuz.bombillo.potencia.id}" >
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />  
+                            <f:selectItems value="#{inventario.potencias}" var="potencia" itemValue="#{potencia.id}" itemLabel="#{potencia.descripcion}" />
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
+
+                        <h:outputLabel for="inputTextVidaUtil" value="Vida útil" />
+                        <h:inputText id="inputTextVidaUtil" value="#{inventario.puntoLuz.bombillo.vidaUtil}" title="Vida útil">
+                            <p:ajax event="blur" />
+                        </h:inputText>
+
                     </p:panelGrid>
                 </h:form>
             </center>

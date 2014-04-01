@@ -7,6 +7,7 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -55,12 +57,16 @@ public class Luminaria implements Serializable {
     @Column(nullable = true)
     private String nivelIluminacion;
     
-    @Column(nullable = true)
-    private String potencia;
+    @ManyToOne
+    @JoinColumn(name = "fk_potencia", nullable = true)
+    private Potencia potencia;
     
     @Column(nullable = true)
     private String referencia;
    
+    @Column(nullable = true)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaRegistro;
 
     public Long getId() {
         return id;
@@ -126,13 +132,13 @@ public class Luminaria implements Serializable {
         this.nivelIluminacion = nivelIluminacion;
     }
 
-    public String getPotencia() {
+    public Potencia getPotencia() {
         return potencia;
     }
 
-    public void setPotencia(String potencia) {
+    public void setPotencia(Potencia potencia) {
         this.potencia = potencia;
-    }
+    }    
 
     public String getReferencia() {
         return referencia;
@@ -140,6 +146,14 @@ public class Luminaria implements Serializable {
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     @Override
