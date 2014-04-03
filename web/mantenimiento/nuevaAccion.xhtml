@@ -1,0 +1,33 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile">
+    
+    <pm:view id="nuevaaccion">
+        <pm:header title="Cambio de fusible">
+            <p:commandButton icon="back" value="atrás" action="pm:accionescierre"/>
+        </pm:header>
+        
+        <pm:content>
+            <center>
+                <h:form id="formNuevaAccion">
+                    <p:panelGrid id="panelGridNuevaAccion" columns="1" style="width: 100%;">
+                        <h:outputLabel for="selectOneRadioTipoAccion" value="Tipo de acción realizada" />
+                        <h:selectOneRadio id="selectOneRadioTipoAccion" value="">
+                            <f:selectItem itemValue="1" itemLabel="Correctiva" />
+                            <f:selectItem itemValue="2" itemLabel="Preventiva" />
+                            
+                            <p:ajax event="change"  />
+                        </h:selectOneRadio>
+                        
+                        <h:outputLabel for="inputTextAreaObservacionesAccion" value="Observaciones" />
+                        <h:inputTextarea id="inputTextAreaObservacionesAccion" value="" />
+                        
+                        <p:commandButton id="commandButtonGuardarAccion" value="Guardar" action="pm:accionescierre" immediate="true" />
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>

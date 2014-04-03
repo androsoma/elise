@@ -22,6 +22,11 @@
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
+                        <h:outputLabel for="inputTextReferenciaPoste" value="Referencia" />
+                        <h:inputText id="inputTextReferenciaPoste" value="#{inventario.puntoLuz.poste.referencia}" title="Referencia">
+                            <p:ajax event="blur" />
+                        </h:inputText>
+
                         <h:outputLabel for="selectOneMenuMaterial" value="Material" />
                         <h:selectOneMenu id="selectOneMenuMaterial" value="#{inventario.puntoLuz.poste.material.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
@@ -35,12 +40,6 @@
                             <f:selectItems value="#{inventario.alturasPoste}" var="altura" itemValue="#{altura.id}" itemLabel="#{altura.descripcion}" />
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
-
-                        <h:outputLabel for="inputTextReferenciaPoste" value="Referencia" />
-                        <h:inputText id="inputTextReferenciaPoste" value="#{inventario.puntoLuz.poste.referencia}" title="Referencia">
-                            <p:ajax event="blur" />
-                        </h:inputText>
-
                     </p:panelGrid>
                 </h:form>
             </center>

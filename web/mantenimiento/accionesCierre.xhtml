@@ -1,0 +1,36 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile">
+    
+    <pm:view id="accionescierre">
+        <pm:header title="Acciones de cierre">
+            <p:commandButton icon="back" value="atrás" action="pm:ubicacionpuntoreporte"/>
+        </pm:header>
+        
+        <pm:content>
+            <center>
+                <h:form id="formAccionesCierre">
+                    <p:panelGrid id="panelGridAccionesCierre" columns="1" style="width: 100%;">
+                        <h:outputLabel for="selectOneMenuAccionCierre" value="Acción de cierre" />
+                        <h:selectOneMenu id="selectOneMenuAccionCierre" value="">
+                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
+                            <f:selectItem itemValue="1" itemLabel="Reparación de acometida" />
+                            <f:selectItem itemValue="2" itemLabel="Cambio de fusible" />
+                            <f:selectItem itemValue="3" itemLabel="Cambio de bombillo" />
+                            
+                            <p:ajax event="change" listener="#{inventario.accionSeleccionada()}" immediate="true" oncomplete="pm:nuevaaccion"  />
+                        </h:selectOneMenu>
+                        
+                        <p:dataTable id="dataTableAcciones" emptyMessage="Noy hay acciones registradas">
+                            
+                        </p:dataTable>
+                        
+                        <p:commandButton id="commandButtonCerrarIncidencia" value="Cerrar incidencia" action="pm:reporte" immediate="true" />
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </pm:content>
+    </pm:view>
+</f:view>

@@ -7,6 +7,7 @@ package control.inventario;
 
 import ejb.inventario.AlturaPosteFacade;
 import ejb.inventario.ArrancadorFacade;
+import ejb.inventario.BarrioFacade;
 import ejb.inventario.BrazoLuminariaFacade;
 import ejb.inventario.ClasePrecisionFacade;
 import ejb.inventario.FabricanteFacade;
@@ -28,6 +29,7 @@ import ejb.inventario.VoltajeFacade;
 import entidades.inventario.AlturaPoste;
 import entidades.inventario.Arrancador;
 import entidades.inventario.Balasto;
+import entidades.inventario.Barrio;
 import entidades.inventario.Bombillo;
 import entidades.inventario.BrazoLuminaria;
 import entidades.inventario.ClasePrecision;
@@ -147,6 +149,11 @@ public class InventarioControl {
     @Inject
     FaseFacade faseFacade;
 
+    @EJB
+    @Inject
+    BarrioFacade barrioFacade;
+
+    List<Barrio> barrios = null;   
     List<TipoTransformador> tiposTransformador = null;
     List<Fabricante> fabricantes = null;
     List<TipoConexionTransformador> tiposConexionTransformador = null;
@@ -337,6 +344,22 @@ public class InventarioControl {
         this.faseFacade = faseFacade;
     }
 
+    public BarrioFacade getBarrioFacade() {
+        return barrioFacade;
+    }
+
+    public void setBarrioFacade(BarrioFacade barrioFacade) {
+        this.barrioFacade = barrioFacade;
+    }
+
+    public List<Barrio> getBarrios() {
+        return barrios;
+    }
+
+    public void setBarrios(List<Barrio> barrios) {
+        this.barrios = barrios;
+    }
+
     public void setTiposTransformador(List<TipoTransformador> tiposTransformador) {
         this.tiposTransformador = tiposTransformador;
     }
@@ -479,11 +502,14 @@ public class InventarioControl {
 
     public String inicializarPunto() {
         System.out.println("Entré a inicializar punto.");
-
+        barrios = new ArrayList<>();
+        barrios = getBarrioFacade().findAll();
+        System.out.println("barrios encontrados: " + barrios.get(0).getNombre());
         puntoLuz = new PuntoLuz();
 
         puntoLuz.setUbicacionPunto(new UbicacionPunto());
         puntoLuz.getUbicacionPunto().setMunicipio(new Municipio());
+        puntoLuz.getUbicacionPunto().setBarrio(new Barrio());
 
         puntoLuz.setTransformador(new Transformador());
         puntoLuz.getTransformador().setFabricante(new Fabricante());
@@ -526,7 +552,7 @@ public class InventarioControl {
         puntoLuz.getMedidorEnergia().setFrecuencia(new Frecuencia());
         puntoLuz.getMedidorEnergia().setPotenciaMaxima(new Potencia());
 
-        return "pm:ubicacionpunto";
+        return "pm:map";
     }
 
     public String inicializarTiposTransformador() {
@@ -579,13 +605,13 @@ public class InventarioControl {
 
         return null;
     }
-    
+
     public String imprimirValoresTransformador() {
         System.out.println("Tipo transformador: " + puntoLuz.getTransformador().getTipoTransformador().getId());
         System.out.println("Exclusivo: " + puntoLuz.getTransformador().isExclusivo());
         System.out.println("Fase: " + puntoLuz.getTransformador().getFase().getId());
-        System.out.println("Serial: " + puntoLuz.getTransformador().getSerial());     
-        
+        System.out.println("Serial: " + puntoLuz.getTransformador().getSerial());
+
         return null;
     }
 
@@ -594,7 +620,7 @@ public class InventarioControl {
         tiposBombillo = new ArrayList<>();
         fabricantes = new ArrayList<>();
         potencias = new ArrayList<>();
-        
+
         tiposBombillo = getTipoBombilloFacade().findAll();
         fabricantes = getFabricanteFacade().findAll();
         potencias = getPotenciaFacade().findAll();
@@ -664,5 +690,10 @@ public class InventarioControl {
 
             System.out.println("Id del arrancador editado: " + puntoLuz.getLuminaria().getArrancador().getId());
         }
+    }
+    
+    public String accionSeleccionada() {
+        
+        return "pm:nuevaaccion";
     }
 }

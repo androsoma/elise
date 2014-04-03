@@ -28,7 +28,7 @@
                 function mostrarMapa(pos)
                 {
 
-                    var contenedor = document.getElementById("formMap:gmap");
+                    var contenedor = document.getElementById("formUbicacionPuntoReporte:gmapReporte");
                     var latitud = pos.coords.latitude;
                     var longitud = pos.coords.longitude;
 
@@ -119,8 +119,8 @@
 
                     }
 
-                    document.getElementById('formMap:lat').value = location.lat();
-                    document.getElementById('formMap:lng').value = location.lng();
+                    document.getElementById('formUbicacionPuntoReporte:latitudReporte').value = location.lat();
+                    document.getElementById('formMap:longitudReporte').value = location.lng();
 
                     /*
                      var x = document.getElementById('formMap:lat').value;
@@ -135,24 +135,33 @@
         </f:facet>
 
         <!-- Main View -->
-        <pm:view id="map">
-            <pm:header title="Poste">
-                <p:commandButton icon="back" value="atrás" action="pm:menuprincipal" />
+        <pm:view id="ubicacionpuntoreporte">
+            <pm:header title="Ubicación del punto">
+                <p:commandButton icon="back" value="atrás" action="pm:reporte" />
             </pm:header>
-            <pm:content id="c">
-                <h:form id="formMap">
+            <pm:content>
+                <h:form id="formUbicacionPuntoReporte">
+                    <h:panelGrid id="panelGridUbicacionPuntoReporte" columns="1">
+                        <h:outputLabel for="outputTextTipoIncidente" value="Tipo de incidente" />
+                        <h:outputText id="outputTextTipoIncidente" value="Daño de luminaria" />
+                        
+                        <h:outputLabel for="outputTextUbicacionIncidente" value="Ubicación" />
+                        <h:outputText id="outputTextUbicacionIncidente" value="Carrera 22A 70B-20. Barrio San Rafael, Manizales (Caldas)." />
+                    </h:panelGrid>
 
-                    <p:gmap center="0,0"  type="ROADMAP"  widgetVar="gmap" id="gmap" 
+                    <p:gmap center="0,0"  type="ROADMAP"  widgetVar="gmap" id="gmapReporte" 
                             zoom="18" style="height: 600px; width: 100%" streetView="true">
                     </p:gmap>
-                    <h:inputHidden id="lat" value="#{mapaControl.lat}" />  
-                    <h:inputHidden id="lng" value="#{mapaControl.lng}" />
+                    <h:inputHidden id="latitudReporte" value="#{mapaControl.lat}" />  
+                    <h:inputHidden id="longitudReporte" value="#{mapaControl.lng}" />
                 </h:form>
             </pm:content>
             <pm:footer style="text-align: right;">
-                <p:commandButton value="Agregar y continuar" action="pm:ubicacionpunto" actionListener="#{mapaControl.adicionarMarker}" icon="arrow-r" iconPos="right" />
+                <p:commandButton value="Continuar" action="pm:accionescierre" icon="arrow-r" iconPos="right" />
             </pm:footer>
         </pm:view>
     </pm:page>
 
 </f:view>
+
+

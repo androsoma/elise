@@ -5,20 +5,22 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pm="http://primefaces.org/mobile"
         contentType="text/html">
-    
+
     <pm:view id="arrancador">
         <pm:header title="Arrancador">
             <p:commandButton icon="back" value="atrás" action="pm:luminaria" />
         </pm:header>
-        
+
         <pm:content>
             <center>
                 <h:form id="formArrancador">
                     <p:panelGrid id="panelGridArrancador" columns="1" style="width: 100%;">
-                        <h:outputLabel for="inputTextReferenciaArrancador" value="Referencia" />
-                        <h:inputText id="inputTextReferenciaArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.referencia}" title="Referencia">
-                            <p:ajax event="blur" />
-                        </h:inputText>
+                        <h:outputLabel for="selectOneMenuTipoArrancador" value="Tipo arrancador" />
+                        <h:selectOneMenu id="selectOneMenuTipoArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.tipoArrancador.id}" >
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.tiposArrancador}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+                            <p:ajax event="change"  />
+                        </h:selectOneMenu>
 
                         <h:outputLabel for="selectOneMenuFabricanteArrancador" value="Fabricante" />
                         <h:selectOneMenu id="selectOneMenuFabricanteArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.fabricante.id}" >
@@ -26,15 +28,11 @@
                             <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
-                        
-                        <h:outputLabel for="selectOneMenuTipoArrancador" value="Tipo arrancador" />
-                        <h:selectOneMenu id="selectOneMenuTipoArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.tipoArrancador.id}" >
-                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
-                            <f:selectItems value="#{inventario.tiposArrancador}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
-                            <p:ajax event="change"  />
-                        </h:selectOneMenu>
-                        
-                        <p:commandButton value="Guardar" action="#{inventario.guardarArrancador()}" immediate="true" update="panelGridArrancador" />
+
+                        <h:outputLabel for="inputTextReferenciaArrancador" value="Referencia" />
+                        <h:inputText id="inputTextReferenciaArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.referencia}" title="Referencia">
+                            <p:ajax event="blur" />
+                        </h:inputText>
                     </p:panelGrid>
                 </h:form>
             </center>

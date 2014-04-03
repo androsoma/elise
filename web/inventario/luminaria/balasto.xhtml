@@ -15,10 +15,12 @@
             <center>
                 <h:form id="formBalasto">
                     <p:panelGrid id="panelGridBalasto" columns="1" style="width: 100%;">
-                        <h:outputLabel for="inputTextReferenciaBalasto" value="Referencia" />
-                        <h:inputText id="inputTextReferenciaBalasto" value="#{inventario.puntoLuz.luminaria.balasto.referencia}" title="Referencia">
-                            <p:ajax event="blur" />
-                        </h:inputText>
+                        <h:outputLabel for="selectOneMenuTipoBalasto" value="Tipo balasto lámpara" />
+                        <h:selectOneMenu id="selectOneMenuTipoBalasto" value="#{inventario.puntoLuz.luminaria.balasto.tipoBalasto.id}" >
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.tiposBalasto}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+                            <p:ajax event="change"  />
+                        </h:selectOneMenu>
 
                         <h:outputLabel for="selectOneMenuFabricanteBalasto" value="Fabricante" />
                         <h:selectOneMenu id="selectOneMenuFabricanteBalasto" value="#{inventario.puntoLuz.luminaria.balasto.fabricante.id}" >
@@ -27,12 +29,10 @@
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
-                        <h:outputLabel for="selectOneMenuTipoBalasto" value="Tipo balasto lámpara" />
-                        <h:selectOneMenu id="selectOneMenuTipoBalasto" value="#{inventario.puntoLuz.luminaria.balasto.tipoBalasto.id}" >
-                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
-                            <f:selectItems value="#{inventario.tiposBalasto}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
-                            <p:ajax event="change"  />
-                        </h:selectOneMenu>
+                        <h:outputLabel for="inputTextReferenciaBalasto" value="Referencia" />
+                        <h:inputText id="inputTextReferenciaBalasto" value="#{inventario.puntoLuz.luminaria.balasto.referencia}" title="Referencia">
+                            <p:ajax event="blur" />
+                        </h:inputText>
 
                         <h:outputLabel for="selectOneMenuTipoProteccion" value="Tipo protección ambiente" />
                         <h:selectOneMenu id="selectOneMenuTipoProteccion" value="#{inventario.puntoLuz.luminaria.balasto.tipoProteccion.id}" >

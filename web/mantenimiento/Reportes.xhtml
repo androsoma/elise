@@ -1,0 +1,40 @@
+<f:view renderKitId="PRIMEFACES_MOBILE"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html">
+
+    <pm:view id="reporte">
+        <pm:header title="Poste">
+            <p:commandButton icon="back" value="atrás" action="pm:menuprincipal" />
+        </pm:header>
+
+        <pm:content>
+            <h:form>  
+                <p:dataTable var="car" value="#{tableBean.carsSmall}">  
+                    <p:column headerText="Model">  
+                        <h:outputText value="#{car.model}" />  
+                    </p:column>  
+
+                    <p:column headerText="Year">  
+                        <h:outputText value="#{car.year}" />  
+                    </p:column>  
+
+                    <p:column headerText="Manufacturer">  
+                        <h:outputText value="#{car.manufacturer}" />  
+                    </p:column>  
+
+                    <p:column headerText="Color">  
+                        <h:outputText value="#{car.color}" />  
+                    </p:column>  
+                </p:dataTable>  
+            </h:form> 
+        </pm:content>
+        
+        <pm:footer style="text-align: right;">
+            <p:commandButton value="Continuar" action="pm:ubicacionpuntoreporte" icon="arrow-r" iconPos="right" />
+        </pm:footer>
+    </pm:view>
+</f:view>

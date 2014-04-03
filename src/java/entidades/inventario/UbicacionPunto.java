@@ -30,16 +30,20 @@ public class UbicacionPunto implements Serializable {
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "fk_municipio", nullable = true)
+    @JoinColumn(name = "fk_municipio")
     private Municipio municipio;
     
-    @Column(length = 255, nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "fk_barrio")
+    private Barrio barrio;
+    
+    @Column
     private String direccion;
     
-    @Column(nullable = true)
+    @Column
     private float latittud;
     
-    @Column(nullable = true)
+    @Column
     private float longitud;
 
     public Long getId() {
@@ -56,6 +60,14 @@ public class UbicacionPunto implements Serializable {
 
     public void setMunicipio(Municipio municipio) {
         this.municipio = municipio;
+    }
+
+    public Barrio getBarrio() {
+        return barrio;
+    }
+
+    public void setBarrio(Barrio barrio) {
+        this.barrio = barrio;
     }
 
     public String getDireccion() {
