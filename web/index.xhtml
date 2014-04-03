@@ -23,12 +23,12 @@
                     <h:form id="formLogin">
                         <p:panelGrid id="panelGridLogin" columns="1" style="width: 100%;">
                             <h:outputLabel id="outputLabelUsuario" value="Nombre de usuario" />
-                            <h:inputText id="inputTextUsuario" value="#{autenticacion.nombreUsuario}" />
+                            <h:inputText id="inputTextUsuario" value="#{autenticacion.usuario.nombreUsuario}" />
 
                             <h:outputLabel id="outputLabelContrasena" value="Contraseña" />
-                            <h:inputSecret id="inputSecretContrasena" value="#{autenticacion.contrasena}" />
+                            <h:inputSecret id="inputSecretContrasena" value="#{autenticacion.usuario.contrasena}" />
 
-                            <p:commandButton id="commandButtonIngresar" value="Ingresar" action="pm:menuprincipal" />
+                            <p:commandButton id="commandButtonIngresar" value="Ingresar" action="pm:menuprincipal" actionListener="#{inventario.inicializarPunto()}" />
                         </p:panelGrid>
                     </h:form>
                 </center>
@@ -47,5 +47,10 @@
         <ui:include src="inventario/luminaria/balasto.xhtml"/>        
         <ui:include src="inventario/luminaria/arrancador.xhtml"/>        
         <ui:include src="inventario/medidor.xhtml"/>        
+        <ui:include src="prueba.xhtml"/>        
+        <ui:include src="mantenimiento/Reportes.xhtml"/>
+        <ui:include src="mantenimiento/ubicacionPuntoReporte.xhtml"/> 
+        <ui:include src="mantenimiento/accionesCierre.xhtml"/> 
+        <ui:include src="mantenimiento/nuevaAccion.xhtml"/> 
     </pm:page>
 </f:view>

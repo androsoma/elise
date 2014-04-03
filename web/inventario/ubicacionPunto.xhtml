@@ -8,7 +8,7 @@
 
     <pm:view id="ubicacionpunto">
         <pm:header title="Ubicación" >
-            <p:commandButton  icon="back" value="atrás" action="pm:menuprincipal" />
+            <p:commandButton  icon="back" value="atrás" action="pm:map" />
         </pm:header>
 
         <pm:content>
@@ -24,13 +24,16 @@
                         <h:selectOneMenu id="selectOneMenuMunicipio">
                             <f:selectItem itemLabel="Manizales" itemValue="" />                        
                         </h:selectOneMenu>
+                        
+                        <h:outputLabel for="selectOneMenuBarrio" value="Barrio" />
+                        <h:selectOneMenu id="selectOneMenuBarrio">
+                            <f:selectItem itemLabel="Aranjuez" itemValue="" />                        
+                        </h:selectOneMenu>
 
                         <h:outputLabel for="inputTextDireccion" value="Dirección" />
                         <h:inputText id="inputTextDireccion" value="#{inventario.puntoLuz.ubicacionPunto.direccion}" title="Digite la dirección" >
                             <p:ajax event="blur"/>
                         </h:inputText>
-
-                        <p:gmap id="gmapUbicacionPunto" center="5.074065,-75.49767" zoom="20" widgetVar="gmap" type="HYBRID" style="width: 400px; height: 400px;" />
                     </p:panelGrid>
                 </h:form>
             </center>
