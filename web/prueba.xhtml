@@ -136,20 +136,20 @@
 
         <!-- Main View -->
         <pm:view id="map">
-            <pm:header title="Poste">
+            <pm:header title="Ubicar punto">
                 <p:commandButton icon="back" value="atrás" action="pm:menuprincipal" />
             </pm:header>
             <pm:content id="c">
                 <h:form id="formMap">
 
                     <p:gmap center="0,0"  type="ROADMAP"  widgetVar="gmap" id="gmap" 
-                            zoom="18" style="height: 600px; width: 100%" streetView="true">
+                            zoom="18" style="height: 370px; width: 100%" streetView="true">
                     </p:gmap>
                     <h:inputHidden id="lat" value="#{mapaControl.lat}" />  
                     <h:inputHidden id="lng" value="#{mapaControl.lng}" />
                 </h:form>
             </pm:content>
-            <pm:footer style="text-align: right;">
+            <pm:footer style="text-align: right;" fixed="true">
                 <p:commandButton value="Agregar y continuar" action="pm:ubicacionpunto" actionListener="#{mapaControl.adicionarMarker}" icon="arrow-r" iconPos="right" />
             </pm:footer>
         </pm:view>

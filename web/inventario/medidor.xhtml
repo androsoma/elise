@@ -36,6 +36,13 @@
                         <h:inputText id="inputTextSerialMedidor" value="#{inventario.puntoLuz.medidorEnergia.serial}">
                             <p:ajax event="blur" />
                         </h:inputText>
+                        
+                        <h:outputLabel for="selectOneMenuFrecuenciaMedidor" value="Frecuencia" />
+                        <h:selectOneRadio id="selectOneMenuFrecuenciaMedidor" value="#{inventario.puntoLuz.medidorEnergia.frecuencia.id}" >
+                            <f:selectItems value="#{inventario.frecuencias}" var="frecuencia" itemValue="#{frecuencia.id}" itemLabel="#{frecuencia.descripcion}" />
+
+                            <p:ajax event="change"  />
+                        </h:selectOneRadio>
 
                         <h:outputLabel for="selectOneMenuPrecisionMedidor" value="Clase precisión" />
                         <h:selectOneMenu id="selectOneMenuPrecisionMedidor" value="#{inventario.puntoLuz.medidorEnergia.clasePrecision.id}" >
@@ -66,13 +73,7 @@
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
-                        <h:outputLabel for="selectOneMenuFrecuenciaMedidor" value="Frecuencia" />
-                        <h:selectOneMenu id="selectOneMenuFrecuenciaMedidor" value="#{inventario.puntoLuz.medidorEnergia.frecuencia.id}" >
-                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
-                            <f:selectItems value="#{inventario.frecuencias}" var="frecuencia" itemValue="#{frecuencia.id}" itemLabel="#{frecuencia.descripcion}" />
-
-                            <p:ajax event="change"  />
-                        </h:selectOneMenu>
+                       
 
                         <h:outputLabel for="selectOneMenuTipoProteccionAmbiente" value="Tipo protección ambiente" />
                         <h:selectOneMenu id="selectOneMenuTipoProteccionAmbiente" value="#{inventario.puntoLuz.medidorEnergia.tipoProteccion.id}" >

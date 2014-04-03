@@ -7,34 +7,19 @@
         contentType="text/html">
 
     <pm:view id="reporte">
-        <pm:header title="Poste">
+        <pm:header title="Reportes">
             <p:commandButton icon="back" value="atrás" action="pm:menuprincipal" />
         </pm:header>
 
         <pm:content>
-            <h:form>  
-                <p:dataTable var="car" value="#{tableBean.carsSmall}">  
-                    <p:column headerText="Model">  
-                        <h:outputText value="#{car.model}" />  
-                    </p:column>  
-
-                    <p:column headerText="Year">  
-                        <h:outputText value="#{car.year}" />  
-                    </p:column>  
-
-                    <p:column headerText="Manufacturer">  
-                        <h:outputText value="#{car.manufacturer}" />  
-                    </p:column>  
-
-                    <p:column headerText="Color">  
-                        <h:outputText value="#{car.color}" />  
-                    </p:column>  
-                </p:dataTable>  
+            <h:form id="formReportes" style="width: 100%;">  
+                <pm:buttonGroup>
+                    <p:commandButton value="[Daño lámpara] Carrera 2 19-13, Manizales" action="pm:ubicacionpuntoreporte" icon="arrow-r" iconPos="right" />
+                    <p:commandButton value="[Robo cables] Carrera 23 68-15, Manizales" action="pm:ubicacionpuntoreporte" icon="arrow-r" iconPos="right" />
+                    <p:commandButton value="[Daño sensor] Calle 45 37B-60, Manizales" action="pm:ubicacionpuntoreporte" icon="arrow-r" iconPos="right" />
+                    <p:commandButton value="[Daño poste] Av. Santander Calle 55, Manizales" action="pm:ubicacionpuntoreporte" icon="arrow-r" iconPos="right" />
+                </pm:buttonGroup>
             </h:form> 
         </pm:content>
-        
-        <pm:footer style="text-align: right;">
-            <p:commandButton value="Continuar" action="pm:ubicacionpuntoreporte" icon="arrow-r" iconPos="right" />
-        </pm:footer>
     </pm:view>
 </f:view>
