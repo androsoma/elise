@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -36,7 +37,7 @@ public class Usuario implements Serializable {
     private String contrasena;
     
     @ManyToOne(cascade = {CascadeType.REFRESH})
-    @Column(name = "fk_tercero", nullable = false)
+    @JoinColumn(name = "fk_tercero", nullable = false)
     private Tercero tercero;
     
     @Column(length = 50, nullable = false)
