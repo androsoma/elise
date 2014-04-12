@@ -7,6 +7,7 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,11 +30,11 @@ public class UbicacionPunto implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UbicacionPuntoSequence")
     private Long id;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_municipio")
     private Municipio municipio;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_barrio")
     private Barrio barrio;
     

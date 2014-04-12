@@ -7,6 +7,7 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,15 +30,15 @@ public class Poste implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PosteSequence")
     private Long id;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_materialposte", nullable = true)
     private MaterialPoste material;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_alturaposte", nullable = true)
     private AlturaPoste alturaPoste;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_fabricante", nullable = true)
     private Fabricante fabricante;
     

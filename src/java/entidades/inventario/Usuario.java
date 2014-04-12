@@ -7,11 +7,13 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -33,14 +35,15 @@ public class Usuario implements Serializable {
     @Column(length = 255, nullable = false)
     private String contrasena;
     
-    @Column(length = 255, nullable = false)
-    private String nombres;
-    
-    @Column(length = 255, nullable = false)
-    private String apellidos;
+    @ManyToOne(cascade = {CascadeType.REFRESH})
+    @Column(name = "fk_tercero", nullable = false)
+    private Tercero tercero;
     
     @Column(length = 50, nullable = false)
     private String rol;
+    
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private boolean activo;
 
     public Long getId() {
         return id;
@@ -66,20 +69,12 @@ public class Usuario implements Serializable {
         this.contrasena = contrasena;
     }
 
-    public String getNombres() {
-        return nombres;
+    public Tercero getTercero() {
+        return tercero;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setTercero(Tercero tercero) {
+        this.tercero = tercero;
     }
 
     public String getRol() {
@@ -90,6 +85,14 @@ public class Usuario implements Serializable {
         this.rol = rol;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -112,7 +115,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return nombres + " " + apellidos;
+        return tercero.getNombres()+ " " + tercero.getApellidos();
     }
     
 }

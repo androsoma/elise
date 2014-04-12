@@ -6,6 +6,7 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,15 +32,15 @@ public class Balasto implements Serializable {
     @Column(length = 255, nullable = true)
     private String referencia;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_fabricante", nullable = true)
     private Fabricante fabricante;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipobalasto", nullable = true)
     private TipoBalasto tipoBalasto;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipoproteccion", nullable = true)
     private TipoProteccion tipoProteccion;
 

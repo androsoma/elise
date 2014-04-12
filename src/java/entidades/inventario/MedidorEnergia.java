@@ -7,6 +7,7 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,23 +30,23 @@ public class MedidorEnergia implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MedidorEnergiaSequence")
     private Long id;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_fabricante", nullable = true)
     private Fabricante fabricante;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipomedidor", nullable = true)
     private TipoMedidor tipoMedidor;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_claseprecision", nullable = true)
     private ClasePrecision clasePrecision;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipoconexionmedidor", nullable = true)
     private TipoConexionMedidor tipoConexionMedidor;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipoproteccion", nullable = true)
     private TipoProteccion tipoProteccion;
     
@@ -55,19 +56,19 @@ public class MedidorEnergia implements Serializable {
     @Column(length = 255, nullable = true)
     private String referencia;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_voltajealta", nullable = true)
     private Voltaje voltajeAlta;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_voltajebaja", nullable = true)
     private Voltaje voltajeBaja;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_potencia", nullable = true)
     private Potencia potenciaMaxima;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_frecuencia", nullable = true)
     private Frecuencia frecuencia;
     

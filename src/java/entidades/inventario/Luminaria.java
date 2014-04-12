@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entidades.inventario;
 
 import java.io.Serializable;
@@ -26,54 +25,54 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Luminaria implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @SequenceGenerator(name = "LuminariaSequence", sequenceName = "luminaria_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LuminariaSequence")
     private Long id;
-    
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "fk_transformador", nullable = true)
-    private Transformador transformador;
-    
+
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_brazoluminaria", nullable = true)
     private BrazoLuminaria brazoLuminaria;
-    
+
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_balasto", nullable = true)
     private Balasto balasto;
-    
+
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_arrancador", nullable = true)
     private Arrancador arrancador;
-    
+
+    @ManyToOne(cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "fk_transformador", nullable = true)
+    private Transformador transformador;
+
     @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipoherraje", nullable = true)
     private TipoHerraje tipoHerraje;
-    
+
     @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_fabricante", nullable = true)
     private Fabricante fabricante;
-    
+
     @Column(nullable = true)
     private float altura;
-    
+
     @Column(nullable = true)
     private String nivelIluminacion;
-    
+
     @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_potencia", nullable = true)
     private Potencia potencia;
-    
+
     @Column(nullable = true)
     private String referencia;
-   
+
     @Column(nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date fechaRegistro;    
-   
+    private Date fechaRegistro;
 
     public Long getId() {
         return id;
@@ -153,7 +152,7 @@ public class Luminaria implements Serializable {
 
     public void setPotencia(Potencia potencia) {
         this.potencia = potencia;
-    }    
+    }
 
     public String getReferencia() {
         return referencia;
@@ -195,5 +194,5 @@ public class Luminaria implements Serializable {
     public String toString() {
         return "entidades.inventario.Luminaria[ id=" + id + " ]";
     }
-    
+
 }

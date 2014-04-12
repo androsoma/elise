@@ -34,35 +34,35 @@ public class Transformador implements Serializable {
     @SequenceGenerator(name = "TransformadorSequence", sequenceName = "transformador_seq", allocationSize = 1)
     private Long id;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipotransformador", nullable = true)
     private TipoTransformador tipoTransformador;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipoconexiontransformador", nullable = true)
     private TipoConexionTransformador tipoConexionTransformador;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_fabricante", nullable = true)
     private Fabricante fabricante;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_frecuencia", nullable = true)
     private Frecuencia frecuencia;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_voltajealta", nullable = true)
     private Voltaje voltajeAlta;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_voltajebaja", nullable = true)
     private Voltaje voltajeBaja;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_potencia", nullable = true)
     private Potencia potencia;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_fase", nullable = true)
     private Fase fase;
     

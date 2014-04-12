@@ -9,6 +9,7 @@ package entidades.mantenimiento;
 import entidades.inventario.Usuario;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,15 +33,11 @@ public class AccionCierreReporte implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AccionCierreReporteSequence")
     private Long id;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_accioncierre", nullable = false)
     private AccionCierre accionCierre;
     
-    @ManyToOne
-    @JoinColumn(name = "fk_tipoaccion", nullable = false)
-    private TipoAccion tipoAccion;
-    
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_usuario", nullable = false)
     private Usuario usuario;
     
@@ -65,14 +62,6 @@ public class AccionCierreReporte implements Serializable {
 
     public void setAccionCierre(AccionCierre accionCierre) {
         this.accionCierre = accionCierre;
-    }
-
-    public TipoAccion getTipoAccion() {
-        return tipoAccion;
-    }
-
-    public void setTipoAccion(TipoAccion tipoAccion) {
-        this.tipoAccion = tipoAccion;
     }
 
     public Usuario getUsuario() {

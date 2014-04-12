@@ -7,11 +7,14 @@
 package entidades.mantenimiento;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -30,6 +33,10 @@ public class AccionCierre implements Serializable {
     @Column(nullable = false)
     private String descripcion;
     
+    @ManyToOne(cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "fk_tipoaccion", nullable = false)
+    private TipoAccion tipoAccion;
+    
     @Column(nullable = false)
     private boolean activo;
 
@@ -39,6 +46,30 @@ public class AccionCierre implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public TipoAccion getTipoAccion() {
+        return tipoAccion;
+    }
+
+    public void setTipoAccion(TipoAccion tipoAccion) {
+        this.tipoAccion = tipoAccion;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     @Override

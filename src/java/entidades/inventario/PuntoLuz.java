@@ -7,12 +7,13 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -28,27 +29,27 @@ public class PuntoLuz implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PuntoLuzSequence")
     private Long id;
     
-    @ManyToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_ubicacionpunto", nullable = false)
     private UbicacionPunto ubicacionPunto;
     
-    @ManyToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_transformador", nullable = true)
     private Transformador transformador;
     
-    @ManyToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_luminaria", nullable = true)
     private Luminaria luminaria;
     
-    @ManyToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_bombillo", nullable = true)
     private Bombillo bombillo;
     
-    @ManyToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_poste", nullable = true)
     private Poste poste;
     
-    @ManyToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_medidorenergia", nullable = true)
     private MedidorEnergia medidorEnergia;
 

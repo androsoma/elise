@@ -7,6 +7,7 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,18 +30,18 @@ public class Bombillo implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BombilloSequence")
     private Long id;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipobombillo", nullable = true)
     private TipoBombillo tipoBombillo;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_fabricante", nullable = true)
     private Fabricante fabricante;
     
     @Column(length = 255, nullable = true)
     private String flujoLuminoso;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_potencia", nullable = true)
     private Potencia potencia;
     
