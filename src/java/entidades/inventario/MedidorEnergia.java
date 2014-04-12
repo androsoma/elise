@@ -56,8 +56,12 @@ public class MedidorEnergia implements Serializable {
     private String referencia;
     
     @ManyToOne
-    @JoinColumn(name = "fk_voltaje", nullable = true)
-    private Voltaje voltaje;
+    @JoinColumn(name = "fk_voltajealta", nullable = true)
+    private Voltaje voltajeAlta;
+    
+    @ManyToOne
+    @JoinColumn(name = "fk_voltajebaja", nullable = true)
+    private Voltaje voltajeBaja;
     
     @ManyToOne
     @JoinColumn(name = "fk_potencia", nullable = true)
@@ -131,14 +135,22 @@ public class MedidorEnergia implements Serializable {
         this.referencia = referencia;
     }
 
-    public Voltaje getVoltaje() {
-        return voltaje;
+    public Voltaje getVoltajeAlta() {
+        return voltajeAlta;
     }
 
-    public void setVoltaje(Voltaje voltaje) {
-        this.voltaje = voltaje;
+    public void setVoltajeAlta(Voltaje voltajeAlta) {
+        this.voltajeAlta = voltajeAlta;
     }
 
+    public Voltaje getVoltajeBaja() {
+        return voltajeBaja;
+    }
+
+    public void setVoltajeBaja(Voltaje voltajeBaja) {
+        this.voltajeBaja = voltajeBaja;
+    }
+    
     public Potencia getPotenciaMaxima() {
         return potenciaMaxima;
     }

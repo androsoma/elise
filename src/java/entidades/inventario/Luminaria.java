@@ -7,9 +7,7 @@
 package entidades.inventario;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
@@ -75,10 +72,8 @@ public class Luminaria implements Serializable {
    
     @Column(nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date fechaRegistro;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_transformador")
-    private List<Luminaria> luminariaList;
+    private Date fechaRegistro;    
+   
 
     public Long getId() {
         return id;
@@ -174,14 +169,6 @@ public class Luminaria implements Serializable {
 
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
-    }
-
-    public List<Luminaria> getLuminariaList() {
-        return luminariaList;
-    }
-
-    public void setLuminariaList(List<Luminaria> luminariaList) {
-        this.luminariaList = luminariaList;
     }
 
     @Override

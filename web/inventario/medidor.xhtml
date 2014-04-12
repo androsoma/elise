@@ -58,8 +58,15 @@
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
-                        <h:outputLabel for="selectOneMenuVoltajeMedidor" value="Voltaje" />
-                        <h:selectOneMenu id="selectOneMenuVoltajeMedidor" value="#{inventario.puntoLuz.medidorEnergia.voltaje.id}" >
+                        <h:outputLabel for="selectOneMenuVoltajeAltaMedidor" value="Voltaje Alta" />
+                        <h:selectOneMenu id="selectOneMenuVoltajeAltaMedidor" value="#{inventario.puntoLuz.medidorEnergia.voltajeAlta.id}" >
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{inventario.voltajes}" var="voltaje" itemValue="#{voltaje.id}" itemLabel="#{voltaje.descripcion}" />
+                            <p:ajax event="change"  />
+                        </h:selectOneMenu> 
+                        
+                        <h:outputLabel for="selectOneMenuVoltajeBajaMedidor" value="Voltaje Baja" />
+                        <h:selectOneMenu id="selectOneMenuVoltajeBajaMedidor" value="#{inventario.puntoLuz.medidorEnergia.voltajeBaja.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.voltajes}" var="voltaje" itemValue="#{voltaje.id}" itemLabel="#{voltaje.descripcion}" />
                             <p:ajax event="change"  />

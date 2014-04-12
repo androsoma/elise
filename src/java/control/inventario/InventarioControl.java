@@ -56,13 +56,10 @@ import entidades.inventario.TipoTransformador;
 import entidades.inventario.Transformador;
 import entidades.inventario.UbicacionPunto;
 import entidades.inventario.Voltaje;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  *
@@ -531,7 +528,8 @@ public class InventarioControl {
         puntoLuz.getTransformador().setFase(new Fase());
         puntoLuz.getTransformador().setFrecuencia(new Frecuencia());
         puntoLuz.getTransformador().setPotencia(new Potencia());
-        puntoLuz.getTransformador().setVoltaje(new Voltaje());
+        puntoLuz.getTransformador().setVoltajeAlta(new Voltaje());
+        puntoLuz.getTransformador().setVoltajeBaja(new Voltaje());
 
         puntoLuz.setLuminaria(new Luminaria());
         puntoLuz.getLuminaria().setTipoHerraje(new TipoHerraje());
@@ -561,7 +559,8 @@ public class InventarioControl {
         puntoLuz.getMedidorEnergia().setTipoMedidor(new TipoMedidor());
         puntoLuz.getMedidorEnergia().setTipoConexionMedidor(new TipoConexionMedidor());
         puntoLuz.getMedidorEnergia().setTipoProteccion(new TipoProteccion());
-        puntoLuz.getMedidorEnergia().setVoltaje(new Voltaje());
+        puntoLuz.getMedidorEnergia().setVoltajeAlta(new Voltaje());
+        puntoLuz.getMedidorEnergia().setVoltajeBaja(new Voltaje());
         puntoLuz.getMedidorEnergia().setFrecuencia(new Frecuencia());
         puntoLuz.getMedidorEnergia().setPotenciaMaxima(new Potencia());
 

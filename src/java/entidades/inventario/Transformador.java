@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,6 +8,8 @@ package entidades.inventario;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 
@@ -48,8 +51,12 @@ public class Transformador implements Serializable {
     private Frecuencia frecuencia;
     
     @ManyToOne
-    @JoinColumn(name = "fk_voltaje", nullable = true)
-    private Voltaje voltaje;
+    @JoinColumn(name = "fk_voltajealta", nullable = true)
+    private Voltaje voltajeAlta;
+    
+    @ManyToOne
+    @JoinColumn(name = "fk_voltajebaja", nullable = true)
+    private Voltaje voltajeBaja;
     
     @ManyToOne
     @JoinColumn(name = "fk_potencia", nullable = true)
@@ -71,6 +78,9 @@ public class Transformador implements Serializable {
     @Column(nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaRegistro;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transformador")
+    private List<Luminaria> luminariaList;
 
     public Long getId() {
         return id;
@@ -134,14 +144,22 @@ public class Transformador implements Serializable {
 
     public void setFrecuencia(Frecuencia frecuencia) {
         this.frecuencia = frecuencia;
+    }    
+
+    public Voltaje getVoltajeAlta() {
+        return voltajeAlta;
     }
 
-    public Voltaje getVoltaje() {
-        return voltaje;
+    public void setVoltajeAlta(Voltaje voltajeAlta) {
+        this.voltajeAlta = voltajeAlta;
     }
 
-    public void setVoltaje(Voltaje voltaje) {
-        this.voltaje = voltaje;
+    public Voltaje getVoltajeBaja() {
+        return voltajeBaja;
+    }
+
+    public void setVoltajeBaja(Voltaje voltajeBaja) {
+        this.voltajeBaja = voltajeBaja;
     }
 
     public Potencia getPotencia() {
@@ -167,6 +185,16 @@ public class Transformador implements Serializable {
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
+    
+    public List<Luminaria> getLuminariaList() {
+        return luminariaList;
+    }
+
+    public void setLuminariaList(List<Luminaria> luminariaList) {
+        this.luminariaList = luminariaList;
+    }
+
+    
 
     @Override
     public int hashCode() {
