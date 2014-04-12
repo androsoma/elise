@@ -58,7 +58,9 @@
                             <f:selectItem itemLabel="Seleccione.." itemValue=""/>
                             <f:selectItems value="#{inventario.potencias}" var="potencia" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}"/>
                             <p:ajax event="change"/>
-                        </h:selectOneMenu>                   
+                        </h:selectOneMenu>
+                        
+                        <p:commandButton id="commandButtonGuardarLuminaria" value="Guardar luminaria" action="#{inventario.guardarLuminaria()}" immediate="true" />
                     </p:panelGrid>              
                 </h:form>
             </center>

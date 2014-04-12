@@ -7,7 +7,10 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +18,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 
@@ -31,23 +36,27 @@ public class Luminaria implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LuminariaSequence")
     private Long id;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "fk_transformador", nullable = true)
+    private Transformador transformador;
+    
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_brazoluminaria", nullable = true)
     private BrazoLuminaria brazoLuminaria;
     
-    @ManyToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_balasto", nullable = true)
     private Balasto balasto;
     
-    @ManyToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_arrancador", nullable = true)
     private Arrancador arrancador;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipoherraje", nullable = true)
     private TipoHerraje tipoHerraje;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_fabricante", nullable = true)
     private Fabricante fabricante;
     
@@ -57,7 +66,7 @@ public class Luminaria implements Serializable {
     @Column(nullable = true)
     private String nivelIluminacion;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_potencia", nullable = true)
     private Potencia potencia;
     
@@ -67,6 +76,9 @@ public class Luminaria implements Serializable {
     @Column(nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaRegistro;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_transformador")
+    private List<Luminaria> luminariaList;
 
     public Long getId() {
         return id;
@@ -74,6 +86,14 @@ public class Luminaria implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Transformador getTransformador() {
+        return transformador;
+    }
+
+    public void setTransformador(Transformador transformador) {
+        this.transformador = transformador;
     }
 
     public BrazoLuminaria getBrazoLuminaria() {
@@ -154,6 +174,14 @@ public class Luminaria implements Serializable {
 
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+
+    public List<Luminaria> getLuminariaList() {
+        return luminariaList;
+    }
+
+    public void setLuminariaList(List<Luminaria> luminariaList) {
+        this.luminariaList = luminariaList;
     }
 
     @Override

@@ -3,21 +3,26 @@
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pm="http://primefaces.org/mobile">
-    
+
     <pm:view id="menuprincipal">
         <pm:header title="Menú principal">
             <p:commandButton  icon="user" value="Salir" action="pm:main"/>
         </pm:header>
-        
+
         <pm:content>
             <center>
                 <h:form id="formMenuPrincipal">
                     <p:panelGrid id="panelGridMenuPrincipal" columns="1" style="width: 100%;">
                         <pm:buttonGroup>
-                            <p:commandButton id="commandButtonNuevoPunto" value="Nuevo punto" action="#{inventario.inicializarPunto()}" icon="arrow-r" iconPos="right" />
+                            <p:commandButton id="commandButtonNuevoPunto" value="Nuevo punto" action="pm:map" icon="arrow-r" iconPos="right" />
                             <p:commandButton id="commandButtonConsultarPuntos" value="Incidentes reportados" action="pm:reporte" actionListener="#{mantenimientoControl.generarReportes()}" update=":formReportes" icon="arrow-r" iconPos="right" />
                         </pm:buttonGroup>
-                    </p:panelGrid>
+                        <p:dataGrid >
+                            <p:commandLink value="#{barrio.nombre}" action="pm:menuprincipal" immediate="true" update=":formMenuPrincipal"/>
+                        </p:dataGrid>
+                        
+                        
+                    </p:panelGrid>                    
                 </h:form>
             </center>
         </pm:content>

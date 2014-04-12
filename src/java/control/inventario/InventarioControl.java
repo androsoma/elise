@@ -13,6 +13,7 @@ import ejb.inventario.ClasePrecisionFacade;
 import ejb.inventario.FabricanteFacade;
 import ejb.inventario.FaseFacade;
 import ejb.inventario.FrecuenciaFacade;
+import ejb.inventario.LuminariaFacade;
 import ejb.inventario.MaterialPosteFacade;
 import ejb.inventario.PotenciaFacade;
 import ejb.inventario.TipoArrancadorFacade;
@@ -153,7 +154,11 @@ public class InventarioControl {
     @Inject
     BarrioFacade barrioFacade;
 
-    List<Barrio> barrios = null;   
+    @EJB
+    @Inject
+    LuminariaFacade luminariaFacade;
+
+    List<Barrio> barrios = null;
     List<TipoTransformador> tiposTransformador = null;
     List<Fabricante> fabricantes = null;
     List<TipoConexionTransformador> tiposConexionTransformador = null;
@@ -352,6 +357,14 @@ public class InventarioControl {
         this.barrioFacade = barrioFacade;
     }
 
+    public LuminariaFacade getLuminariaFacade() {
+        return luminariaFacade;
+    }
+
+    public void setLuminariaFacade(LuminariaFacade luminariaFacade) {
+        this.luminariaFacade = luminariaFacade;
+    }
+
     public List<Barrio> getBarrios() {
         return barrios;
     }
@@ -504,7 +517,7 @@ public class InventarioControl {
         System.out.println("Entré a inicializar punto.");
         barrios = new ArrayList<>();
         barrios = getBarrioFacade().findAll();
-        System.out.println("barrios encontrados: " + barrios.get(0).getNombre());
+        
         puntoLuz = new PuntoLuz();
 
         puntoLuz.setUbicacionPunto(new UbicacionPunto());
@@ -552,7 +565,7 @@ public class InventarioControl {
         puntoLuz.getMedidorEnergia().setFrecuencia(new Frecuencia());
         puntoLuz.getMedidorEnergia().setPotenciaMaxima(new Potencia());
 
-        return "pm:map";
+        return "pm:menuprincipal";
     }
 
     public String inicializarTiposTransformador() {
@@ -691,9 +704,15 @@ public class InventarioControl {
             System.out.println("Id del arrancador editado: " + puntoLuz.getLuminaria().getArrancador().getId());
         }
     }
-    
+
     public String accionSeleccionada() {
-        
+
         return "pm:nuevaaccion";
+    }
+
+    public String guardarLuminaria() {
+        getLuminariaFacade().create(getPuntoLuz().getLuminaria());
+        
+        return null;
     }
 }
