@@ -173,6 +173,7 @@ public class InventarioControl {
     List<Voltaje> voltajes = null;
     List<Potencia> potencias = null;
     List<Fase> fases = null;
+    boolean asociartransformador = false;
 
     private PuntoLuz puntoLuz;
 
@@ -510,6 +511,14 @@ public class InventarioControl {
         this.fases = fases;
     }
 
+    public boolean isAsociartransformador() {
+        return asociartransformador;
+    }
+
+    public void setAsociartransformador(boolean asociartransformador) {
+        this.asociartransformador = asociartransformador;
+    }
+    
     public String inicializarPunto() {
         System.out.println("Entré a inicializar punto.");
         barrios = new ArrayList<>();
@@ -703,6 +712,12 @@ public class InventarioControl {
             System.out.println("Id del arrancador editado: " + puntoLuz.getLuminaria().getArrancador().getId());
         }
     }
+    
+    public String asociarTransformador(){
+        System.out.println("ingreso al metodo");
+        asociartransformador = true;
+        return "pm:map";
+    } 
 
     public String accionSeleccionada() {
 

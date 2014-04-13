@@ -136,8 +136,11 @@
 
         <!-- Main View -->
         <pm:view id="map">
-            <pm:header title="Ubicar punto">
+            <pm:header title="Ubicar punto" rendered="#{!inventario.asociartransformador}">
                 <p:commandButton icon="back" value="atrás" action="pm:menuprincipal" />
+            </pm:header>
+            <pm:header title="Asociar transformador" rendered="#{inventario.asociartransformador}">
+                <p:commandButton icon="back" value="atrás" action="pm:luminaria" />
             </pm:header>
             <pm:content id="c">
                 <h:form id="formMap">
