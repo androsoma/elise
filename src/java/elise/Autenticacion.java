@@ -15,6 +15,7 @@ import entidades.inventario.BrazoLuminaria;
 import entidades.inventario.Fabricante;
 import entidades.inventario.Luminaria;
 import entidades.inventario.PuntoLuz;
+import entidades.inventario.Tercero;
 import entidades.inventario.TipoArrancador;
 import entidades.inventario.Usuario;
 import java.util.ArrayList;
@@ -36,7 +37,8 @@ public class Autenticacion {
     @Inject
     private TipoArrancadorFacade tipoArrancadorFacade;
 
-    private Usuario usuario = new Usuario();
+    private Usuario usuario = new Usuario();    
+    private Tercero tecero = new Usuario().getTercero();    
     private BrazoLuminaria brazoLuminaria = new BrazoLuminaria();
     private TipoArrancador tipoArrancador = new TipoArrancador();
     private List<TipoArrancador> tiposArrancador = new ArrayList<>();
@@ -55,6 +57,15 @@ public class Autenticacion {
     public void setUsuarioFacade(UsuarioFacade usuarioFacade) {
         this.usuarioFacade = usuarioFacade;
     }
+
+    public Tercero getTecero() {
+        return tecero;
+    }
+
+    public void setTecero(Tercero tecero) {
+        this.tecero = tecero;
+    }
+    
 
     public BrazoLuminariaFacade getBrazoLuminariaFacade() {
         return brazoLuminariaFacade;

@@ -32,4 +32,12 @@
         <managed-bean-class>control.inventario.MantenimientoControl</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+             <from-outcome>mapaCiudadano</from-outcome>
+            <to-view-id>/WebPage/mapaCiudadano.xhtml</to-view-id>           
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

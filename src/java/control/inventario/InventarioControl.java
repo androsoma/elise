@@ -713,6 +713,10 @@ public class InventarioControl {
         }
     }
     
+    public String ingresarMapaCiudadano(){
+        return "mapaCiudadano";
+    }
+    
     public String asociarTransformador(){
         System.out.println("ingreso al metodo");
         asociartransformador = true;
