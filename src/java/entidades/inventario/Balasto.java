@@ -6,21 +6,26 @@
 package entidades.inventario;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Cristian Gutiérrez
  */
 @Entity
+@Table(name = "balasto")
+@XmlRootElement
 public class Balasto implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -29,20 +34,23 @@ public class Balasto implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BalastoSequence")
     private Long id;
 
-    @Column(length = 255, nullable = true)
+    @Column(length = 255)
     private String referencia;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "fk_fabricante", nullable = true)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_fabricante")
     private Fabricante fabricante;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "fk_tipobalasto", nullable = true)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_tipobalasto")
     private TipoBalasto tipoBalasto;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "fk_tipoproteccion", nullable = true)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_tipoproteccion")
     private TipoProteccion tipoProteccion;
+    
+    @OneToOne(mappedBy = "balasto", fetch = FetchType.EAGER)
+    private Luminaria luminaria;
 
     public Long getId() {
         return id;
@@ -82,6 +90,14 @@ public class Balasto implements Serializable {
 
     public void setTipoProteccion(TipoProteccion tipoProteccion) {
         this.tipoProteccion = tipoProteccion;
+    }
+
+    public Luminaria getLuminaria() {
+        return luminaria;
+    }
+
+    public void setLuminaria(Luminaria luminaria) {
+        this.luminaria = luminaria;
     }
 
     @Override

@@ -19,13 +19,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Cristian Gutiérrez
  */
 @Entity
+@Table(name = "transformador")
+@XmlRootElement
 public class Transformador implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -79,8 +84,8 @@ public class Transformador implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaRegistro;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transformador")
-    private List<Luminaria> luminariaList;
+//    @OneToMany(mappedBy = "transformador")
+//    private List<Luminaria> listaLuminarias;
 
     public Long getId() {
         return id;
@@ -186,15 +191,14 @@ public class Transformador implements Serializable {
         this.fechaRegistro = fechaRegistro;
     }
     
-    public List<Luminaria> getLuminariaList() {
-        return luminariaList;
-    }
-
-    public void setLuminariaList(List<Luminaria> luminariaList) {
-        this.luminariaList = luminariaList;
-    }
-
-    
+//    @XmlTransient
+//    public List<Luminaria> getListaLuminarias() {
+//        return listaLuminarias;
+//    }
+//
+//    public void setListaLuminarias(List<Luminaria> listaLuminarias) {
+//        this.listaLuminarias = listaLuminarias;
+//    }    
 
     @Override
     public int hashCode() {

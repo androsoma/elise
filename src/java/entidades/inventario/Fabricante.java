@@ -7,37 +7,55 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * <p>representa un fabricante de un artefacto electrico o estructural</p>
  * @author Yeison Osorio
  */
 @Entity
+@Table(name = "fabricante")
+@XmlRootElement
 public class Fabricante implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    @SequenceGenerator(name = "FabricanteSequence", sequenceName = "fabricante_seq", allocationSize = 1)
     @Id
+    @SequenceGenerator(name = "FabricanteSequence", sequenceName = "fabricante_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FabricanteSequence")
-    private Long id;
+    private int id;
     
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String nombre;
     
-    @Column(length = 50, nullable = true)
+    @Column(length = 50)
     private String nit;
+    
+    @OneToMany(mappedBy = "fabricante", fetch = FetchType.LAZY)
+    private List<Luminaria> listaLuminarias;
+    
+    @OneToMany(mappedBy = "fabricante", fetch = FetchType.LAZY)
+    private List<Arrancador> listaArrancadores;
+    
+    @OneToMany(mappedBy = "fabricante", fetch = FetchType.LAZY)
+    private List<Balasto> listaBalastos;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -57,24 +75,31 @@ public class Fabricante implements Serializable {
         this.nit = nit;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    @XmlTransient
+    public List<Luminaria> getListaLuminarias() {
+        return listaLuminarias;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Fabricante)) {
-            return false;
-        }
-        Fabricante other = (Fabricante) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setListaLuminarias(List<Luminaria> listaLuminarias) {
+        this.listaLuminarias = listaLuminarias;
+    }
+    
+    @XmlTransient
+    public List<Arrancador> getListaArrancadores() {
+        return listaArrancadores;
+    }
+
+    public void setListaArrancadores(List<Arrancador> listaArrancadores) {
+        this.listaArrancadores = listaArrancadores;
+    }
+
+    @XmlTransient
+    public List<Balasto> getListaBalastos() {
+        return listaBalastos;
+    }
+
+    public void setListaBalastos(List<Balasto> listaBalastos) {
+        this.listaBalastos = listaBalastos;
     }
 
     @Override

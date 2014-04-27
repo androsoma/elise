@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package control.inventario;
 
 import javax.faces.event.ActionEvent;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 
 /**
@@ -15,9 +16,21 @@ import org.primefaces.model.map.Marker;
  */
 public class MapaControl {
 
+    private MapModel mapamodelo;
     private Marker marcador;
     private double lat;
     private double lng;
+
+    public MapaControl() {
+    }
+
+    public MapaControl(MapModel mapamodelo) {
+        this.mapamodelo = new DefaultMapModel();
+    }
+
+    public MapModel getMapamodelo() {
+        return mapamodelo;
+    }
 
     public Marker getMarcador() {
         return marcador;
@@ -25,7 +38,7 @@ public class MapaControl {
 
     public void setMarcador(Marker marcador) {
         this.marcador = marcador;
-    } 
+    }
 
     public double getLat() {
         return lat;

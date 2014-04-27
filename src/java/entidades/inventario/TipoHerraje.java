@@ -6,12 +6,17 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * <p>define los artefactos de sujecion de las luminarias</p>
@@ -19,19 +24,24 @@ import javax.persistence.SequenceGenerator;
  * @author Cristian Gutierrez
  */
 @Entity
+@Table(name = "tipoherraje")
+@XmlRootElement
 public class TipoHerraje implements Serializable {
-
     private static final long serialVersionUID = 1L;
-    @SequenceGenerator(name = "TipoHerrajeSequence", sequenceName = "tipo_herraje_seq", allocationSize = 1)
+   
     @Id
+    @SequenceGenerator(name = "TipoHerrajeSequence", sequenceName = "tipo_herraje_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TipoHerrajeSequence")
     private Long id;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String descripcion;
 
-    @Column(nullable = false)
+    @Column
     private boolean activo;
+    
+    @OneToMany(mappedBy = "tipoHerraje")
+    private List<Luminaria> listaLuminarias;
 
     public Long getId() {
         return id;
@@ -62,6 +72,15 @@ public class TipoHerraje implements Serializable {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+    
+    @XmlTransient
+    public List<Luminaria> getListaLuminarias() {
+        return listaLuminarias;
+    }
+
+    public void setListaLuminarias(List<Luminaria> listaLuminarias) {
+        this.listaLuminarias = listaLuminarias;
     }
 
     @Override

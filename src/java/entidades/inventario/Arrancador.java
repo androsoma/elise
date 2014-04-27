@@ -10,18 +10,24 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Cristian Gutiérrez
  */
 @Entity
+@Table(name = "arrancador")
+@XmlRootElement
 public class Arrancador implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -30,16 +36,20 @@ public class Arrancador implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ArrancadorSequence")
     private Long id;
     
-    @Column(length = 255, nullable = true)
+    @Column(length = 255)
     private String referencia;
     
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "fk_fabricante", nullable = true)
+    @JoinColumn(name = "fk_fabricante", referencedColumnName = "id", nullable = true)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
     private Fabricante fabricante;
     
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "fk_tipoarrancador", nullable = true)
+
+    @JoinColumn(name = "fk_tipoarrancador", referencedColumnName = "id", nullable = true)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
     private TipoArrancador tipoArrancador;
+    
+    @OneToOne(mappedBy = "arrancador", fetch = FetchType.EAGER)
+    private Luminaria luminaria;
 
     public Long getId() {
         return id;
@@ -71,6 +81,14 @@ public class Arrancador implements Serializable {
 
     public void setTipoArrancador(TipoArrancador tipoArrancador) {
         this.tipoArrancador = tipoArrancador;
+    }
+
+    public Luminaria getLuminaria() {
+        return luminaria;
+    }
+
+    public void setLuminaria(Luminaria luminaria) {
+        this.luminaria = luminaria;
     }
 
     @Override

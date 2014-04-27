@@ -8,17 +8,24 @@ package entidades.inventario;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Cristian Gutiérrez
  */
 @Entity
+@Table(name = "brazoluminaria")
+@XmlRootElement
 public class BrazoLuminaria implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -31,6 +38,9 @@ public class BrazoLuminaria implements Serializable {
 
     @Column(nullable = true)
     private float diametro;
+    
+    @OneToOne(mappedBy = "brazoLuminaria", fetch = FetchType.EAGER)
+    private Luminaria luminaria;
 
     public Long getId() {
         return id;
@@ -54,6 +64,14 @@ public class BrazoLuminaria implements Serializable {
 
     public void setDiametro(float diametro) {
         this.diametro = diametro;
+    }
+
+    public Luminaria getLuminaria() {
+        return luminaria;
+    }
+
+    public void setLuminaria(Luminaria luminaria) {
+        this.luminaria = luminaria;
     }
 
     @Override

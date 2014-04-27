@@ -16,6 +16,7 @@ import ejb.inventario.FrecuenciaFacade;
 import ejb.inventario.LuminariaFacade;
 import ejb.inventario.MaterialPosteFacade;
 import ejb.inventario.PotenciaFacade;
+import ejb.inventario.PuntoLuzFacade;
 import ejb.inventario.TipoArrancadorFacade;
 import ejb.inventario.TipoBalastoFacade;
 import ejb.inventario.TipoBombilloFacade;
@@ -60,6 +61,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import org.primefaces.model.map.MapModel;
 
 /**
  *
@@ -154,6 +156,10 @@ public class InventarioControl {
     @EJB
     @Inject
     LuminariaFacade luminariaFacade;
+
+    @EJB
+    @Inject
+    PuntoLuzFacade puntoLuzFacade;
 
     List<Barrio> barrios = null;
     List<TipoTransformador> tiposTransformador = null;
@@ -363,6 +369,14 @@ public class InventarioControl {
         this.luminariaFacade = luminariaFacade;
     }
 
+    public PuntoLuzFacade getPuntoLuzFacade() {
+        return puntoLuzFacade;
+    }
+
+    public void setPuntoLuzFacade(PuntoLuzFacade puntoLuzFacade) {
+        this.puntoLuzFacade = puntoLuzFacade;
+    }
+
     public List<Barrio> getBarrios() {
         return barrios;
     }
@@ -518,12 +532,12 @@ public class InventarioControl {
     public void setAsociartransformador(boolean asociartransformador) {
         this.asociartransformador = asociartransformador;
     }
-    
+
     public String inicializarPunto() {
         System.out.println("Entré a inicializar punto.");
         barrios = new ArrayList<>();
         barrios = getBarrioFacade().findAll();
-        
+
         puntoLuz = new PuntoLuz();
 
         puntoLuz.setUbicacionPunto(new UbicacionPunto());
@@ -712,16 +726,16 @@ public class InventarioControl {
             System.out.println("Id del arrancador editado: " + puntoLuz.getLuminaria().getArrancador().getId());
         }
     }
-    
-    public String ingresarMapaCiudadano(){
+
+    public String ingresarMapaCiudadano() {
         return "mapaCiudadano";
     }
-    
-    public String asociarTransformador(){
+
+    public String asociarTransformador() {
         System.out.println("ingreso al metodo");
         asociartransformador = true;
         return "pm:map";
-    } 
+    }
 
     public String accionSeleccionada() {
 
@@ -730,7 +744,25 @@ public class InventarioControl {
 
     public String guardarLuminaria() {
         getLuminariaFacade().create(getPuntoLuz().getLuminaria());
-        
+
         return null;
+    }
+
+    public void guardarPuntoLuz() {
+        getPuntoLuzFacade().create(puntoLuz);
+    }
+
+    public void inicializarArrancador() {
+        if (puntoLuz.getLuminaria().getArrancador().getTipoArrancador() == null) {
+            System.out.println("Asigno un nuevo tipo arrancador.");
+
+            puntoLuz.getLuminaria().getArrancador().setTipoArrancador(new TipoArrancador());
+        }
+
+        if (puntoLuz.getLuminaria().getArrancador().getFabricante() == null) {
+            System.out.println("Asigno un nuevo fabricante.");
+
+            puntoLuz.getLuminaria().getArrancador().setFabricante(new Fabricante());
+        }
     }
 }

@@ -7,71 +7,92 @@ package entidades.inventario;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Cristian Gutiérrez
  */
 @Entity
+@Table(name = "luminaria")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Luminaria.findAll", query = "SELECT l FROM Luminaria l"),
+    @NamedQuery(name = "Luminaria.findById", query = "SELECT l FROM Luminaria l WHERE l.id = :id"),
+    @NamedQuery(name = "Luminaria.findByAltura", query = "SELECT l FROM Luminaria l WHERE l.altura = :altura"),
+    @NamedQuery(name = "Luminaria.findByReferencia", query = "SELECT l FROM Luminaria l WHERE l.referencia = :referencia")})
 public class Luminaria implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id")
     @SequenceGenerator(name = "LuminariaSequence", sequenceName = "luminaria_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LuminariaSequence")
     private Long id;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "fk_brazoluminaria", nullable = true)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_brazoluminaria", referencedColumnName = "id")
     private BrazoLuminaria brazoLuminaria;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "fk_balasto", nullable = true)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_balasto", referencedColumnName = "id")
     private Balasto balasto;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "fk_arrancador", nullable = true)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_arrancador", referencedColumnName = "id")
     private Arrancador arrancador;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "fk_transformador", nullable = true)
-    private Transformador transformador;
+//    @ManyToOne(cascade = {CascadeType.REFRESH})
+//    @JoinColumn(name = "fk_transformador", referencedColumnName = "id")
+//    private Transformador transformador;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "fk_tipoherraje", nullable = true)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_tipoherraje", referencedColumnName = "id")
     private TipoHerraje tipoHerraje;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "fk_fabricante", nullable = true)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_fabricante", referencedColumnName = "id")
     private Fabricante fabricante;
-
-    @Column(nullable = true)
-    private float altura;
-
-    @Column(nullable = true)
-    private String nivelIluminacion;
-
-    @ManyToOne(cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "fk_potencia", nullable = true)
+    
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_potencia")
     private Potencia potencia;
 
-    @Column(nullable = true)
+    @Column(name = "altura")
+    private float altura;
+
+    @Size(max = 255)
+    @Column(name = "niveliluminacion")
+    private String nivelIluminacion;
+
+    @Size(max = 255)
+    @Column(name = "referencia")
     private String referencia;
 
-    @Column(nullable = true)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = "fecharegistro")
+    @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
 
     public Long getId() {
@@ -82,13 +103,13 @@ public class Luminaria implements Serializable {
         this.id = id;
     }
 
-    public Transformador getTransformador() {
-        return transformador;
-    }
-
-    public void setTransformador(Transformador transformador) {
-        this.transformador = transformador;
-    }
+//    public Transformador getTransformador() {
+//        return transformador;
+//    }
+//
+//    public void setTransformador(Transformador transformador) {
+//        this.transformador = transformador;
+//    }
 
     public BrazoLuminaria getBrazoLuminaria() {
         return brazoLuminaria;

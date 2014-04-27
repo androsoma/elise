@@ -6,12 +6,19 @@
 package entidades.inventario;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * <p>indica el tipo de arrancador de un balasto</p>
@@ -19,8 +26,9 @@ import javax.persistence.SequenceGenerator;
  * @author Cristian Gutierrez
  */
 @Entity
+@Table(name = "tipoarrancador")
+@XmlRootElement
 public class TipoArrancador implements Serializable {
-
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -28,11 +36,14 @@ public class TipoArrancador implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="TipoArrancadorSequence" )
     private int id;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String descripcion;
 
-    @Column(nullable = false)
+    @Column
     private boolean activo;
+    
+    @OneToMany(mappedBy = "tipoArrancador", fetch = FetchType.LAZY)
+    private List<Arrancador> listaArrancadores;
 
     public int getId() {
         return id;
@@ -58,8 +69,15 @@ public class TipoArrancador implements Serializable {
         this.activo = activo;
     }
 
+    @XmlTransient
+    public List<Arrancador> getListaArrancadores() {
+        return listaArrancadores;
+    }
 
-
+    public void setListaArrancadores(List<Arrancador> listaArrancadores) {
+        this.listaArrancadores = listaArrancadores;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;

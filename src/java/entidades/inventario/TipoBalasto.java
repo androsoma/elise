@@ -3,35 +3,48 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entidades.inventario;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
- * <p>Indica el tipo de balasto de la luminaria</p>
+ * <p>
+ * Indica el tipo de balasto de la luminaria</p>
+ *
  * @author Cristian Gutierrez
  */
 @Entity
+@Table(name = "tipobalasto")
+@XmlRootElement
 public class TipoBalasto implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @SequenceGenerator (name = "TipoBalastoSequence", sequenceName ="tipo_balasto_seq", allocationSize = 1 )
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="TipoBalastoSequence" )
+    @SequenceGenerator(name = "TipoBalastoSequence", sequenceName = "tipo_balasto_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TipoBalastoSequence")
     private Long id;
-    
-    @Column (length = 100, nullable = false)
+
+    @Column(length = 100)
     private String descripcion;
-     
-    @Column (nullable = false)
+
+    @Column
     private boolean activo;
 
+    @OneToMany(mappedBy = "tipoBalasto")
+    private List<Balasto> listaBalastos;
+    
     public Long getId() {
         return id;
     }
@@ -40,14 +53,7 @@ public class TipoBalasto implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-    
-     public String getDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
@@ -61,6 +67,22 @@ public class TipoBalasto implements Serializable {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    @XmlTransient
+    public List<Balasto> getListaBalastos() {
+        return listaBalastos;
+    }
+
+    public void setListaBalastos(List<Balasto> listaBalastos) {
+        this.listaBalastos = listaBalastos;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
     @Override
@@ -80,5 +102,5 @@ public class TipoBalasto implements Serializable {
     public String toString() {
         return descripcion;
     }
-    
+
 }

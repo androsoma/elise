@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"        
+      contentType="text/html">
+
+    <h:head>
+        <title>Elise</title>       
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:tabView id="tabView" style="width: 417px;    height: 349px; position: relative;top: 50%;left: 38%;">
+                <h:panelGrid columns="3">
+                    <h:outputLabel for="inputTextNombreUsuario"  value="Nombre Usuario:"/>
+                    <h:inputText id="inputTextNombreUsuario" value=""/>
+                    
+                    <h:outputLabel for="" value="Contraseña"/>
+                    <h:inputText id="inputTextCoontrasena" value=""/>
+                    
+                    <p:commandButton validateClient="Ingresar"/>
+                </h:panelGrid>
+            </p:tabView>
+        </h:form> 
+    </h:body>
+</html>

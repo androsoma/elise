@@ -17,7 +17,7 @@
                         <pm:buttonGroup>
                             <p:commandButton id="commandButtonBrazoLuminaria" value="Brazo luminaria" action="pm:brazoluminaria" actionListener="#{autenticacion.inicializarBrazoLuminaria()}" update=":formBrazoLuminaria:panelGridBrazoLuminaria" icon="arrow-r" iconPos="right" />
                             <p:commandButton id="commandButtonTransBalasto" value="Balasto" action="pm:balasto" icon="arrow-r" iconPos="right" />
-                            <p:commandButton id="commandButtonTransArrancador" value="Arrancador" action="pm:arrancador" icon="arrow-r" iconPos="right" />
+                            <p:commandButton id="commandButtonTransArrancador" value="Arrancador" action="pm:arrancador" actionListener="#{inventario.inicializarArrancador()}" update=":formArrancador:panelGridArrancador" icon="arrow-r" iconPos="right" />
                         </pm:buttonGroup>
                     </p:panelGrid>
                 </h:form>
@@ -54,7 +54,7 @@
                         </h:inputText>
 
                         <h:outputLabel for="selectOneMenuPotenciaLuminaria" value="Potencia" />
-                        <h:selectOneMenu id="selectOneMenuPotenciaLuminaria" validator="#{inventario.puntoLuz.luminaria.potencia.id}">
+                        <h:selectOneMenu id="selectOneMenuPotenciaLuminaria" value="#{inventario.puntoLuz.luminaria.potencia.id}">
                             <f:selectItem itemLabel="Seleccione.." itemValue=""/>
                             <f:selectItems value="#{inventario.potencias}" var="potencia" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}"/>
                             <p:ajax event="change"/>
