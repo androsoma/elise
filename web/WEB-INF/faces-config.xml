@@ -25,7 +25,7 @@
     <managed-bean>
         <managed-bean-name>mapaControl</managed-bean-name>
         <managed-bean-class>control.inventario.MapaControl</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>mantenimientoControl</managed-bean-name>

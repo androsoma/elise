@@ -5,7 +5,9 @@
  */
 package control.inventario;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.event.ActionEvent;
+import org.primefaces.event.map.MarkerDragEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
@@ -60,6 +62,14 @@ public class MapaControl {
         //es para probar que funciona la toma de datos
         System.out.println("lat: " + lat);
         System.out.println("lng:" + lng);
+    }
+
+    public void moverMarcador(MarkerDragEvent event) {
+        System.out.println("ingreso al metodo");
+        Marker marker;
+        marker = event.getMarker();
+        setLat(marker.getLatlng().getLat());
+        setLng(marker.getLatlng().getLng());
     }
 
 }
