@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
         <title>Elise</title>
@@ -13,7 +14,7 @@
             var Marker = null;
             var map;
             function AgregarMarcador(event) {
-                
+
                 if (Marker === null) {
                     document.getElementById('frmciudadano:lat').value = event.latLng.lat();
                     document.getElementById('frmciudadano:lng').value = event.latLng.lng();
@@ -29,45 +30,45 @@
         </script>  
     </h:head>
     <h:body>
-        <h:form id="frmciudadano">            
-            <p:layout fullPage="true" id="layoutPrincipal">
-                <p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="true" style="text-align: center;"  id="layoutUnitCabezaHome">
-                    <h:outputLabel value="Elise" /> 
-                    <p:commandButton value="Iniciar Sesión" style=" position: relative;top: 10%;left: 43%;" oncomplete="PF('tabView').show()"/>
-                </p:layoutUnit> 
-                <p:layoutUnit position="west" size="35%">
-                    <h:panelGrid columns="2" cellpadding="10">                        
-                        <h:outputLabel for="inputTextCorreo" value="E-mail:"/>
-                        <h:inputText id="inputTextCorreo" value=""/>
+            <h:form id="frmciudadano">            
+                <p:layout fullPage="true" id="layoutPrincipal">
+                    <p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="true" style="text-align: center;"  id="layoutUnitCabezaHome">
+                        <h:outputLabel value="Elise" /> 
+                        <p:commandButton value="Iniciar Sesión" style=" position: relative;top: 10%;left: 43%;" onclick="PF('dlgLogin').show();"/>
+                    </p:layoutUnit> 
+                    <p:layoutUnit position="west" size="35%">
+                        <h:panelGrid columns="2" cellpadding="10">                        
+                            <h:outputLabel for="inputTextCorreo" value="E-mail:"/>
+                            <h:inputText id="inputTextCorreo" value=""/>
 
-                        <h:outputLabel for="inputTextNombre" value="Nombre:"/>
-                        <h:inputText id="inputTextNombre" value=""/>
+                            <h:outputLabel for="inputTextNombre" value="Nombre:"/>
+                            <h:inputText id="inputTextNombre" value=""/>
 
-                        <h:outputLabel for="inputTextTipoIncidente" value="Tipo incidente:"/>
-                        <h:selectOneMenu id="selectOneMenuTipoIncidente">
-                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                        </h:selectOneMenu>
+                            <h:outputLabel for="inputTextTipoIncidente" value="Tipo incidente:"/>
+                            <h:selectOneMenu id="selectOneMenuTipoIncidente">
+                                <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                            </h:selectOneMenu>
 
-                        <h:outputLabel for="inputTextareaObservaciones" value="Observaciones:"/>
-                        <p:inputTextarea id="inputTextareaObservaciones" rows="10" cols="50"  queryDelay="750" minQueryLength="4"/>
+                            <h:outputLabel for="inputTextareaObservaciones" value="Observaciones:"/>
+                            <p:inputTextarea id="inputTextareaObservaciones" rows="10" cols="50"  queryDelay="750" minQueryLength="4"/>
 
-                        <p:commandButton value="Rgistrar Incidente"/>
-                    </h:panelGrid>
-                </p:layoutUnit>
+                            <p:commandButton value="Rgistrar Incidente"/>
+                        </h:panelGrid>
+                    </p:layoutUnit>
 
-                <p:layoutUnit position="center" size="65%" id="layoutUnitCentro">
-                    <p:gmap id="map" widgetVar="map" center="5.067738, -75.510030" zoom="15" type="ROADMAP" style="width:100%;height:500px"
-                            onPointClick="AgregarMarcador(event);"
-                            model="#{mapaControl.mapamodelo}"> 
-                        <p:ajax event="markerDrag"  update="frmciudadano" />
-                    </p:gmap>   
-                    <h:inputText id="lat" value="#{mapaControl.lat}"/>
-                    <h:inputText id="lng" value="#{mapaControl.lng}"/>
-                </p:layoutUnit>       
+                    <p:layoutUnit position="center" size="65%" id="layoutUnitCentro">
+                        <p:gmap id="map" widgetVar="map" center="5.067738, -75.510030" zoom="15" type="ROADMAP" style="width:100%;height:500px"
+                                onPointClick="AgregarMarcador(event);"
+                                model="#{mapaControl.mapamodelo}"> 
+                            <p:ajax event="markerDrag"  update="frmciudadano" />
+                        </p:gmap>   
+                        <h:inputText id="lat" value="#{mapaControl.lat}"/>
+                        <h:inputText id="lng" value="#{mapaControl.lng}"/>
+                    </p:layoutUnit>       
 
-            </p:layout>                        
-        </h:form>
-        <!--<ui:include src="WebPage/Modales/iniciarSesion.xhtml"/>-->
+                </p:layout>                        
+            </h:form>
+        <ui:include src="WebPage/Modales/iniciarSesion.xhtml"/>
     </h:body>    
 </html>
 

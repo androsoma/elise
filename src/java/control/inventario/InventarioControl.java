@@ -728,7 +728,7 @@ public class InventarioControl {
     }
 
     public String ingresarMapaCiudadano() {
-        return "mapaCiudadano";
+        return "Administrador";
     }
 
     public String asociarTransformador() {
