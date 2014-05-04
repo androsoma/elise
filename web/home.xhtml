@@ -56,19 +56,19 @@
                             <h:outputLabel for="inputTextareaObservaciones" value="Observaciones:"/>
                             <p:inputTextarea id="inputTextareaObservaciones" rows="10" cols="50"  queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observacines}"/>
 
-                            <p:commandButton value="Rgistrar Incidente" action="#{incidenteControl.inicializarListas()}" update="selectOneMenuTipoIncidente"/>
+                            <p:commandButton value="Rgistrar Incidente" action="#{incidenteControl.guardarIncidente()}" update="selectOneMenuTipoIncidente"/>
                         </h:panelGrid>
                     </p:layoutUnit>
 
                     <p:layoutUnit position="center" size="65%" id="layoutUnitCentro">
+                        <p:outputLabel for="outputLabelPuntoSeleccionado" value="punto seleccionado: "/>
+                        <p:outputLabel value="#{incidenteControl.puntoluzseleccionado.ubicacionPunto.direccion}" id="outputLabelPuntoSeleccionado" />
                         <p:gmap id="map" widgetVar="map" center="5.067738, -75.510030" zoom="15" type="ROADMAP" style="width:100%;height:500px"
                                 onPointClick="AgregarMarcador(event);"
                                 model="#{incidenteControl.mapamodelo}"
                                 > 
-                            <p:ajax event="markerDrag"  update="frmciudadano" />
-                        </p:gmap>   
-                        <h:inputText id="lat" value="#{mapaControl.lat}"/>
-                        <h:inputText id="lng" value="#{mapaControl.lng}"/>
+                            <p:ajax event="overlaySelect"  listener="#{incidenteControl.marcadorSeleccionado}" update="outputLabelPuntoSeleccionado" />
+                        </p:gmap>                          
                     </p:layoutUnit>       
 
                 </p:layout>                        

@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
@@ -33,6 +34,8 @@ public class IncidenteControl {
     private List<PuntoLuz> listapuntoluz;
     private List<TipoIncidente> listatipoincidente;
     private ReportePuntoLuz incidente;
+    private Marker marcador;
+    PuntoLuz puntoluzseleccionado;
 
     @EJB
     @Inject
@@ -119,11 +122,29 @@ public class IncidenteControl {
         this.reportepuntoluzfacade = reportepuntoluzfacade;
     }
 
+    public Marker getMarcador() {
+        return marcador;
+    }
+
+    public void setMarcador(Marker marcador) {
+        this.marcador = marcador;
+    }
+
+    public PuntoLuz getPuntoluzseleccionado() {
+        return puntoluzseleccionado;
+    }
+
+    public void setPuntoluzseleccionado(PuntoLuz puntoluzseleccionado) {
+        this.puntoluzseleccionado = puntoluzseleccionado;
+    }    
+
     public MapModel getMapamodelo() {
         listapuntoluz = puntoluzfacade.findAll();
         for (PuntoLuz p : listapuntoluz) {
             LatLng coordenadas = new LatLng(p.getUbicacionPunto().getLatittud(), p.getUbicacionPunto().getLongitud());
-            mapamodelo.addOverlay(new Marker(coordenadas, p.getUbicacionPunto().getDireccion()));
+            marcador = new Marker(coordenadas,p.getUbicacionPunto().getDireccion());
+            marcador.setData(p);
+            mapamodelo.addOverlay(marcador);
         }
         return mapamodelo;
     }
@@ -132,13 +153,15 @@ public class IncidenteControl {
         this.mapamodelo = mapamodelo;
     }
 
-    public void inicializarListas() {
+    public void guardarIncidente() {
         incidente.setFechaIncidencia(new Date());
-        incidente.setPuntoLuz(puntoluzfacade.find(1L));
+        incidente.setPuntoLuz(puntoluzseleccionado);
         getReportepuntoluzfacade().create(incidente);
     }
 
-    public void cargarMarcadores() {
-
+    public void marcadorSeleccionado(OverlaySelectEvent event) {
+        marcador  = (Marker)  event.getOverlay();
+        puntoluzseleccionado = (PuntoLuz) marcador.getData();
+       
     }
 }
