@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entidades.mantenimiento;
 
 import entidades.inventario.PuntoLuz;
+import entidades.inventario.Tercero;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,30 +27,33 @@ import javax.persistence.Temporal;
 @Entity
 public class ReportePuntoLuz implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @SequenceGenerator(name = "ReportePuntoLuzSequence", sequenceName = "reporte_puntoluz_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ReportePuntoLuzSequence")
     private Long id;
-    
+
     @Column
     private String codigo;
-    
-    @ManyToOne
+
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_ciudadano", nullable = false)
     private Ciudadano ciudadano;
-    
+
     @ManyToOne
     @JoinColumn(name = "fk_puntoluz", nullable = false)
     private PuntoLuz puntoLuz;
-    
+
     @ManyToOne
     @JoinColumn(name = "fk_tipoincidente", nullable = false)
     private TipoIncidente tipoIncidente;
-    
+
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaIncidencia;
+
+    @Column
+    private String observacines;
 
     public Long getId() {
         return id;
@@ -73,7 +77,7 @@ public class ReportePuntoLuz implements Serializable {
 
     public void setCiudadano(Ciudadano ciudadano) {
         this.ciudadano = ciudadano;
-    }
+    }    
 
     public PuntoLuz getPuntoLuz() {
         return puntoLuz;
@@ -93,6 +97,14 @@ public class ReportePuntoLuz implements Serializable {
 
     public Date getFechaIncidencia() {
         return fechaIncidencia;
+    }
+
+    public String getObservacines() {
+        return observacines;
+    }
+
+    public void setObservacines(String observacines) {
+        this.observacines = observacines;
     }
 
     public void setFechaIncidencia(Date fechaIncidencia) {
@@ -123,5 +135,5 @@ public class ReportePuntoLuz implements Serializable {
     public String toString() {
         return "entidades.mantenimiento.ReporteLuminaria[ id=" + id + " ]";
     }
-    
+
 }

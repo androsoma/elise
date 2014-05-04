@@ -10,7 +10,7 @@
         <title>Elise</title>
         <link rel="stylesheet" media="all" href="#{facesContext.externalContext.requestContextPath}/resources/css/style.css?#{var.versioncss}"/>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-        <script type="text/javascript">
+<!--       /* <script type="text/javascript">
             var Marker = null;
             var map;
             function AgregarMarcador(event) {
@@ -27,10 +27,10 @@
 
             }
 
-        </script>  
+        </script> */ -->
     </h:head>
     <h:body>
-            <h:form id="frmciudadano">            
+            <h:form id="frmciudadano" >            
                 <p:layout fullPage="true" id="layoutPrincipal">
                     <p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="true" style="text-align: center;"  id="layoutUnitCabezaHome">
                         <h:outputLabel value="Elise" /> 
@@ -39,27 +39,32 @@
                     <p:layoutUnit position="west" size="35%">
                         <h:panelGrid columns="2" cellpadding="10">                        
                             <h:outputLabel for="inputTextCorreo" value="E-mail:"/>
-                            <h:inputText id="inputTextCorreo" value=""/>
+                            <h:inputText id="inputTextCorreo" value="#{incidenteControl.incidente.ciudadano.tercero.email}"/>
 
-                            <h:outputLabel for="inputTextNombre" value="Nombre:"/>
-                            <h:inputText id="inputTextNombre" value=""/>
+                            <h:outputLabel for="inputTextNombre" value="Nombres:"/>
+                            <h:inputText id="inputTextNombre" value="#{incidenteControl.incidente.ciudadano.tercero.nombres}"/>
+                            
+                            <h:outputLabel for="inputTextApellidos" value="Apellidos:"/>
+                            <h:inputText id="inputTextApellidos" value="#{incidenteControl.incidente.ciudadano.tercero.apellidos}"/>
 
-                            <h:outputLabel for="inputTextTipoIncidente" value="Tipo incidente:"/>
-                            <h:selectOneMenu id="selectOneMenuTipoIncidente">
+                            <h:outputLabel for="selectOneMenuTipoIncidente" value="Tipo incidente:"/>
+                            <h:selectOneMenu id="selectOneMenuTipoIncidente" value="#{incidenteControl.incidente.tipoIncidente.id}">
                                 <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                <f:selectItems value="#{incidenteControl.listatipoincidente}" var="incidente" itemLabel="#{incidente.descripcion}" itemValue="#{incidente.id}"/>
                             </h:selectOneMenu>
 
                             <h:outputLabel for="inputTextareaObservaciones" value="Observaciones:"/>
-                            <p:inputTextarea id="inputTextareaObservaciones" rows="10" cols="50"  queryDelay="750" minQueryLength="4"/>
+                            <p:inputTextarea id="inputTextareaObservaciones" rows="10" cols="50"  queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observacines}"/>
 
-                            <p:commandButton value="Rgistrar Incidente"/>
+                            <p:commandButton value="Rgistrar Incidente" action="#{incidenteControl.inicializarListas()}" update="selectOneMenuTipoIncidente"/>
                         </h:panelGrid>
                     </p:layoutUnit>
 
                     <p:layoutUnit position="center" size="65%" id="layoutUnitCentro">
                         <p:gmap id="map" widgetVar="map" center="5.067738, -75.510030" zoom="15" type="ROADMAP" style="width:100%;height:500px"
                                 onPointClick="AgregarMarcador(event);"
-                                model="#{mapaControl.mapamodelo}"> 
+                                model="#{incidenteControl.mapamodelo}"
+                                > 
                             <p:ajax event="markerDrag"  update="frmciudadano" />
                         </p:gmap>   
                         <h:inputText id="lat" value="#{mapaControl.lat}"/>

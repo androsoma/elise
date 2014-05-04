@@ -5,8 +5,10 @@
  */
 package control.inventario;
 
-import javax.faces.application.FacesMessage;
+import ejb.inventario.PuntoLuzFacade;
+import javax.ejb.EJB;
 import javax.faces.event.ActionEvent;
+import javax.inject.Inject;
 import org.primefaces.event.map.MarkerDragEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.MapModel;
@@ -23,7 +25,7 @@ public class MapaControl {
     private double lat;
     private double lng;
 
-    public MapaControl() {
+    public MapaControl() {        
     }
 
     public MapaControl(MapModel mapamodelo) {

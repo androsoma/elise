@@ -34,6 +34,10 @@ public class Ciudadano implements Serializable {
     @JoinColumn(name = "fk_tercero", nullable = false)
     private Tercero tercero;   
 
+    public Ciudadano() {
+    }
+
+    
     public Long getId() {
         return id;
     }
@@ -42,13 +46,21 @@ public class Ciudadano implements Serializable {
         this.id = id;
     }
 
+    public Tercero getTercero() {
+        return tercero;
+    }
+
+    public void setTercero(Tercero tercero) {
+        this.tercero = tercero;
+    }    
+
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
