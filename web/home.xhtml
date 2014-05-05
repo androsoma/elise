@@ -41,7 +41,7 @@
                     <h:panelGrid columns="1" cellpadding="2">                        
                         <h:outputLabel for="inputTextCorreo" value="E-mail:"/>
                         <h:inputText id="inputTextCorreo" value="#{incidenteControl.incidente.ciudadano.tercero.email}" />
-                        <p:message for="inputTextCorreo" />
+                       
 
                         <h:outputLabel for="inputTextNombre" value="Nombres:"/>
                         <h:inputText id="inputTextNombre" value="#{incidenteControl.incidente.ciudadano.tercero.nombres}" />
@@ -49,7 +49,7 @@
 
                         <h:outputLabel for="inputTextApellidos" value="Apellidos:"/>
                         <h:inputText id="inputTextApellidos" value="#{incidenteControl.incidente.ciudadano.tercero.apellidos}" />
-                        <p:message for="inputTextApellidos" />
+                        
 
                         <h:outputLabel for="selectOneMenuTipoIncidente" value="Tipo incidente:"/>
                         <h:selectOneMenu id="selectOneMenuTipoIncidente" value="#{incidenteControl.incidente.tipoIncidente.id}">
@@ -59,7 +59,7 @@
 
                         <h:outputLabel for="inputTextareaObservaciones" value="Observaciones:"/>
                         <p:inputTextarea id="inputTextareaObservaciones" rows="5"   queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observacines}"  />
-                        <p:message for="inputTextareaObservaciones" />
+                       
                         
                         <p:commandButton value="Registrar Incidente" action="#{incidenteControl.guardarIncidente()}" update="selectOneMenuTipoIncidente,growlMensaje"/>
                     </h:panelGrid> 
