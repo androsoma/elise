@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
@@ -136,14 +138,13 @@ public class IncidenteControl {
 
     public void setPuntoluzseleccionado(PuntoLuz puntoluzseleccionado) {
         this.puntoluzseleccionado = puntoluzseleccionado;
-    }    
+    }
 
     public MapModel getMapamodelo() {
         listapuntoluz = puntoluzfacade.findAll();
-        for (PuntoLuz p : listapuntoluz) {
-            LatLng coordenadas = new LatLng(p.getUbicacionPunto().getLatittud(), p.getUbicacionPunto().getLongitud());
-            marcador = new Marker(coordenadas,p.getUbicacionPunto().getDireccion());
-            marcador.setData(p);
+        for (PuntoLuz punto : listapuntoluz) {
+            LatLng coordenadas = new LatLng(punto.getUbicacionPunto().getLatittud(), punto.getUbicacionPunto().getLongitud());
+            marcador = new Marker(coordenadas, punto.getUbicacionPunto().getDireccion(), punto);
             mapamodelo.addOverlay(marcador);
         }
         return mapamodelo;
@@ -154,14 +155,30 @@ public class IncidenteControl {
     }
 
     public void guardarIncidente() {
-        incidente.setFechaIncidencia(new Date());
-        incidente.setPuntoLuz(puntoluzseleccionado);
-        getReportepuntoluzfacade().create(incidente);
+        FacesMessage msg;
+        if (!"".equals(incidente.getCiudadano().getTercero().getNombres()) && !"".equals(incidente.getCiudadano().getTercero().getApellidos())
+                && !"".equals(incidente.getCiudadano().getTercero().getEmail()) && !"".equals(incidente.getObservacines())) {
+            if (puntoluzseleccionado != null) {
+                incidente.setFechaIncidencia(new Date());
+                incidente.setPuntoLuz(puntoluzseleccionado);
+                getReportepuntoluzfacade().create(incidente);
+                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Incidnete registrado", "El incidente ha sido registrado con éxito");
+
+            } else {
+                msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Seleccione un marcador", "Debe seleccionar el punto del incidente");
+
+            }
+        } else {
+            msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Datos obligatorios", "Debe ingresar los datos obligatorios");
+        }
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+
     }
 
     public void marcadorSeleccionado(OverlaySelectEvent event) {
-        marcador  = (Marker)  event.getOverlay();
+        marcador = (Marker) event.getOverlay();
         puntoluzseleccionado = (PuntoLuz) marcador.getData();
-       
+
     }
+
 }
