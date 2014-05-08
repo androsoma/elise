@@ -53,7 +53,7 @@ public class ReportePuntoLuz implements Serializable {
     private Date fechaIncidencia;
 
     @Column
-    private String observacines;
+    private String observaciones;
 
     public Long getId() {
         return id;
@@ -99,14 +99,14 @@ public class ReportePuntoLuz implements Serializable {
         return fechaIncidencia;
     }
 
-    public String getObservacines() {
-        return observacines;
+    public String getObservaciones() {
+        return observaciones;
     }
 
-    public void setObservacines(String observacines) {
-        this.observacines = observacines;
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
-
+    
     public void setFechaIncidencia(Date fechaIncidencia) {
         this.fechaIncidencia = fechaIncidencia;
     }

@@ -13,7 +13,7 @@
                     <h:outputLabel for="" value="Contraseña"/>
                     <h:inputText id="inputTextCoontrasena" value="#{autenticacion.usuario.contrasena}"/>
 
-                    <h:commandButton value="Ingresar" action="Administrador" immediate="true" />
+                    <h:commandButton value="Ingresar" action="Administrador" actionListener="#{administracionControl.inicializarAdministracion}" immediate="true" />
                 </h:panelGrid>
         </h:form> 
     </p:dialog>

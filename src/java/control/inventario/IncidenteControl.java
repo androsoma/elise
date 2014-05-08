@@ -167,7 +167,7 @@ public class IncidenteControl {
     public void guardarIncidente() {
         FacesMessage msg;
         if (!"".equals(incidente.getCiudadano().getTercero().getNombres()) && !"".equals(incidente.getCiudadano().getTercero().getApellidos())
-                && !"".equals(incidente.getCiudadano().getTercero().getEmail()) && !"".equals(incidente.getObservacines())) {
+                && !"".equals(incidente.getCiudadano().getTercero().getEmail()) && !"".equals(incidente.getObservaciones())) {
             if (puntoluzseleccionado != null) {
                 incidente.setFechaIncidencia(new Date());
                 incidente.setPuntoLuz(puntoluzseleccionado);

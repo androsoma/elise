@@ -14,51 +14,7 @@
                     <h:outputLabel value="Elise" /> 
                 </p:layoutUnit> 
                 <p:layoutUnit position="center" size="65%" id="layoutUnitCentroReporteIncidente">
-                    <p:dataTable id="dataTableReportesIncidentes" value="#{incidenteControl.listareporteincidente}" 
-                                 var="incidente" paginator="true" rows="8">
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText id="outputTextDireccionPunto" value="Direccion Punto:" />
-                            </f:facet>
-                            <h:outputText id="outputTextDireccion" value="#{incidente.puntoLuz.ubicacionPunto.direccion}" />
-                        </p:column>
-
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText id="outputTextDepartamentoPunto" value="Departamento"/>
-                            </f:facet>                         
-                            <h:outputText id="outputTextDepartamento" value="#{incidente.puntoLuz.ubicacionPunto.municipio.departamento}" />
-                        </p:column>
-
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText id="outputTextCiudadPunto" value="Ciudad" />
-                            </f:facet>
-                            <h:outputText id="outputTextCiudad" value="#{incidente.puntoLuz.ubicacionPunto.municipio.departamento}"/>
-                        </p:column>
-
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText id="outputTextTipoIncidentePunto" value="Tipo Incidente"/>
-                            </f:facet>
-                            <h:outputText id="outputTextTipoIncidente" value="#{incidente.tipoIncidente.descripcion}"/>
-                        </p:column>
-
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText id="outputTextFechaReporte" value="Fecha de reporte"/>
-                            </f:facet>
-                            <h:outputText id="outputTextFecha" value="#{incidente.fechaIncidencia}" />
-                        </p:column>
-
-
-                        <p:column >
-                            <f:facet name="header">
-                                <h:outputText id="outputTextIngresarReporte" value="Ingresar al Reporte"/>
-                            </f:facet>
-                            <p:commandButton id="commandButtonIngresoReporte" value="Ingresar"/>
-                        </p:column>
-                    </p:dataTable>  
+                    
                 </p:layoutUnit>
             </p:layout>
         </h:form>

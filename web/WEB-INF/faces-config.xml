@@ -30,21 +30,27 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     
-      <managed-bean>
+    <managed-bean>
         <managed-bean-name>incidenteControl</managed-bean-name>
         <managed-bean-class>control.inventario.IncidenteControl</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>administracionControl</managed-bean-name>
+        <managed-bean-class>control.inventario.AdministracionControl</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
-             <from-outcome>Administrador</from-outcome>
+            <from-outcome>Administrador</from-outcome>
             <to-view-id>/WebPage/Administrador.xhtml</to-view-id>           
         </navigation-case>
         
-         <navigation-case>
-             <from-outcome>ReporteIncidentes</from-outcome>
+        <navigation-case>
+            <from-outcome>ReporteIncidentes</from-outcome>
             <to-view-id>/WebPage/reporteIncidentes.xhtml</to-view-id>           
         </navigation-case>
     </navigation-rule>

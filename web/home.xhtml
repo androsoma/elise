@@ -58,7 +58,7 @@
                         </h:selectOneMenu>
 
                         <h:outputLabel for="inputTextareaObservaciones" value="Observaciones:"/>
-                        <p:inputTextarea id="inputTextareaObservaciones" rows="5"   queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observacines}"  />
+                        <p:inputTextarea id="inputTextareaObservaciones" rows="5"   queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observaciones}"  />
                        
                         
                         <p:commandButton value="Registrar Incidente" action="#{incidenteControl.guardarIncidente()}" update="selectOneMenuTipoIncidente,growlMensaje,paneGridReportarincidente,outputLabelPuntoSeleccionado"/>
