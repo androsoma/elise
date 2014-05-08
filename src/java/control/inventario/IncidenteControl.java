@@ -37,7 +37,8 @@ public class IncidenteControl {
     private List<TipoIncidente> listatipoincidente;
     private ReportePuntoLuz incidente;
     private Marker marcador;
-    PuntoLuz puntoluzseleccionado;
+    private PuntoLuz puntoluzseleccionado;
+    private List<ReportePuntoLuz> listareporteincidente;
 
     @EJB
     @Inject
@@ -63,6 +64,7 @@ public class IncidenteControl {
         incidente.getCiudadano().setTercero(new Tercero());
         incidente.setPuntoLuz(new PuntoLuz());
         incidente.setTipoIncidente(new TipoIncidente());
+        listareporteincidente = new ArrayList<>();
 
     }
 
@@ -154,6 +156,14 @@ public class IncidenteControl {
         this.mapamodelo = mapamodelo;
     }
 
+    public List<ReportePuntoLuz> getListareporteincidente() {
+        return listareporteincidente;
+    }
+
+    public void setListareporteincidente(List<ReportePuntoLuz> listareporteincidente) {
+        this.listareporteincidente = listareporteincidente;
+    }
+
     public void guardarIncidente() {
         FacesMessage msg;
         if (!"".equals(incidente.getCiudadano().getTercero().getNombres()) && !"".equals(incidente.getCiudadano().getTercero().getApellidos())
@@ -163,6 +173,12 @@ public class IncidenteControl {
                 incidente.setPuntoLuz(puntoluzseleccionado);
                 getReportepuntoluzfacade().create(incidente);
                 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Incidnete registrado", "El incidente ha sido registrado con éxito");
+                incidente = new ReportePuntoLuz();
+                incidente.setCiudadano(new Ciudadano());
+                incidente.getCiudadano().setTercero(new Tercero());
+                incidente.setPuntoLuz(new PuntoLuz());
+                incidente.setTipoIncidente(new TipoIncidente());
+                puntoluzseleccionado = new PuntoLuz();
 
             } else {
                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Seleccione un marcador", "Debe seleccionar el punto del incidente");
@@ -179,6 +195,16 @@ public class IncidenteControl {
         marcador = (Marker) event.getOverlay();
         puntoluzseleccionado = (PuntoLuz) marcador.getData();
 
+    }
+
+    public String mostrarReporteIncidentes() {
+        if (listareporteincidente != null){
+        listareporteincidente = getReportepuntoluzfacade().findAll();
+        return "ReporteIncidentes";
+        }else{
+            System.out.println("No hay Reportes de luz");
+            return null;
+        }
     }
 
 }

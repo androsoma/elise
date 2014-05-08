@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Elise</title>       
+    </h:head>
+    <h:body>
+        <h:form> 
+            <p:layout fullPage="true" id="layoutPrincipal">
+                <p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="true" style="text-align: center;"  id="layoutUnitCabezaHome">
+                    <h:outputLabel value="Elise" /> 
+                </p:layoutUnit> 
+                <p:layoutUnit position="center" size="65%" id="layoutUnitCentroReporteIncidente">
+                    <p:dataTable id="dataTableReportesIncidentes" value="#{incidenteControl.listareporteincidente}" 
+                                 var="incidente" paginator="true" rows="8">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText id="outputTextDireccionPunto" value="Direccion Punto:" />
+                            </f:facet>
+                            <h:outputText id="outputTextDireccion" value="#{incidente.puntoLuz.ubicacionPunto.direccion}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText id="outputTextDepartamentoPunto" value="Departamento"/>
+                            </f:facet>                         
+                            <h:outputText id="outputTextDepartamento" value="#{incidente.puntoLuz.ubicacionPunto.municipio.departamento}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText id="outputTextCiudadPunto" value="Ciudad" />
+                            </f:facet>
+                            <h:outputText id="outputTextCiudad" value="#{incidente.puntoLuz.ubicacionPunto.municipio.departamento}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText id="outputTextTipoIncidentePunto" value="Tipo Incidente"/>
+                            </f:facet>
+                            <h:outputText id="outputTextTipoIncidente" value="#{incidente.tipoIncidente.descripcion}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText id="outputTextFechaReporte" value="Fecha de reporte"/>
+                            </f:facet>
+                            <h:outputText id="outputTextFecha" value="#{incidente.fechaIncidencia}" />
+                        </p:column>
+
+
+                        <p:column >
+                            <f:facet name="header">
+                                <h:outputText id="outputTextIngresarReporte" value="Ingresar al Reporte"/>
+                            </f:facet>
+                            <p:commandButton id="commandButtonIngresoReporte" value="Ingresar"/>
+                        </p:column>
+                    </p:dataTable>  
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+    </h:body>
+</html>

@@ -38,7 +38,7 @@
                     <p:commandButton value="Iniciar Sesión" style=" position: relative;top: 10%;left: 43%;" onclick="PF('dlgLogin').show();"/>
                 </p:layoutUnit> 
                 <p:layoutUnit position="west" size="25%">
-                    <h:panelGrid columns="1" cellpadding="2">                        
+                    <h:panelGrid columns="1" cellpadding="2" id="paneGridReportarincidente">                        
                         <h:outputLabel for="inputTextCorreo" value="E-mail:"/>
                         <h:inputText id="inputTextCorreo" value="#{incidenteControl.incidente.ciudadano.tercero.email}" />
                        
@@ -61,7 +61,7 @@
                         <p:inputTextarea id="inputTextareaObservaciones" rows="5"   queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observacines}"  />
                        
                         
-                        <p:commandButton value="Registrar Incidente" action="#{incidenteControl.guardarIncidente()}" update="selectOneMenuTipoIncidente,growlMensaje"/>
+                        <p:commandButton value="Registrar Incidente" action="#{incidenteControl.guardarIncidente()}" update="selectOneMenuTipoIncidente,growlMensaje,paneGridReportarincidente,outputLabelPuntoSeleccionado"/>
                     </h:panelGrid> 
                 </p:layoutUnit>
 
