@@ -41,15 +41,15 @@
                     <h:panelGrid columns="1" cellpadding="2" id="paneGridReportarincidente" width="100%">                        
                         <h:outputLabel for="inputTextCorreo" value="E-mail:"/>
                         <h:inputText id="inputTextCorreo" value="#{incidenteControl.incidente.ciudadano.tercero.email}" style="width: 100%;" />
-                       
+
 
                         <h:outputLabel for="inputTextNombre" value="Nombres:"/>
                         <h:inputText id="inputTextNombre" value="#{incidenteControl.incidente.ciudadano.tercero.nombres}" style="width: 100%;" />
-                       
+
 
                         <h:outputLabel for="inputTextApellidos" value="Apellidos:"/>
                         <h:inputText id="inputTextApellidos" value="#{incidenteControl.incidente.ciudadano.tercero.apellidos}" style="width: 100%;" />
-                        
+
 
                         <h:outputLabel for="selectOneMenuTipoIncidente" value="Tipo incidente:"/>
                         <h:selectOneMenu id="selectOneMenuTipoIncidente" value="#{incidenteControl.incidente.tipoIncidente.id}" style="width: 100%;">
@@ -59,18 +59,47 @@
 
                         <h:outputLabel for="inputTextareaObservaciones" value="Observaciones:" />
                         <p:inputTextarea id="inputTextareaObservaciones" rows="5"  queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observaciones}" style="width: 95%;" />
-                       
+
                         <center>
-                            
-                        
-                        <p:commandButton value="Registrar incidente" action="#{incidenteControl.guardarIncidente()}" update="selectOneMenuTipoIncidente,growlMensaje,paneGridReportarincidente,outputLabelPuntoSeleccionado"/>
+
+
+                            <p:commandButton value="Registrar incidente" action="#{incidenteControl.guardarIncidente()}" update="selectOneMenuTipoIncidente,growlMensaje,paneGridReportarincidente,outputLabelPuntoSeleccionado"/>
                         </center>
                     </h:panelGrid> 
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center" size="65%" id="layoutUnitCentro">
+                    
+                    <p:notificationBar widgetVar="bar" position="top" effect="slide" styleClass="top"> 
+                        <p:outputLabel value="Filtro mapa" style="font-size: 200%; font-family: sans-serif; float: outside"/>
+                        <p:commandButton value="X" onclick="PF('bar').hide()" style="float: right"/>
+                            <h:panelGrid id="panelGridFiltrosCiudadano" columns="3" width="100%">
+                                <h:panelGrid columns="1" width="100%%">
+                                    <h:outputLabel for="selectOneMenuDepartamentoAdministracionCiudadano" value="Departamento" />
+                                    <h:selectOneMenu id="selectOneMenuDepartamentoAdministracionCiudadano" style="width: 100%;">
+                                        <f:selectItem itemValue="" itemLabel="Caldas" />
+                                    </h:selectOneMenu>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="1" width="100%">
+                                    <h:outputLabel for="selectOneMenuMunicipioAdministracionCiudadano" value="Municipio" />
+                                    <h:selectOneMenu id="selectOneMenuMunicipioAdministracionCiudadano" style="width: 100%;">
+                                        <f:selectItem itemValue="" itemLabel="Manizales" />
+                                    </h:selectOneMenu>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="1" width="100%">
+                                    <h:outputLabel for="selectOneMenuBarrioAdministracionCiudadano" value="Barrio" />
+                                    <h:selectOneMenu id="selectOneMenuBarrioAdministracionCiudadano" style="width: 100%;">
+                                        <f:selectItem itemValue="" itemLabel="Campohermoso" />
+                                    </h:selectOneMenu>
+                                </h:panelGrid>                        
+                            </h:panelGrid>                        
+                    </p:notificationBar> 
+                    
                     <p:outputLabel for="outputLabelPuntoSeleccionado" value="Punto seleccionado: " style="font-weight: bold;"/>
                     <p:outputLabel value="#{incidenteControl.puntoluzseleccionado.ubicacionPunto.direccion}" id="outputLabelPuntoSeleccionado" />
+                    <p:commandButton value="Filtrar" onclick="PF('bar').show()" style="float: right;"/>
                     <p:gmap id="map" widgetVar="map" center="5.067738, -75.510030" zoom="15" type="ROADMAP" style="width:100%;height:600px"
                             onPointClick="AgregarMarcador(event);"
                             model="#{incidenteControl.mapamodelo}"
