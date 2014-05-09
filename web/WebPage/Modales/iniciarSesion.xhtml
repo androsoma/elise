@@ -4,17 +4,17 @@
       contentType="text/html">
 
 
-    <p:dialog id="dialogInicioSesion" header="Iniciar Sesión" widgetVar="dlgLogin" modal="true"  draggable="false" resizable="false">
+    <p:dialog id="dialogInicioSesion" header="Iniciar sesión" widgetVar="dlgLogin" modal="true"  draggable="false" resizable="false">
         <h:form id="frmModalInicioSesion">
-                <h:panelGrid columns="1">
-                    <h:outputLabel for="inputTextNombreUsuario"  value="Nombre Usuario:"/>
-                    <h:inputText id="inputTextNombreUsuario" value="#{autenticacion.usuario.nombreUsuario}"/>
+            <h:panelGrid columns="1" width="100%">
+                <h:outputLabel for="inputTextNombreUsuario"  value="Nombre de suario:"/>
+                <h:inputText id="inputTextNombreUsuario" value="#{autenticacion.usuario.nombreUsuario}" style="width: 100%;" />
 
-                    <h:outputLabel for="" value="Contraseña"/>
-                    <h:inputText id="inputTextCoontrasena" value="#{autenticacion.usuario.contrasena}"/>
-
-                    <h:commandButton value="Ingresar" action="Administrador" actionListener="#{administracionControl.inicializarAdministracion}" immediate="true" />
-                </h:panelGrid>
+                <h:outputLabel for="inputTextContrasena" value="Contraseña:"/>
+                <h:inputText id="inputTextContrasena" value="#{autenticacion.usuario.contrasena}" style="width: 100%;" />
+                <br />
+                <h:commandButton value="Ingresar" action="Administrador" actionListener="#{administracionControl.inicializarAdministracion}" immediate="true" />
+            </h:panelGrid>
         </h:form> 
     </p:dialog>
 </html>

@@ -4,29 +4,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"        
-      contentType="text/html" >    
-
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      contentType="text/html">
     <h:head>
         <title>Elise</title>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true" />
     </h:head>
+    
     <h:body>
         <h:form id="formAdministracion" prependId="false"> 
             <p:layout fullPage="true">      
 
-                <p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="true" style="text-align: center; background: #c4c4c4 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)));"  id="layoutUnitCabeza">
-                    <h:outputLabel value="Elise" />                    
-                    <p:splitButton value="Usuario" style="position: absolute; text-align: right; width: 34.5%" >
-                        <p:menuitem value="Cerrar Sesión"/>                            
+                <p:layoutUnit position="north" size="75" resizable="false" closable="false" collapsible="true" style="text-align: center;"  id="layoutUnitCabeza">
+                    <h:outputLabel value="ELISE" style="font-size: 250%; font-family: sans-serif;" />
+                    <p:splitButton value="Usuario" style="float: right;">
+                        <p:menuitem value="Cerrar sesión" />
                     </p:splitButton>
                 </p:layoutUnit>  
 
                 <p:layoutUnit position="west" size="250" >
                     <h:panelGrid>
                         <p:menu>
-                            <p:menuitem value="Reportar incidente" action="#{administracionControl.setOpcion(1)}" update="panelGroupAdministrador" immediate="true" />
-                            <p:menuitem value="Consultar punto de luz"  />
+                            <p:menuitem value="Consultar punto de luz" action="#{administracionControl.setOpcion(1)}" update="panelGroupAdministrador" immediate="true" />
                             <p:menuitem value="Reportes de incidentes" action="#{administracionControl.mostrarReporteIncidentes}" update="panelGroupAdministrador" immediate="true" />
                         </p:menu>
                     </h:panelGrid>
@@ -37,16 +37,30 @@
 
                     <h:panelGroup id="panelGroupAdministrador" style="width: 100%;">
                         <h:panelGrid columns="1" id="panelGridIncidencias" rendered="#{administracionControl.opcion == 1}" width="100%">
-                            <p:accordionPanel>
-                                <p:tab title="Filtrar">
-                                    <h:panelGrid columns="5">
-                                        <p:selectOneMenu label="Departamento">
-                                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
-                                        </p:selectOneMenu>
-                                    </h:panelGrid>
-                                </p:tab>
-                            </p:accordionPanel>
-                            <p:gmap id="mapaAdministracion" widgetVar="mapa" center="5.067738, -75.510030" zoom="15" type="ROADMAP" style="width: 100%; height: 500px;"
+                            <h:panelGrid id="panelGridFiltros" columns="3" width="100%">
+                                <h:panelGrid columns="1" width="100%%">
+                                    <h:outputLabel for="selectOneMenuDepartamentoAdministracion" value="Departamento" />
+                                    <h:selectOneMenu id="selectOneMenuDepartamentoAdministracion" style="width: 100%;">
+                                        <f:selectItem itemValue="" itemLabel="Caldas" />
+                                    </h:selectOneMenu>
+                                </h:panelGrid>
+                                
+                                <h:panelGrid columns="1" width="100%">
+                                    <h:outputLabel for="selectOneMenuMunicipioAdministracion" value="Municipio" />
+                                    <h:selectOneMenu id="selectOneMenuMunicipioAdministracion" style="width: 100%;">
+                                        <f:selectItem itemValue="" itemLabel="Manizales" />
+                                    </h:selectOneMenu>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="1" width="100%">
+                                    <h:outputLabel for="selectOneMenuBarrioAdministracion" value="Barrio" />
+                                    <h:selectOneMenu id="selectOneMenuBarrioAdministracion" style="width: 100%;">
+                                        <f:selectItem itemValue="" itemLabel="Campohermoso" />
+                                    </h:selectOneMenu>
+                                </h:panelGrid>
+                            </h:panelGrid>
+                            <hr />
+                            <p:gmap id="mapaAdministracion" widgetVar="mapa" center="5.067738, -75.510030" zoom="15" type="ROADMAP" style="width: 100%; height: 550px;"
                                     model="#{administracionControl.mapaModelo}">
 
                                 <p:ajax event="overlaySelect" listener="#{administracionControl.marcadorSeleccionado}" />
@@ -65,33 +79,32 @@
                             </p:gmap>
                         </h:panelGrid>
 
-                        <h:panelGrid id="panelGridReportes" columns="1" rendered="#{administracionControl.opcion == 3}" width="100%">
+                        <h:panelGrid id="panelGridReportes" columns="1" rendered="#{administracionControl.opcion == 2}" width="100%">
                             <p:dataTable id="dataTableReportesIncidentes" value="#{administracionControl.reportesIncidentes}" 
                                          var="incidente" paginator="true" rows="8">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText id="outputTextDireccionPunto" value="Direccion Punto:" />
+                                        <h:outputText id="outputTextCiudadPunto" value="Municipio" />
+                                    </f:facet>
+                                    <h:outputText id="outputTextCiudad" value="#{incidente.puntoLuz.ubicacionPunto.municipio.nombre}, #{incidente.puntoLuz.ubicacionPunto.municipio.departamento.nombre}"/>
+                                </p:column>
+                                
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText id="outputTextDepartamentoPunto" value="Barrio"/>
+                                    </f:facet>                         
+                                    <h:outputText id="outputTextDepartamento" value="#{incidente.puntoLuz.ubicacionPunto.barrio.nombre}" />
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText id="outputTextDireccionPunto" value="Dirección" />
                                     </f:facet>
                                     <h:outputText id="outputTextDireccion" value="#{incidente.puntoLuz.ubicacionPunto.direccion}" />
                                 </p:column>
 
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText id="outputTextDepartamentoPunto" value="Departamento"/>
-                                    </f:facet>                         
-                                    <h:outputText id="outputTextDepartamento" value="#{incidente.puntoLuz.ubicacionPunto.municipio.departamento}" />
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText id="outputTextCiudadPunto" value="Ciudad" />
-                                    </f:facet>
-                                    <h:outputText id="outputTextCiudad" value="#{incidente.puntoLuz.ubicacionPunto.municipio.departamento}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText id="outputTextTipoIncidentePunto" value="Tipo Incidente"/>
+                                        <h:outputText id="outputTextTipoIncidentePunto" value="Tipo incidente"/>
                                     </f:facet>
                                     <h:outputText id="outputTextTipoIncidente" value="#{incidente.tipoIncidente.descripcion}"/>
                                 </p:column>
@@ -105,12 +118,14 @@
                                     </h:outputText>
                                 </p:column>
 
-
-                                <p:column >
+                                <p:column style="text-align: center;">
                                     <f:facet name="header">
-                                        <h:outputText id="outputTextIngresarReporte" value="Ingresar al Reporte"/>
+                                        <h:outputText id="outputTextIngresarReporte" value="Acciones"/>
                                     </f:facet>
-                                    <p:commandButton id="commandButtonIngresoReporte" value="Ingresar"/>
+                                    
+                                    <p:commandButton id="commandButtonIngresoReporte" value="Ver incidente" oncomplete="PF('dlgDetalleIncidente').show();" update=":formDetalleIncidente">
+                                        <f:setPropertyActionListener value="#{incidente}" target="#{administracionControl.reporteIncidenteSeleccionado}" />
+                                    </p:commandButton>
                                 </p:column>
                             </p:dataTable>  
 
@@ -120,5 +135,7 @@
 
             </p:layout>
         </h:form>
+        
+        <ui:include src="Modales/detalleIncidente.xhtml"/>
     </h:body>
 </html>

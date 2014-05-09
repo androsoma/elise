@@ -33,42 +33,45 @@
         <h:form id="frmciudadano" >  
             <p:growl id="growlMensaje" showDetail="true"/>
             <p:layout fullPage="true" id="layoutPrincipal">
-                <p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="true" style="text-align: center;"  id="layoutUnitCabezaHome">
-                    <h:outputLabel value="Elise" /> 
-                    <p:commandButton value="Iniciar Sesión" style=" position: relative;top: 10%;left: 43%;" onclick="PF('dlgLogin').show();"/>
+                <p:layoutUnit position="north" size="75" resizable="false" closable="false" collapsible="true" style="text-align: center;"  id="layoutUnitCabezaHome">
+                    <h:outputLabel value="ELISE" style="font-size: 250%; font-family: sans-serif;" />
+                    <p:commandButton value="Iniciar sesión" style="float: right;" onclick="PF('dlgLogin').show();" />
                 </p:layoutUnit> 
                 <p:layoutUnit position="west" size="25%">
-                    <h:panelGrid columns="1" cellpadding="2" id="paneGridReportarincidente">                        
+                    <h:panelGrid columns="1" cellpadding="2" id="paneGridReportarincidente" width="100%">                        
                         <h:outputLabel for="inputTextCorreo" value="E-mail:"/>
-                        <h:inputText id="inputTextCorreo" value="#{incidenteControl.incidente.ciudadano.tercero.email}" />
+                        <h:inputText id="inputTextCorreo" value="#{incidenteControl.incidente.ciudadano.tercero.email}" style="width: 100%;" />
                        
 
                         <h:outputLabel for="inputTextNombre" value="Nombres:"/>
-                        <h:inputText id="inputTextNombre" value="#{incidenteControl.incidente.ciudadano.tercero.nombres}" />
+                        <h:inputText id="inputTextNombre" value="#{incidenteControl.incidente.ciudadano.tercero.nombres}" style="width: 100%;" />
                        
 
                         <h:outputLabel for="inputTextApellidos" value="Apellidos:"/>
-                        <h:inputText id="inputTextApellidos" value="#{incidenteControl.incidente.ciudadano.tercero.apellidos}" />
+                        <h:inputText id="inputTextApellidos" value="#{incidenteControl.incidente.ciudadano.tercero.apellidos}" style="width: 100%;" />
                         
 
                         <h:outputLabel for="selectOneMenuTipoIncidente" value="Tipo incidente:"/>
-                        <h:selectOneMenu id="selectOneMenuTipoIncidente" value="#{incidenteControl.incidente.tipoIncidente.id}">
+                        <h:selectOneMenu id="selectOneMenuTipoIncidente" value="#{incidenteControl.incidente.tipoIncidente.id}" style="width: 100%;">
                             <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                            <f:selectItems value="#{incidenteControl.listatipoincidente}" var="incidente" itemLabel="#{incidente.descripcion}" itemValue="#{incidente.id}"/>
+                            <f:selectItems value="#{incidenteControl.listatipoincidente}" var="incidente" itemLabel="#{incidente.descripcion}" itemValue="#{incidente.id}" />
                         </h:selectOneMenu>
 
-                        <h:outputLabel for="inputTextareaObservaciones" value="Observaciones:"/>
-                        <p:inputTextarea id="inputTextareaObservaciones" rows="5"   queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observaciones}"  />
+                        <h:outputLabel for="inputTextareaObservaciones" value="Observaciones:" />
+                        <p:inputTextarea id="inputTextareaObservaciones" rows="5"  queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observaciones}" style="width: 95%;" />
                        
+                        <center>
+                            
                         
-                        <p:commandButton value="Registrar Incidente" action="#{incidenteControl.guardarIncidente()}" update="selectOneMenuTipoIncidente,growlMensaje,paneGridReportarincidente,outputLabelPuntoSeleccionado"/>
+                        <p:commandButton value="Registrar incidente" action="#{incidenteControl.guardarIncidente()}" update="selectOneMenuTipoIncidente,growlMensaje,paneGridReportarincidente,outputLabelPuntoSeleccionado"/>
+                        </center>
                     </h:panelGrid> 
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center" size="65%" id="layoutUnitCentro">
-                    <p:outputLabel for="outputLabelPuntoSeleccionado" value="punto seleccionado: "/>
+                    <p:outputLabel for="outputLabelPuntoSeleccionado" value="Punto seleccionado: " style="font-weight: bold;"/>
                     <p:outputLabel value="#{incidenteControl.puntoluzseleccionado.ubicacionPunto.direccion}" id="outputLabelPuntoSeleccionado" />
-                    <p:gmap id="map" widgetVar="map" center="5.067738, -75.510030" zoom="15" type="ROADMAP" style="width:100%;height:500px"
+                    <p:gmap id="map" widgetVar="map" center="5.067738, -75.510030" zoom="15" type="ROADMAP" style="width:100%;height:600px"
                             onPointClick="AgregarMarcador(event);"
                             model="#{incidenteControl.mapamodelo}"
                             > 

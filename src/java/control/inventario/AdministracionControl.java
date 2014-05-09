@@ -13,7 +13,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
@@ -133,6 +132,7 @@ public class AdministracionControl implements Serializable {
     }
 
     public void marcadorSeleccionado(OverlaySelectEvent puntoSeleccionado) {
+        System.out.println("Marcador seleccionado.");
         marcadorPuntoLuz = (Marker) puntoSeleccionado.getOverlay();
         
         puntoLuzSeleccionado = (PuntoLuz) marcadorPuntoLuz.getData();
@@ -148,9 +148,13 @@ public class AdministracionControl implements Serializable {
     }
     
     public void mostrarReporteIncidentes() {
-        opcion = 3;
+        opcion = 2;
         
         reportesIncidentes = new ArrayList<>();
         reportesIncidentes = reportePuntoLuzFacade.findAll();
+    }
+    
+    public void seleccionarIncidente() {
+        
     }
 }
