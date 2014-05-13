@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entidades.inventario;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,12 +15,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,61 +28,65 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "transformador")
 @XmlRootElement
 public class Transformador implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TransformadorSequence")
     @SequenceGenerator(name = "TransformadorSequence", sequenceName = "transformador_seq", allocationSize = 1)
     private Long id;
-    
-    @ManyToOne(cascade = {CascadeType.REFRESH})
+
+    @ManyToOne(optional = true, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipotransformador", nullable = true)
     private TipoTransformador tipoTransformador;
-    
-    @ManyToOne(cascade = {CascadeType.REFRESH})
+
+    @ManyToOne(optional = true, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_tipoconexiontransformador", nullable = true)
     private TipoConexionTransformador tipoConexionTransformador;
-    
+
     @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_fabricante", nullable = true)
     private Fabricante fabricante;
-    
-    @ManyToOne(cascade = {CascadeType.REFRESH})
+
+    @ManyToOne(optional = true, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_frecuencia", nullable = true)
     private Frecuencia frecuencia;
-    
-    @ManyToOne(cascade = {CascadeType.REFRESH})
+
+    @ManyToOne(optional = true, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_voltajealta", nullable = true)
     private Voltaje voltajeAlta;
-    
-    @ManyToOne(cascade = {CascadeType.REFRESH})
+
+    @ManyToOne(optional = true, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_voltajebaja", nullable = true)
     private Voltaje voltajeBaja;
-    
-    @ManyToOne(cascade = {CascadeType.REFRESH})
+
+    @ManyToOne(optional = true, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_potencia", nullable = true)
     private Potencia potencia;
-    
-    @ManyToOne(cascade = {CascadeType.REFRESH})
+
+    @ManyToOne(optional = true, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "fk_fase", nullable = true)
     private Fase fase;
-    
+
+    @ManyToOne(optional = true, cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "fk_concentrador", nullable = true)
+    private Concentrador concentrador;
+
     @Column(nullable = true)
     private boolean exclusivo;
-    
+
     @Column(length = 255, nullable = true)
     private String serial;
-    
+
     @Column(length = 255, nullable = true)
     private String referencia;
-    
+
     @Column(nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaRegistro;
-    
+
 //    @OneToMany(mappedBy = "transformador")
 //    private List<Luminaria> listaLuminarias;
-
     public Long getId() {
         return id;
     }
@@ -149,7 +149,7 @@ public class Transformador implements Serializable {
 
     public void setFrecuencia(Frecuencia frecuencia) {
         this.frecuencia = frecuencia;
-    }    
+    }
 
     public Voltaje getVoltajeAlta() {
         return voltajeAlta;
@@ -183,6 +183,14 @@ public class Transformador implements Serializable {
         this.fase = fase;
     }
 
+    public Concentrador getConcentrador() {
+        return concentrador;
+    }
+
+    public void setConcentrador(Concentrador concentrador) {
+        this.concentrador = concentrador;
+    }
+
     public Date getFechaRegistro() {
         return fechaRegistro;
     }
@@ -190,7 +198,7 @@ public class Transformador implements Serializable {
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
-    
+
 //    @XmlTransient
 //    public List<Luminaria> getListaLuminarias() {
 //        return listaLuminarias;
@@ -199,7 +207,6 @@ public class Transformador implements Serializable {
 //    public void setListaLuminarias(List<Luminaria> listaLuminarias) {
 //        this.listaLuminarias = listaLuminarias;
 //    }    
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -224,5 +231,5 @@ public class Transformador implements Serializable {
     public String toString() {
         return "ejb.inventario.Transformador[ id=" + id + " ]";
     }
-    
+
 }

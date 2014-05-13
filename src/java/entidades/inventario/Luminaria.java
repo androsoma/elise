@@ -79,6 +79,10 @@ public class Luminaria implements Serializable {
     @ManyToOne(optional = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_potencia")
     private Potencia potencia;
+    
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_concentrador")
+    private Concentrador concentrador;
 
     @Column(name = "altura")
     private float altura;
@@ -90,6 +94,9 @@ public class Luminaria implements Serializable {
     @Size(max = 255)
     @Column(name = "referencia")
     private String referencia;
+    
+    @Column(name = "encendida", columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private boolean encendida;
 
     @Column(name = "fecharegistro")
     @Temporal(TemporalType.DATE)
@@ -175,12 +182,28 @@ public class Luminaria implements Serializable {
         this.potencia = potencia;
     }
 
+    public Concentrador getConcentrador() {
+        return concentrador;
+    }
+
+    public void setConcentrador(Concentrador concentrador) {
+        this.concentrador = concentrador;
+    }
+
     public String getReferencia() {
         return referencia;
     }
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
+    }
+
+    public boolean isEncendida() {
+        return encendida;
+    }
+
+    public void setEncendida(boolean encendida) {
+        this.encendida = encendida;
     }
 
     public Date getFechaRegistro() {

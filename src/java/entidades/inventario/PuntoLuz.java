@@ -52,6 +52,10 @@ public class PuntoLuz implements Serializable {
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_medidorenergia", nullable = true)
     private MedidorEnergia medidorEnergia;
+    
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "fk_concentrador", nullable = true)
+    private Concentrador concentrador;
 
     public Long getId() {
         return id;
@@ -107,6 +111,14 @@ public class PuntoLuz implements Serializable {
 
     public void setMedidorEnergia(MedidorEnergia medidorEnergia) {
         this.medidorEnergia = medidorEnergia;
+    }
+
+    public Concentrador getConcentrador() {
+        return concentrador;
+    }
+
+    public void setConcentrador(Concentrador concentrador) {
+        this.concentrador = concentrador;
     }
 
     @Override
