@@ -32,7 +32,7 @@
                     </h:panelGrid>
                 </p:layoutUnit>
 
-                <p:layoutUnit position="center">
+                <p:layoutUnit position="center" size="25">
                     <p:growl id="growlAdministracion" showDetail="true" />
 
                     <h:panelGroup id="panelGroupAdministrador" style="width: 100%;">
@@ -70,8 +70,8 @@
                                         <h:outputText id="outputTextInfoPunto" value="#{administracionControl.puntoLuzSeleccionado.ubicacionPunto.direccion}" />
                                         <br />
                                         <h:panelGrid columns="2">
-                                            <p:commandButton id="commandButtonDetallePunto" value="Ver detalle" immediate="true" />
-                                            <p:commandButton id="commandButtonReportarIncidente" value="Reportar incidente" immediate="true" />
+                                            <p:commandButton id="commandButtonDetallePunto" value="Ver detalle" immediate="true" action="#{administracionControl.verDetallePuntoLuz}" update="formAdministracion"/>
+                                            <p:commandButton id="commandButtonReportarIncidente" value="Reportar incidente" immediate="true"  />
                                         </h:panelGrid>
 
                                     </p:outputPanel>
@@ -132,10 +132,15 @@
                         </h:panelGrid>
                     </h:panelGroup>
                 </p:layoutUnit>                
-
+                <p:layoutUnit id="layoutUnitDetallePunto" position="east" size="300" resizable="false" closable="false" collapsible="true" rendered="#{administracionControl.verdetallepunto}">
+                     <ui:include src="facelets/DetallePutoLuz.xhtml"/>
+                </p:layoutUnit>
             </p:layout>
+            
+             
         </h:form>
         
         <ui:include src="Modales/detalleIncidente.xhtml"/>
+      
     </h:body>
 </html>

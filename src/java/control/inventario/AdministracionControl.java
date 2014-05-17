@@ -33,6 +33,7 @@ public class AdministracionControl implements Serializable {
     private PuntoLuz puntoLuzSeleccionado;
     private List<ReportePuntoLuz> reportesIncidentes;
     private ReportePuntoLuz reporteIncidenteSeleccionado;
+    private boolean  verdetallepunto =  false;
     
     @EJB
     @Inject
@@ -104,6 +105,14 @@ public class AdministracionControl implements Serializable {
         this.reporteIncidenteSeleccionado = reporteIncidenteSeleccionado;
     }
 
+    public boolean isVerdetallepunto() {
+        return verdetallepunto;
+    }
+
+    public void setVerdetallepunto(boolean verdetallepunto) {
+        this.verdetallepunto = verdetallepunto;
+    }
+
     public PuntoLuzFacade getPuntoLuzFacade() {
         return puntoLuzFacade;
     }
@@ -152,6 +161,11 @@ public class AdministracionControl implements Serializable {
         
         reportesIncidentes = new ArrayList<>();
         reportesIncidentes = reportePuntoLuzFacade.findAll();
+    }
+    
+    public void verDetallePuntoLuz(){    
+       verdetallepunto = true; 
+       System.out.println(isVerdetallepunto() );
     }
     
     public void seleccionarIncidente() {
