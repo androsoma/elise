@@ -7,30 +7,26 @@
       >
 
     <h:panelGrid id="DetallePunto" > 
-            <p:outputLabel value="Filtro mapa" style="font-size: 200%; font-family: sans-serif; float: outside"/>
-            <p:commandButton value="X" onclick="PF('DetallePunto').hide()" style="float: right"/>
-            <h:panelGrid id="panelGridFiltrosCiudadano1" columns="3" width="100%">
-                <h:panelGrid columns="1" width="100%%">
-                    <h:outputLabel for="selectOneMenuDepartamentoAdministracionCiudadano" value="Departamento" />
-                    <h:selectOneMenu id="selectOneMenuDepartamentoAdministracionCiudadano" style="width: 100%;">
-                        <f:selectItem itemValue="" itemLabel="Caldas" />
-                    </h:selectOneMenu>
+        <p:outputLabel value="Filtro mapa" style="font-size: 200%; font-family: sans-serif; float: outside"/>
+        <p:commandButton value="X" onclick="PF('layoutUnitAdministrarPuntoLuz').hide()" style="float: right" action="#{administracionControl.esconderDetalle()}"/>
+        <p:accordionPanel >
+            <p:tab title="Luminaria" >
+                <h:panelGrid id="panelGridLuminariaDetalle">
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.tipoTransformador.descripcion}"/>
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.fabricante.nombre}"/>
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.referencia}"/>
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.serial}"/>
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.exclusivo}"/>
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.frecuencia}"/>
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.fase}"/>
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.tipoConexionTransformador.descripcion}"/>
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.voltajeAlta.descripcion}"/>
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.voltajeBaja.descripcion}"/>
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.potencia}"/>
                 </h:panelGrid>
-
-                <h:panelGrid columns="1" width="100%">
-                    <h:outputLabel for="selectOneMenuMunicipioAdministracionCiudadano1" value="Municipio" />
-                    <h:selectOneMenu id="selectOneMenuMunicipioAdministracionCiudadano1" style="width: 100%;">
-                        <f:selectItem itemValue="" itemLabel="Manizales" />
-                    </h:selectOneMenu>
-                </h:panelGrid>
-
-                <h:panelGrid columns="1" width="100%">
-                    <h:outputLabel for="selectOneMenuBarrioAdministracionCiudadano1" value="Barrio" />
-                    <h:selectOneMenu id="selectOneMenuBarrioAdministracionCiudadano1" style="width: 100%;">
-                        <f:selectItem itemValue="" itemLabel="Campohermoso" />
-                    </h:selectOneMenu>
-                </h:panelGrid>                        
-            </h:panelGrid>                        
+            </p:tab>
+            
+        </p:accordionPanel>
     </h:panelGrid> 
 
 

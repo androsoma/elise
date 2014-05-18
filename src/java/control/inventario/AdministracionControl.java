@@ -165,7 +165,12 @@ public class AdministracionControl implements Serializable {
     
     public void verDetallePuntoLuz(){    
        verdetallepunto = true; 
+       
        System.out.println(isVerdetallepunto() );
+    }
+    
+    public void esconderDetalle (){
+     verdetallepunto = false; 
     }
     
     public void seleccionarIncidente() {
