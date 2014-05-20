@@ -5,6 +5,7 @@
  */
 package control.inventario;
 
+import ejb.inventario.ConfiguracionFacade;
 import ejb.inventario.PuntoLuzFacade;
 import ejb.mantenimiento.ReportePuntoLuzFacade;
 import entidades.inventario.PuntoLuz;
@@ -43,7 +44,10 @@ public class AdministracionControl implements Serializable {
     @Inject
     private ReportePuntoLuzFacade reportePuntoLuzFacade;
     
-    
+    @EJB
+    @Inject
+    private ConfiguracionFacade configuracionFacade;
+       
 
     public AdministracionControl() {
         opcion = 1;
@@ -129,13 +133,34 @@ public class AdministracionControl implements Serializable {
         this.reportePuntoLuzFacade = reportePuntoLuzFacade;
     }
 
+    public ConfiguracionFacade getConfiguracionFacade() {
+        return configuracionFacade;
+    }
+
+    public void setConfiguracionFacade(ConfiguracionFacade configuracionFacade) {
+        this.configuracionFacade = configuracionFacade;
+    }
+
     public void cargarPuntosMapa() {
         mapaModelo = new DefaultMapModel();
+        String iconoLuminariaEncendida = configuracionFacade.obtenerValorConfiguracionPorNombre("marcadorLuminariaEncendida");
+        String iconoLuminariaApagada = configuracionFacade.obtenerValorConfiguracionPorNombre("marcadorLuminariaApagada");
+        String iconoMarcadorSinLuminaria = configuracionFacade.obtenerValorConfiguracionPorNombre("marcadorSinLuminaria");
 
         for (PuntoLuz puntoLuz : puntosLuz) {
             LatLng coordenadas = new LatLng(puntoLuz.getUbicacionPunto().getLatittud(), puntoLuz.getUbicacionPunto().getLongitud());
 
             marcadorPuntoLuz = new Marker(coordenadas, puntoLuz.getUbicacionPunto().getDireccion(), puntoLuz);
+            if (puntoLuz.getLuminaria() != null) {
+                if (puntoLuz.getLuminaria().isEncendida()){
+                    marcadorPuntoLuz.setIcon(iconoLuminariaEncendida);
+                } else {
+                    marcadorPuntoLuz.setIcon(iconoLuminariaApagada);
+                }
+            } else {
+                marcadorPuntoLuz.setIcon(iconoMarcadorSinLuminaria);
+            }
+            
             mapaModelo.addOverlay(marcadorPuntoLuz);
         }
     }
@@ -152,6 +177,7 @@ public class AdministracionControl implements Serializable {
     }
 
     public void inicializarAdministracion() {
+        opcion = 1;
         consultarTodosPuntosLuz();
         cargarPuntosMapa();
     }
@@ -160,7 +186,7 @@ public class AdministracionControl implements Serializable {
         opcion = 2;
         
         reportesIncidentes = new ArrayList<>();
-        reportesIncidentes = reportePuntoLuzFacade.findAll();
+        reportesIncidentes = reportePuntoLuzFacade.consultarPorEstadoReportado();
     }
     
     public void verDetallePuntoLuz(){    

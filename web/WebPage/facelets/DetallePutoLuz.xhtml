@@ -6,79 +6,184 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       >
 
-    <h:panelGrid id="DetallePunto" > 
-        <p:outputLabel value="Filtro mapa" style="font-size: 200%; font-family: sans-serif; float: outside"/>
-        <p:commandButton value="X" onclick="PF('layoutUnitAdministrarPuntoLuz').hide()" style="float: right" action="#{administracionControl.esconderDetalle()}"/>
-        <p:accordionPanel >
-            <p:tab title="Luminaria" >
-                <h:panelGrid>
+    <h:panelGrid id="DetallePunto" width="100%" style="font-size: 10pt;"> 
+        <h:commandButton value="X" onclick="PF('layoutUnitAdministrarPuntoLuz').hide()" style="float: right;" action="#{administracionControl.esconderDetalle()}"/>
+        <p:accordionPanel style="width: 100%;">
+            <p:tab title="Transformador" rendered="#{not empty administracionControl.puntoLuzSeleccionado.transformador}">
+                <h:panelGrid id="panelGridTransformadorDetalle" columns="2" width="100%">
+                    <h:outputLabel value="Tipo transformador: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.tipoTransformador.descripcion}"/>
+
+                    <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.fabricante.nombre}"/>
+
+                    <h:outputLabel value="Referencia: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.referencia}"/>
+
+                    <h:outputLabel value="Serial: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.serial}"/>
+
+                    <h:outputLabel value="¿Exclusivo? " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.exclusivo}"/>
+
+                    <h:outputLabel value="Frecuencia: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.frecuencia}"/>
+
+                    <h:outputLabel value="Fase: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.fase}"/>
+
+                    <h:outputLabel value="Tipo conexión: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.tipoConexionTransformador.descripcion}"/>
+
+                    <h:outputLabel value="Voltaje alta: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.voltajeAlta.descripcion}"/>
+
+                    <h:outputLabel value="Voltaje baja: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.voltajeBaja.descripcion}"/>
-                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.potencia}"/>
+
+                    <h:outputLabel value="Potencia: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.transformador.potencia.descripcion}"/>
                 </h:panelGrid>
             </p:tab>
-            <h:panelGrid columns="2" cellpadding="10">
-                <h:panelGrid title="Brazo Luminaria">
-                    <h:outputText value="Largo"/>
-                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.brazoLuminaria.largo}"/>
-                    <h:outputText value="Diametro"/>
-                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.brazoLuminaria.diametro}"/>
+
+            <p:tab title="Luminaria" rendered="#{not empty administracionControl.puntoLuzSeleccionado.luminaria}">
+                <h:panelGrid id="panelGridLuminariaDetalle" columns="1" width="100%">
+                    <h:panelGrid title="Brazo Luminaria" columns="2" width="100%">
+                        <h:outputLabel value="Brazo" style="font-weight: bold;" />
+                        <p:spacer />
+
+                        <h:outputLabel value="Largo: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.brazoLuminaria.largo}"/>
+
+                        <h:outputLabel value="Diámetro: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.brazoLuminaria.diametro}"/>
+                    </h:panelGrid>
+
+                    <h:panelGrid title="Balasto" columns="2" width="100%">
+                        <h:outputLabel value="Balasto" style="font-weight: bold;" />
+                        <p:spacer />
+                        <h:outputLabel value="Tipo balasto: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.tipoBalasto.descripcion}"/>
+
+                        <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.fabricante.nombre}"/>
+
+                        <h:outputLabel value="Referencia: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.referencia}"/>
+
+                        <h:outputLabel value="Tipo protección: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.tipoProteccion.descripcion}"/>
+                    </h:panelGrid>
+
+                    <h:panelGrid title="Arrancador" columns="2" width="100%">
+                        <h:outputLabel value="Arrancador" style="font-weight: bold;" />
+                        <p:spacer />
+
+                        <h:outputLabel value="Tipo arrancador: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.tipoArrancador.descripcion}"/>
+
+                        <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.fabricante.nombre}"/>
+
+                        <h:outputLabel value="Referencia: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.referencia}"/>
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="2" width="100%">
+                        <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.fabricante.nombre}"/>
+
+                        <h:outputLabel value="Referencia: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.referencia}"/>
+
+                        <h:outputLabel value="Tipo herraje: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.tipoHerraje.descripcion}"/>
+
+                        <h:outputLabel value="Altura " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.altura}"/>
+
+                        <h:outputLabel value="Nivel de iluminación: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.nivelIluminacion}"/>
+
+                        <h:outputLabel value="Potencia: " style="font-weight: bold;" />
+                        <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.potencia.descripcion}"/>
+                    </h:panelGrid>
                 </h:panelGrid>
-                <h:panelGrid title="Balasto">
-                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.tipoBalasto.descripcion}"/>
-                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.fabricante.nombre}"/>
-                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.referencia}"/>
-                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.tipoProteccion.descripcion}"/>
-                </h:panelGrid>
-                <h:panelGrid title="Arrancador">
-                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.tipoArrancador.descripcion}"/>
-                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.fabricante.nombre}"/>
-                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.referencia}"/>
-                </h:panelGrid>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.fabricante.nombre}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.referencia}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.tipoHerraje.descripcion}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.altura}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.nivelIluminacion}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.potencia.descripcion}"/>
-            </h:panelGrid>
             </p:tab>
-            <p:tab title="Bombillo" >
-                <h:panelGrid>
+
+            <p:tab title="Bombillo" rendered="#{not empty administracionControl.puntoLuzSeleccionado.bombillo}">
+                <h:panelGrid id="panelGridBombilloDetalle">
+                    <h:outputLabel value="Tipo bombillo: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.bombillo.tipoBombillo.descripcion}"/>
+
+                    <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.bombillo.fabricante.nombre}"/>
+
+                    <h:outputLabel value="Referencia: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.bombillo.referencia}"/>
+
+                    <h:outputLabel value="Flujo luminoso: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.bombillo.flujoLuminoso}"/>
+
+                    <h:outputLabel value="Potencia: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.bombillo.potencia.descripcion}"/>
+
+                    <h:outputLabel value="Vida útil: " style="font-weight: bold;" />
                     <h:outputText value="#{administracionControl.puntoLuzSeleccionado.bombillo.vidaUtil}"/>
                 </h:panelGrid>
             </p:tab>
-            <p:tab title="Poste">
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.poste.fabricante.nombre}" />
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.poste.referencia}" />
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.poste.material.descripcion}" />
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.poste.alturaPoste.descripcion}" />
+
+            <p:tab title="Poste" rendered="#{not empty administracionControl.puntoLuzSeleccionado.poste}">
+                <h:panelGrid id="panelGridPosteDetalle" columns="2">
+                    <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.poste.fabricante.nombre}" />
+
+                    <h:outputLabel value="Referencia: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.poste.referencia}" />
+
+                    <h:outputLabel value="Material: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.poste.material.descripcion}" />
+
+                    <h:outputLabel value="Altura: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.poste.alturaPoste.descripcion}" />
+                </h:panelGrid>
             </p:tab>
-            <p:tab title="Medidor de Energia">
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.tipoConexionMedidor.descripcion}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.fabricante.nombre}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.referencia}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.serial}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.frecuencia.descripcion}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.clasePrecision.descripcion}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.tipoConexionMedidor.descripcion}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.voltajeAlta.descripcion}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.voltajeBaja.descripcion}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.potenciaMaxima.descripcion}"/>
-                <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.tipoProteccion.descripcion}"/>
+
+            <p:tab title="Medidor de energía" rendered="#{not empty administracionControl.puntoLuzSeleccionado.medidorEnergia}">
+                <h:panelGrid id="panelGridMedidorDetalle" columns="2">
+                    <h:outputLabel value="Tipo medidor: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.tipoMedidor}"/>
+
+                    <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.fabricante.nombre}"/>
+
+                    <h:outputLabel value="Referencia: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.referencia}"/>
+
+                    <h:outputLabel value="Serial: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.serial}"/>
+
+                    <h:outputLabel value="Frencuencia: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.frecuencia.descripcion}"/>
+
+                    <h:outputLabel value="Clase de precisión: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.clasePrecision.descripcion}"/>
+
+                    <h:outputLabel value="Tipo conexión: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.tipoConexionMedidor.descripcion}"/>
+
+                    <h:outputLabel value="Voltaje alta: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.voltajeAlta.descripcion}"/>
+
+                    <h:outputLabel value="Voltaje baja: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.voltajeBaja.descripcion}"/>
+
+                    <h:outputLabel value="Potencia máxima: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.potenciaMaxima.descripcion}"/>
+
+                    <h:outputLabel value="Tipo de protección: " style="font-weight: bold;" />
+                    <h:outputText value="#{administracionControl.puntoLuzSeleccionado.medidorEnergia.tipoProteccion.descripcion}"/>
+                </h:panelGrid>
             </p:tab>
 
         </p:accordionPanel>

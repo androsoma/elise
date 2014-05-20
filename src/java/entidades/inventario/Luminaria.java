@@ -67,7 +67,6 @@ public class Luminaria implements Serializable {
 //    @ManyToOne(cascade = {CascadeType.REFRESH})
 //    @JoinColumn(name = "fk_transformador", referencedColumnName = "id")
 //    private Transformador transformador;
-
     @ManyToOne(optional = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_tipoherraje", referencedColumnName = "id")
     private TipoHerraje tipoHerraje;
@@ -75,11 +74,11 @@ public class Luminaria implements Serializable {
     @ManyToOne(optional = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_fabricante", referencedColumnName = "id")
     private Fabricante fabricante;
-    
+
     @ManyToOne(optional = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_potencia")
     private Potencia potencia;
-    
+
     @ManyToOne(optional = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_concentrador")
     private Concentrador concentrador;
@@ -88,13 +87,12 @@ public class Luminaria implements Serializable {
     private float altura;
 
     @Size(max = 255)
-    @Column(name = "niveliluminacion")
-    private String nivelIluminacion;
-
-    @Size(max = 255)
     @Column(name = "referencia")
     private String referencia;
-    
+
+    @Column(name = "niveliluminacion")
+    private float nivelIluminacion;
+
     @Column(name = "encendida", columnDefinition = "BOOLEAN DEFAULT TRUE")
     private boolean encendida;
 
@@ -117,7 +115,6 @@ public class Luminaria implements Serializable {
 //    public void setTransformador(Transformador transformador) {
 //        this.transformador = transformador;
 //    }
-
     public BrazoLuminaria getBrazoLuminaria() {
         return brazoLuminaria;
     }
@@ -166,14 +163,6 @@ public class Luminaria implements Serializable {
         this.altura = altura;
     }
 
-    public String getNivelIluminacion() {
-        return nivelIluminacion;
-    }
-
-    public void setNivelIluminacion(String nivelIluminacion) {
-        this.nivelIluminacion = nivelIluminacion;
-    }
-
     public Potencia getPotencia() {
         return potencia;
     }
@@ -196,6 +185,14 @@ public class Luminaria implements Serializable {
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
+    }
+
+    public float getNivelIluminacion() {
+        return nivelIluminacion;
+    }
+
+    public void setNivelIluminacion(float nivelIluminacion) {
+        this.nivelIluminacion = nivelIluminacion;
     }
 
     public boolean isEncendida() {

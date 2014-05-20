@@ -6,7 +6,6 @@
 package entidades.mantenimiento;
 
 import entidades.inventario.PuntoLuz;
-import entidades.inventario.Tercero;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -17,6 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 
@@ -25,6 +27,14 @@ import javax.persistence.Temporal;
  * @author Yeison Osorio
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "ReportePuntoLuz.findByEstadoReportado", 
+            query = "SELECT rpl"
+                    + " FROM EstadoReporte er"
+                    + " JOIN er.reportePuntoLuz rpl"
+                    + " JOIN er.tipoEstadoReporte ter"
+                    + " WHERE ter.id = 1")})
+
 public class ReportePuntoLuz implements Serializable {
     private static final long serialVersionUID = 1L;
 

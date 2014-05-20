@@ -7,9 +7,11 @@
 package ejb.mantenimiento;
 
 import entidades.mantenimiento.ReportePuntoLuz;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,12 @@ public class ReportePuntoLuzFacade extends AbstractFacade<ReportePuntoLuz> {
 
     public ReportePuntoLuzFacade() {
         super(ReportePuntoLuz.class);
+    }
+    
+    public List<ReportePuntoLuz> consultarPorEstadoReportado() {
+        Query query = em.createNamedQuery("ReportePuntoLuz.findByEstadoReportado");
+        
+        return (List<ReportePuntoLuz>) query.getResultList();
     }
     
 }

@@ -199,7 +199,7 @@ public class IncidenteControl {
 
     public String mostrarReporteIncidentes() {
         if (listareporteincidente != null){
-        listareporteincidente = getReportepuntoluzfacade().findAll();
+        listareporteincidente = getReportepuntoluzfacade().consultarPorEstadoReportado();
         return "ReporteIncidentes";
         }else{
             System.out.println("No hay Reportes de luz");
