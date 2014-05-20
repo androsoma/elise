@@ -38,5 +38,9 @@ public class MantenimientoControl {
         reportes.add("[Daño sensor] Calle 45 37B-60, Manizales");
         reportes.add("[Daño poste] Av. Santander Calle 55, Manizales");       
     }
+    
+    public String seleccionarIncidente() {
+        return "pm:ubicacionpuntoreporte";
+    }
 
 }

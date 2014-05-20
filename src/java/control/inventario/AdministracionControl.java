@@ -15,7 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import org.primefaces.component.chart.CartesianChart;
+import org.primefaces.component.chart.line.LineChart;
 import org.primefaces.event.map.OverlaySelectEvent;
+import org.primefaces.model.chart.CartesianChartModel;
+import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.LineChartSeries;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
@@ -35,6 +40,7 @@ public class AdministracionControl implements Serializable {
     private List<ReportePuntoLuz> reportesIncidentes;
     private ReportePuntoLuz reporteIncidenteSeleccionado;
     private boolean  verdetallepunto =  false;
+    private CartesianChartModel lineChartModelo;
     
     @EJB
     @Inject
@@ -117,6 +123,14 @@ public class AdministracionControl implements Serializable {
         this.verdetallepunto = verdetallepunto;
     }
 
+    public CartesianChartModel getLineChartModelo() {
+        return lineChartModelo;
+    }
+
+    public void setLineChartModelo(CartesianChartModel lineChartModelo) {
+        this.lineChartModelo = lineChartModelo;
+    }
+
     public PuntoLuzFacade getPuntoLuzFacade() {
         return puntoLuzFacade;
     }
@@ -180,6 +194,7 @@ public class AdministracionControl implements Serializable {
         opcion = 1;
         consultarTodosPuntosLuz();
         cargarPuntosMapa();
+        cargarGraficoMedicionesLuminaria();
     }
     
     public void mostrarReporteIncidentes() {
@@ -200,6 +215,37 @@ public class AdministracionControl implements Serializable {
     }
     
     public void seleccionarIncidente() {
+        
+    }
+    
+    public void cargarGraficoMedicionesLuminaria() {
+        lineChartModelo = new CartesianChartModel();
+
+        ChartSeries voltaje = new ChartSeries();
+        voltaje.setLabel("Voltaje");
+        voltaje.set("Ene-2014", 1100);
+        voltaje.set("Feb-2014", 1117);
+        voltaje.set("Mar-2014", 1095);
+        voltaje.set("Abr-2014", 1102);
+        
+        ChartSeries corriente = new ChartSeries();
+        corriente.setLabel("Corriente");
+        corriente.set("Ene-2014", 110);
+        corriente.set("Feb-2014", 105);
+        corriente.set("Mar-2014", 100);
+        corriente.set("Abr-2014", 108);
+        
+        ChartSeries cosenoPhi = new ChartSeries();
+        cosenoPhi.setLabel("Coseno Phi");
+        cosenoPhi.set("Ene-2014", 60);
+        cosenoPhi.set("Feb-2014", 58);
+        cosenoPhi.set("Mar-2014", 55);
+        cosenoPhi.set("Abr-2014", 56);
+        
+        lineChartModelo.addSeries(voltaje);
+        lineChartModelo.addSeries(corriente);
+        lineChartModelo.addSeries(cosenoPhi);
+        
         
     }
 }
