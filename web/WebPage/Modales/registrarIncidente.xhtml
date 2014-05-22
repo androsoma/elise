@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"        
+      contentType="text/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+
+    <p:dialog id="dialogRegistrarIncidente" header="Registrar incidente" widgetVar="dlgRegistroIncidente" modal="true"  draggable="false" resizable="false">
+        <h:form id="frmModalRegistrarIncidente">
+            <h:panelGrid columns="1" width="100%">
+                <h:outputLabel for="selectOneMenuAdminRegistroTipoIncidente" value="Tipo incidente:"/>
+                <h:selectOneMenu id="selectOneMenuAdminRegistroTipoIncidente" value="#{incidenteControl.incidente.tipoIncidente.id}" style="width: 100%;">
+                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                    <f:selectItems value="#{incidenteControl.listatipoincidente}" var="incidente" itemLabel="#{incidente.descripcion}" itemValue="#{incidente.id}" />
+                </h:selectOneMenu>
+                <h:outputLabel for="inputTextareaAdminObservaciones" value="Observaciones:" />
+                <p:inputTextarea id="inputTextareaAdminObservaciones" rows="5"  queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observaciones}" style="width: 95%;" />
+                <p:commandButton value="Registrar incidente" actionListener="#{incidenteControl.guardarIncidente()}" ajax="frmModalRegistrarIncidente" immediate="true" />
+            </h:panelGrid>
+        </h:form> 
+    </p:dialog>
+</html>
