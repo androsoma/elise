@@ -43,6 +43,7 @@ public class AdministracionControl implements Serializable {
     private CartesianChartModel lineChartModelo;
     private boolean incidenteadmin;
     private IncidenteControl incidentecontrol;
+    private int slidpuntoluz;
 
     @EJB
     @Inject
@@ -138,6 +139,14 @@ public class AdministracionControl implements Serializable {
 
     public void setIncidenteadmin(boolean incidenteadmin) {
         this.incidenteadmin = incidenteadmin;
+    }
+
+    public int getSlidpuntoluz() {
+        return slidpuntoluz;
+    }
+
+    public void setSlidpuntoluz(int slidpuntoluz) {
+        this.slidpuntoluz = slidpuntoluz;
     }
 
     public PuntoLuzFacade getPuntoLuzFacade() {
@@ -258,4 +267,16 @@ public class AdministracionControl implements Serializable {
         lineChartModelo.addSeries(cosenoPhi);
 
     }
+
+    public void cambioLuzPuntoSelect() {
+        System.out.println("puntoluz =" + getSlidpuntoluz());
+        String iconomarcadorLuminariaMitad = configuracionFacade.obtenerValorConfiguracionPorNombre("marcadorLuminariaEncendida");
+        for (Marker m : getMapaModelo().getMarkers()) {
+            if (m.getTitle().equals(puntoLuzSeleccionado.getUbicacionPunto().getDireccion())) {
+                m.setIcon(iconomarcadorLuminariaMitad);
+//                getMapaModelo().addOverlay(m);
+            }
+        }
+    }
+
 }

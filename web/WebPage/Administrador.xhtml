@@ -72,8 +72,14 @@
                                         <h:panelGrid columns="2">
                                             <p:commandButton id="commandButtonDetallePunto" value="Ver detalle" immediate="true" action="#{administracionControl.verDetallePuntoLuz}" onclick="PF('layoutUnitAdministrarPuntoLuz').show()" update="formAdministracion" />
                                             <p:commandButton id="commandButtonReportarIncidente" value="Reportar incidente"  onclick="PF('dlgRegistroIncidente').show();" update=":frmModalRegistrarIncidente"/>
+                                            <h:inputText id="inputTextSlidPuntoLuz" value="#{administracionControl.slidpuntoluz}" />
+                                            <p:slider for="inputTextSlidPuntoLuz" step="10" style="width: 80% ;" display="inputTextSlidPuntoLuz" rendererType="#{administracionControl.slidpuntoluz}" >
+                                                <p:ajax event="slideEnd"   process="inputTextSlidPuntoLuz" />
+                                                <p:ajax event="slideEnd"  listener="#{administracionControl.cambioLuzPuntoSelect()}" update="mapaAdministracion"  />
+                                            </p:slider>
+                                                
                                         </h:panelGrid>
-
+                                        
                                     </p:outputPanel>
                                 </p:gmapInfoWindow>
                                 <p:ajax event="overlaySelect"  listener="#{incidenteControl.marcadorSeleccionado}" />
