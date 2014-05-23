@@ -71,11 +71,12 @@
                                         <br />
                                         <h:panelGrid columns="2">
                                             <p:commandButton id="commandButtonDetallePunto" value="Ver detalle" immediate="true" action="#{administracionControl.verDetallePuntoLuz}" onclick="PF('layoutUnitAdministrarPuntoLuz').show()" update="formAdministracion" />
-                                            <p:commandButton id="commandButtonReportarIncidente" value="Reportar incidente"  onclick="PF('dlgRegistroIncidente').show();" />
+                                            <p:commandButton id="commandButtonReportarIncidente" value="Reportar incidente"  onclick="PF('dlgRegistroIncidente').show();" update=":frmModalRegistrarIncidente"/>
                                         </h:panelGrid>
 
                                     </p:outputPanel>
                                 </p:gmapInfoWindow>
+                                <p:ajax event="overlaySelect"  listener="#{incidenteControl.marcadorSeleccionado}" />
                             </p:gmap>
                         </h:panelGrid>
 
@@ -138,6 +139,6 @@
             </p:layout>         
 
         </h:form>   
-         <ui:include src="Modales/registrarIncidente.xhtml"/>
+        <ui:include src="Modales/registrarIncidente.xhtml"/>
     </h:body>
 </html>

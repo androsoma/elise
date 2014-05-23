@@ -39,21 +39,22 @@ public class AdministracionControl implements Serializable {
     private PuntoLuz puntoLuzSeleccionado;
     private List<ReportePuntoLuz> reportesIncidentes;
     private ReportePuntoLuz reporteIncidenteSeleccionado;
-    private boolean  verdetallepunto =  false;
+    private boolean verdetallepunto = false;
     private CartesianChartModel lineChartModelo;
-    
+    private boolean incidenteadmin;
+    private IncidenteControl incidentecontrol;
+
     @EJB
     @Inject
     private PuntoLuzFacade puntoLuzFacade;
-    
+
     @EJB
     @Inject
     private ReportePuntoLuzFacade reportePuntoLuzFacade;
-    
+
     @EJB
     @Inject
     private ConfiguracionFacade configuracionFacade;
-       
 
     public AdministracionControl() {
         opcion = 1;
@@ -131,6 +132,14 @@ public class AdministracionControl implements Serializable {
         this.lineChartModelo = lineChartModelo;
     }
 
+    public boolean isIncidenteadmin() {
+        return incidenteadmin;
+    }
+
+    public void setIncidenteadmin(boolean incidenteadmin) {
+        this.incidenteadmin = incidenteadmin;
+    }
+
     public PuntoLuzFacade getPuntoLuzFacade() {
         return puntoLuzFacade;
     }
@@ -166,7 +175,7 @@ public class AdministracionControl implements Serializable {
 
             marcadorPuntoLuz = new Marker(coordenadas, puntoLuz.getUbicacionPunto().getDireccion(), puntoLuz);
             if (puntoLuz.getLuminaria() != null) {
-                if (puntoLuz.getLuminaria().isEncendida()){
+                if (puntoLuz.getLuminaria().isEncendida()) {
                     marcadorPuntoLuz.setIcon(iconoLuminariaEncendida);
                 } else {
                     marcadorPuntoLuz.setIcon(iconoLuminariaApagada);
@@ -174,7 +183,7 @@ public class AdministracionControl implements Serializable {
             } else {
                 marcadorPuntoLuz.setIcon(iconoMarcadorSinLuminaria);
             }
-            
+
             mapaModelo.addOverlay(marcadorPuntoLuz);
         }
     }
@@ -182,42 +191,44 @@ public class AdministracionControl implements Serializable {
     public void marcadorSeleccionado(OverlaySelectEvent puntoSeleccionado) {
         System.out.println("Marcador seleccionado.");
         marcadorPuntoLuz = (Marker) puntoSeleccionado.getOverlay();
-        
+
         puntoLuzSeleccionado = (PuntoLuz) marcadorPuntoLuz.getData();
     }
+
     private void consultarTodosPuntosLuz() {
         puntosLuz = new ArrayList<>();
         puntosLuz = puntoLuzFacade.findAll();
     }
 
     public void inicializarAdministracion() {
+        setIncidenteadmin(true);
         opcion = 1;
         consultarTodosPuntosLuz();
         cargarPuntosMapa();
         cargarGraficoMedicionesLuminaria();
     }
-    
+
     public void mostrarReporteIncidentes() {
         opcion = 2;
-        
+
         reportesIncidentes = new ArrayList<>();
         reportesIncidentes = reportePuntoLuzFacade.consultarPorEstadoReportado();
     }
-    
-    public void verDetallePuntoLuz(){    
-       verdetallepunto = true; 
-       
-       System.out.println(isVerdetallepunto() );
+
+    public void verDetallePuntoLuz() {
+
+        verdetallepunto = true;
+
     }
-    
-    public void esconderDetalle (){
-     verdetallepunto = false; 
+
+    public void esconderDetalle() {
+        verdetallepunto = false;
     }
-    
+
     public void seleccionarIncidente() {
-        
+
     }
-    
+
     public void cargarGraficoMedicionesLuminaria() {
         lineChartModelo = new CartesianChartModel();
 
@@ -227,25 +238,24 @@ public class AdministracionControl implements Serializable {
         voltaje.set("Feb-2014", 1117);
         voltaje.set("Mar-2014", 1095);
         voltaje.set("Abr-2014", 1102);
-        
+
         ChartSeries corriente = new ChartSeries();
         corriente.setLabel("Corriente");
         corriente.set("Ene-2014", 110);
         corriente.set("Feb-2014", 105);
         corriente.set("Mar-2014", 100);
         corriente.set("Abr-2014", 108);
-        
+
         ChartSeries cosenoPhi = new ChartSeries();
         cosenoPhi.setLabel("Coseno Phi");
         cosenoPhi.set("Ene-2014", 60);
         cosenoPhi.set("Feb-2014", 58);
         cosenoPhi.set("Mar-2014", 55);
         cosenoPhi.set("Abr-2014", 56);
-        
+
         lineChartModelo.addSeries(voltaje);
         lineChartModelo.addSeries(corriente);
         lineChartModelo.addSeries(cosenoPhi);
-        
-        
+
     }
 }

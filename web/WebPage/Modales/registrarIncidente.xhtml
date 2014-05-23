@@ -8,6 +8,8 @@
     <p:dialog id="dialogRegistrarIncidente" header="Registrar incidente" widgetVar="dlgRegistroIncidente" modal="true"  draggable="false" resizable="false">
         <h:form id="frmModalRegistrarIncidente">
             <h:panelGrid columns="1" width="100%">
+                <h:outputLabel value="Punto seleccionado" for="outputTextPuntoSelecIncidente"/>
+                <h:outputText id="outputTextPuntoSelecIncidente" value="#{incidenteControl.puntoluzseleccionado.ubicacionPunto.direccion}"/>
                 <h:outputLabel for="selectOneMenuAdminRegistroTipoIncidente" value="Tipo incidente:"/>
                 <h:selectOneMenu id="selectOneMenuAdminRegistroTipoIncidente" value="#{incidenteControl.incidente.tipoIncidente.id}" style="width: 100%;">
                     <f:selectItem itemLabel="Seleccione" itemValue=""/>

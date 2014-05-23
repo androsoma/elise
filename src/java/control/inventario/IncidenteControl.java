@@ -39,6 +39,7 @@ public class IncidenteControl {
     private Marker marcador;
     private PuntoLuz puntoluzseleccionado;
     private List<ReportePuntoLuz> listareporteincidente;
+    private AdministracionControl administracioncontrol;
 
     @EJB
     @Inject
@@ -65,7 +66,7 @@ public class IncidenteControl {
         incidente.setPuntoLuz(new PuntoLuz());
         incidente.setTipoIncidente(new TipoIncidente());
         listareporteincidente = new ArrayList<>();
-
+        administracioncontrol = new AdministracionControl();
     }
 
     public IncidenteControl(List<PuntoLuz> listapuntoluz, List<TipoIncidente> listatipoincidente, ReportePuntoLuz incidente) {
@@ -166,26 +167,35 @@ public class IncidenteControl {
 
     public void guardarIncidente() {
         FacesMessage msg;
-        if (!"".equals(incidente.getCiudadano().getTercero().getNombres()) && !"".equals(incidente.getCiudadano().getTercero().getApellidos())
-                && !"".equals(incidente.getCiudadano().getTercero().getEmail()) && !"".equals(incidente.getObservaciones())) {
-            if (puntoluzseleccionado != null) {
-                incidente.setFechaIncidencia(new Date());
-                incidente.setPuntoLuz(puntoluzseleccionado);
-                getReportepuntoluzfacade().create(incidente);
-                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Incidnete registrado", "El incidente ha sido registrado con éxito");
-                incidente = new ReportePuntoLuz();
-                incidente.setCiudadano(new Ciudadano());
-                incidente.getCiudadano().setTercero(new Tercero());
-                incidente.setPuntoLuz(new PuntoLuz());
-                incidente.setTipoIncidente(new TipoIncidente());
-                puntoluzseleccionado = new PuntoLuz();
+        System.out.println("boolean " + administracioncontrol.isIncidenteadmin());
+        if (!administracioncontrol.isIncidenteadmin()) {
+            if (!"".equals(incidente.getCiudadano().getTercero().getNombres()) && !"".equals(incidente.getCiudadano().getTercero().getApellidos())
+                    && !"".equals(incidente.getCiudadano().getTercero().getEmail()) && !"".equals(incidente.getObservaciones())) {
+                if (puntoluzseleccionado != null) {
+                    incidente.setFechaIncidencia(new Date());
+                    incidente.setPuntoLuz(puntoluzseleccionado);
+                    getReportepuntoluzfacade().create(incidente);
+                    msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Incidnete registrado", "El incidente ha sido registrado con éxito");
+                    incidente = new ReportePuntoLuz();
+                    incidente.setCiudadano(new Ciudadano());
+                    incidente.getCiudadano().setTercero(new Tercero());
+                    incidente.setPuntoLuz(new PuntoLuz());
+                    incidente.setTipoIncidente(new TipoIncidente());
+                    puntoluzseleccionado = new PuntoLuz();
 
+                } else {
+                    msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Seleccione un marcador", "Debe seleccionar el punto del incidente");
+
+                }
             } else {
-                msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Seleccione un marcador", "Debe seleccionar el punto del incidente");
-
+                msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Datos obligatorios", "Debe ingresar los datos obligatorios");
             }
         } else {
-            msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Datos obligatorios", "Debe ingresar los datos obligatorios");
+            if (!"".equals(incidente.getObservaciones())) {
+                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Incidnete registrado", "El incidente ha sido registrado con éxito");
+            } else {
+                msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Datos obligatorios", "Debe ingresar los datos obligatorios");
+            }
         }
         FacesContext.getCurrentInstance().addMessage(null, msg);
 
@@ -198,10 +208,10 @@ public class IncidenteControl {
     }
 
     public String mostrarReporteIncidentes() {
-        if (listareporteincidente != null){
-        listareporteincidente = getReportepuntoluzfacade().consultarPorEstadoReportado();
-        return "ReporteIncidentes";
-        }else{
+        if (listareporteincidente != null) {
+            listareporteincidente = getReportepuntoluzfacade().consultarPorEstadoReportado();
+            return "ReporteIncidentes";
+        } else {
             System.out.println("No hay Reportes de luz");
             return null;
         }
