@@ -269,12 +269,17 @@ public class AdministracionControl implements Serializable {
     }
 
     public void cambioLuzPuntoSelect() {
-        System.out.println("puntoluz =" + getSlidpuntoluz());
-        String iconomarcadorLuminariaMitad = configuracionFacade.obtenerValorConfiguracionPorNombre("marcadorLuminariaEncendida");
         for (Marker m : getMapaModelo().getMarkers()) {
             if (m.getTitle().equals(puntoLuzSeleccionado.getUbicacionPunto().getDireccion())) {
-                m.setIcon(iconomarcadorLuminariaMitad);
+                if (getSlidpuntoluz() >= 0 && getSlidpuntoluz() <= 49) {
+                    String iconomarcadorLuminariaMitad = configuracionFacade.obtenerValorConfiguracionPorNombre("marcadorLuminariaApagada");
+                    m.setIcon(iconomarcadorLuminariaMitad);
 //                getMapaModelo().addOverlay(m);
+                } else {
+                    String iconomarcadorLuminariaMitad = configuracionFacade.obtenerValorConfiguracionPorNombre("marcadorLuminariaEncendida");
+                    m.setIcon(iconomarcadorLuminariaMitad);
+
+                }
             }
         }
     }
