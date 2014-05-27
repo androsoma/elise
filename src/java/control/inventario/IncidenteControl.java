@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import org.primefaces.event.map.OverlaySelectEvent;
@@ -39,7 +40,8 @@ public class IncidenteControl {
     private Marker marcador;
     private PuntoLuz puntoluzseleccionado;
     private List<ReportePuntoLuz> listareporteincidente;
-    private AdministracionControl administracioncontrol;
+    @ManagedProperty(value = "#{administracionControl}")
+    private AdministracionControl administracionControl;
 
     @EJB
     @Inject
@@ -66,7 +68,6 @@ public class IncidenteControl {
         incidente.setPuntoLuz(new PuntoLuz());
         incidente.setTipoIncidente(new TipoIncidente());
         listareporteincidente = new ArrayList<>();
-        administracioncontrol = new AdministracionControl();
     }
 
     public IncidenteControl(List<PuntoLuz> listapuntoluz, List<TipoIncidente> listatipoincidente, ReportePuntoLuz incidente) {
@@ -143,6 +144,14 @@ public class IncidenteControl {
         this.puntoluzseleccionado = puntoluzseleccionado;
     }
 
+    public AdministracionControl getAdministracionControl() {
+        return administracionControl;
+    }
+
+    public void setAdministracionControl(AdministracionControl administracionControl) {
+        this.administracionControl = administracionControl;
+    }
+
     public MapModel getMapamodelo() {
         listapuntoluz = puntoluzfacade.findAll();
         for (PuntoLuz punto : listapuntoluz) {
@@ -167,8 +176,7 @@ public class IncidenteControl {
 
     public void guardarIncidente() {
         FacesMessage msg;
-        System.out.println("boolean " + administracioncontrol.isIncidenteadmin());
-        if (!administracioncontrol.isIncidenteadmin()) {
+        if (!getAdministracionControl().isIncidenteadmin()) {
             if (!"".equals(incidente.getCiudadano().getTercero().getNombres()) && !"".equals(incidente.getCiudadano().getTercero().getApellidos())
                     && !"".equals(incidente.getCiudadano().getTercero().getEmail()) && !"".equals(incidente.getObservaciones())) {
                 if (puntoluzseleccionado != null) {
@@ -192,6 +200,9 @@ public class IncidenteControl {
             }
         } else {
             if (!"".equals(incidente.getObservaciones())) {
+                incidente.setFechaIncidencia(new Date());
+                incidente.setPuntoLuz(puntoluzseleccionado);
+                getReportepuntoluzfacade().create(incidente);
                 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Incidnete registrado", "El incidente ha sido registrado con éxito");
             } else {
                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Datos obligatorios", "Debe ingresar los datos obligatorios");

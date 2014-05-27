@@ -77,9 +77,9 @@
                                                 <p:ajax event="slideEnd"   process="inputTextSlidPuntoLuz" />
                                                 <p:ajax event="slideEnd"  listener="#{administracionControl.cambioLuzPuntoSelect()}" update="mapaAdministracion"  />
                                             </p:slider>
-                                                
+
                                         </h:panelGrid>
-                                        
+
                                     </p:outputPanel>
                                 </p:gmapInfoWindow>
                                 <p:ajax event="overlaySelect"  listener="#{incidenteControl.marcadorSeleccionado}" />
@@ -146,5 +146,6 @@
 
         </h:form>   
         <ui:include src="Modales/registrarIncidente.xhtml"/>
+        <ui:include src="Modales/EditarPuntosLuz.xhtml"/>
     </h:body>
 </html>
