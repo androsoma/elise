@@ -1,14 +1,81 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"        
-      contentType="text/html"      
+      contentType="text/html"   
+      xmlns:f="http://java.sun.com/jsf/core"
       >
 
-    <p:dialog id="dialogEditarPuntoLuz" header="Registrar incidente" widgetVar="dlgEditarPuntoLuz" modal="true"  draggable="false" resizable="false">
+    <p:dialog id="dialogEditarPuntoLuz" header="Modificar Punto de luz" widgetVar="dlgEditarPuntoLuz" modal="true"  draggable="false" resizable="false">
         <h:form id="frmModalEditarPuntoLuz">
-            <h:panelGrid columns="1" width="100%">
-                <h:outputText value="EDITAR PUNTO LUZ"/>
-            </h:panelGrid>
+            <p:scrollPanel style="height:550px">
+                <h:panelGrid id="panelGridLuminariaEditar" columns="1" >
+                    <p:panelGrid columns="2" style="width: 100%">
+                        <h:outputLabel value="Brazo" style="font-weight: bold;"  />
+                        <p:spacer />
+
+                        <h:outputLabel value="Largo: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.brazoLuminaria.largo}"/>
+
+                        <h:outputLabel value="Diámetro: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.brazoLuminaria.diametro}"/>
+                    </p:panelGrid>
+
+                    <p:panelGrid columns="2" style="width: 100%">
+                        <h:outputLabel value="Balasto" style="font-weight: bold;" />
+                        <p:spacer />
+                        <h:outputLabel for="selectOneMenuTipoBalastoEditar" value="Tipo balasto lámpara" />
+                        <h:selectOneMenu id="selectOneMenuTipoBalastoEditar" value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.tipoBalasto.id}" >
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                            <f:selectItems value="#{administracionControl.lsttipobalasto}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+                            <p:ajax event="change"  />
+                        </h:selectOneMenu>
+                        
+                        <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.fabricante.nombre}"/>
+
+                        <h:outputLabel value="Referencia: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.referencia}"/>
+
+                        <h:outputLabel value="Tipo protección: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.tipoProteccion.descripcion}"/>
+                    </p:panelGrid>
+
+                    <p:panelGrid  columns="2" style="width: 100%">
+                        <h:outputLabel value="Arrancador" style="font-weight: bold;" />
+                        <p:spacer />
+
+                        <h:outputLabel value="Tipo arrancador: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.tipoArrancador.descripcion}"/>
+
+                        <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.fabricante.nombre}"/>
+
+                        <h:outputLabel value="Referencia: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.referencia}"/>
+                    </p:panelGrid>
+
+                    <p:panelGrid columns="2" style="width: 100%" >
+                        <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.fabricante.nombre}"/>
+
+                        <h:outputLabel value="Referencia: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.referencia}"/>
+
+                        <h:outputLabel value="Tipo herraje: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.tipoHerraje.descripcion}"/>
+
+                        <h:outputLabel value="Altura " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.altura}"/>
+
+                        <h:outputLabel value="Nivel de iluminación: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.nivelIluminacion}"/>
+
+                        <h:outputLabel value="Potencia: " style="font-weight: bold;" />
+                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.potencia.descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="Modificar" style="float: right;" onclick="PF('dlgEditarPuntoLuz').hide();" actionListener="#{administracionControl.modificarPuntoLuz}" ajax="@form" update=":DetallePunto:panelGridLuminariaDetalle"/>
+                </h:panelGrid>
+            </p:scrollPanel>
         </h:form> 
     </p:dialog>
 </html>
