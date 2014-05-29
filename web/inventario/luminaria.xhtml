@@ -28,6 +28,7 @@
                         <h:selectOneMenu id="selectOneMenuFabricanteLuminaria" value="#{inventario.puntoLuz.luminaria.fabricante.id}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
@@ -40,6 +41,7 @@
                         <h:selectOneMenu id="selectOneMenuTipoHerraje" value="#{inventario.puntoLuz.luminaria.tipoHerraje.id}">
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.tiposHerraje}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
@@ -56,11 +58,10 @@
                         <h:outputLabel for="selectOneMenuPotenciaLuminaria" value="Potencia" />
                         <h:selectOneMenu id="selectOneMenuPotenciaLuminaria" value="#{inventario.puntoLuz.luminaria.potencia.id}">
                             <f:selectItem itemLabel="Seleccione.." itemValue=""/>
-                            <f:selectItems value="#{inventario.potencias}" var="potencia" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}"/>
+                            <f:selectItems value="#{inventario.potencias}" var="potencia" itemValue="#{potencia.id}" itemLabel="#{potencia.descripcion}"/>
+                            
                             <p:ajax event="change"/>
                         </h:selectOneMenu>
-                        
-                        <p:commandButton id="commandButtonGuardarLuminaria" value="Asociar transformador" action="#{inventario.asociarTransformador()}" update=":map"/>
                     </p:panelGrid>              
                 </h:form>
             </center>

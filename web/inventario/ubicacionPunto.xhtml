@@ -17,17 +17,21 @@
                     <p:panelGrid id="panelGridUbicacionPunto" columns="1" style="width: 100%;">
                         <h:outputLabel for="selectOneMenuDepartamento" value="Departamento" />
                         <h:selectOneMenu id="selectOneMenuDepartamento">
-                            <f:selectItem itemLabel="Caldas" itemValue="" />  
+                            <f:selectItem itemLabel="Caldas" itemValue="1" />  
                         </h:selectOneMenu>
 
                         <h:outputLabel for="selectOneMenuMunicipio" value="Municipio" />
-                        <h:selectOneMenu id="selectOneMenuMunicipio">
-                            <f:selectItem itemLabel="Manizales" itemValue="" />                        
+                        <h:selectOneMenu id="selectOneMenuMunicipio" value="#{inventario.puntoLuz.ubicacionPunto.municipio.id}">
+                            <f:selectItem itemLabel="Manizales" itemValue="1" />
+                            <p:ajax event="change"/>
                         </h:selectOneMenu>
-                        
+
                         <h:outputLabel for="selectOneMenuBarrio" value="Barrio" />
-                        <h:selectOneMenu id="selectOneMenuBarrio">
-                            <f:selectItem itemLabel="Aranjuez" itemValue="" />                        
+                        <h:selectOneMenu id="selectOneMenuBarrio" value="#{inventario.puntoLuz.ubicacionPunto.barrio.id}">
+                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
+                            <f:selectItems value="#{inventario.barrios}" var="barrio" itemValue="#{barrio.id}" itemLabel="#{barrio.nombre}" />
+
+                            <p:ajax event="change"/>
                         </h:selectOneMenu>
 
                         <h:outputLabel for="inputTextDireccion" value="Dirección" />
@@ -40,7 +44,7 @@
         </pm:content>
 
         <pm:footer fixed="true" style="text-align: right;">
-            <p:commandButton value="Continuar" action="pm:opcionespunto" icon="arrow-r" iconPos="right" />
+            <p:commandButton value="Continuar" action="pm:opcionespunto" actionListener="#{inventario.imprimirUbicacion}" icon="arrow-r" iconPos="right" />
         </pm:footer>
     </pm:view>
 </f:view>

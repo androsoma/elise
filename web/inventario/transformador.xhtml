@@ -17,6 +17,7 @@
                         <h:selectOneMenu id="selectOneMenuTipoTransformador" value="#{inventario.puntoLuz.transformador.tipoTransformador.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.tiposTransformador}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
@@ -24,16 +25,19 @@
                         <h:selectOneMenu id="selectOneMenuFabricanteTransformador" value="#{inventario.puntoLuz.transformador.fabricante.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemLabel="#{fabricante.nombre}" itemValue="#{fabricante.id}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
                         <h:outputLabel for="inputTextReferenciaTransformador" value="Referencia" />
                         <h:inputText id="inputTextReferenciaTransformador" value="#{inventario.puntoLuz.transformador.referencia}">
+                            
                             <p:ajax event="blur" />
                         </h:inputText>
 
                         <h:outputLabel for="inputTextSerialTransformador" value="Serial" />
                         <h:inputText id="inputTextSerialTransformador" value="#{inventario.puntoLuz.transformador.serial}">
+                            
                             <p:ajax event="blur" />
                         </h:inputText>
 
@@ -46,14 +50,16 @@
                         </h:selectOneRadio>
 
                         <h:outputLabel for="selectOneButtonFrecuenciaTransformador" value="Frecuencia" />
-                        <h:selectOneRadio id="selectOneButtonFrecuenciaTransformador" value="#{inventario.puntoLuz.transformador.fase.id}">
+                        <h:selectOneRadio id="selectOneButtonFrecuenciaTransformador" value="#{inventario.puntoLuz.transformador.frecuencia.id}">
                             <f:selectItems value="#{inventario.frecuencias}" var="frecuencia" itemValue="#{frecuencia.id}" itemLabel="#{frecuencia.descripcion}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneRadio>
 
                         <h:outputLabel for="selectOneButtonFaseTransformador" value="Fase" />
                         <h:selectOneRadio id="selectOneButtonFaseTransformador" value="#{inventario.puntoLuz.transformador.fase.id}">
                             <f:selectItems value="#{inventario.fases}" var="fase" itemValue="#{fase.id}" itemLabel="#{fase.descripcion}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneRadio>
 
@@ -61,6 +67,7 @@
                         <h:selectOneMenu id="selectOneMenuTipoConexionTransformador" value="#{inventario.puntoLuz.transformador.tipoConexionTransformador.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.tiposConexionTransformador}" var="tipoconexion" itemValue="#{tipoconexion.id}" itemLabel="#{tipoconexion.descripcion}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
@@ -68,6 +75,7 @@
                         <h:selectOneMenu id="selectOneMenuTipoVoltajeAltaTransformador" value="#{inventario.puntoLuz.transformador.voltajeAlta.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.voltajes}" var="voltaje" itemValue="#{voltaje.id}" itemLabel="#{voltaje.descripcion}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
@@ -75,6 +83,7 @@
                         <h:selectOneMenu id="selectOneMenuTipoVoltajeBajaTransformador" value="#{inventario.puntoLuz.transformador.voltajeBaja.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.voltajes}" var="voltaje" itemValue="#{voltaje.id}" itemLabel="#{voltaje.descripcion}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu> 
 
@@ -82,10 +91,9 @@
                         <h:selectOneMenu id="selectOneMenuPotenciaTransformador" value="#{inventario.puntoLuz.transformador.potencia.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.potencias}" var="potencia" itemValue="#{potencia.id}" itemLabel="#{potencia.descripcion}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
-
-                        <p:commandButton value="Mostrar valores" action="#{inventario.imprimirValoresTransformador()}" immediate="true" update="panelGridTransformador" />
                     </p:panelGrid>
                 </h:form>
             </center>

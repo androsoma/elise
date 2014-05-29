@@ -2,31 +2,38 @@
         xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:pm="http://primefaces.org/mobile"
         xmlns:p="http://primefaces.org/ui">
+    <f:facet name="postinit">
+        <h:outputScript library="primefaces" name="gmap/gmap.js" />
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true" />
+    </f:facet>
 
     <pm:view id="ubicacionpuntoreporte">
         <pm:header title="Ubicación del punto">
             <p:commandButton icon="back" value="atrás" action="pm:reporte" />
         </pm:header>
+
         <pm:content>
             <h:form id="formUbicacionPuntoReporte">
                 <p:panelGrid id="panelGridUbicacionPuntoReporte" columns="1" style="width: 100%;">
                     <h:outputLabel for="outputTextTipoIncidente" value="Tipo de incidente" />
-                    <h:inputText id="outputTextTipoIncidente" value="Daño lámpara" />
+                    <p:inputText id="outputTextTipoIncidente" value="#{mantenimientoControl.reportePuntoLuzSeleccionado.tipoIncidente.descripcion}" />
 
-                    <h:outputLabel for="outputTextUbicacionIncidente" value="Ubicación" />
-                    <h:inputTextarea id="outputTextUbicacionIncidente" value="Carrera 2 19-13, Manizales" />
+                    <h:outputLabel for="outputTextUbicacionIncidente" value="Dirección" />
+                    <p:inputText id="outputTextUbicacionIncidente" value="#{mantenimientoControl.reportePuntoLuzSeleccionado.puntoLuz.ubicacionPunto.direccion}" />
+                    
+                    <h:outputLabel for="outputTextBarrioIncidente" value="Barrio" />
+                    <p:inputText id="outputTextBarrioIncidente" value="#{mantenimientoControl.reportePuntoLuzSeleccionado.puntoLuz.ubicacionPunto.barrio.nombre}" />
+
+                    <h:outputLabel for="outputTextLocalidadIncidente" value="Localidad" />
+                    <p:inputText id="outputTextLocalidadIncidente" value="#{mantenimientoControl.reportePuntoLuzSeleccionado.puntoLuz.ubicacionPunto.municipio.nombre}, #{mantenimientoControl.reportePuntoLuzSeleccionado.puntoLuz.ubicacionPunto.municipio.departamento.nombre}" />
+                    
+                    <hr />
                 </p:panelGrid>
-
-                <p:gmap center="0,0"  type="ROADMAP"  widgetVar="gmapUbicacion" id="gmapReporte" 
-                        zoom="18" style="height: 350px; width: 100%" streetView="true">
-                </p:gmap>
-
-                <h:inputHidden id="latitudReporte" value="#{mapaControl.lat}" />  
-                <h:inputHidden id="longitudReporte" value="#{mapaControl.lng}" />
             </h:form>
         </pm:content>
+
         <pm:footer style="text-align: right;" fixed="true">
-            <p:commandButton value="Continuar" action="pm:accionescierre" icon="arrow-r" iconPos="right" />
+            <p:commandButton value="Continuar" action="pm:accionescierre" actionListener="#{mantenimientoControl.cargarAccionesCierre}" update=":formAccionesCierre:panelGridAccionesCierre" icon="arrow-r" iconPos="right" />
         </pm:footer>
     </pm:view>
 </f:view>

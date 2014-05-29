@@ -7,7 +7,7 @@
         <f:facet name="postinit">
             <h:outputScript library="primefaces" name="gmap/gmap.js" />
             <h:outputScript library="primefaces" name="jquery/jquery.js" />
-            <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+            <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true" />
 
             <script type="text/javascript">
 
@@ -136,11 +136,8 @@
 
         <!-- Main View -->
         <pm:view id="map">
-            <pm:header title="Ubicar punto" rendered="#{!inventario.asociartransformador}">
+            <pm:header title="Ubicar punto">
                 <p:commandButton icon="back" value="atrás" action="pm:menuprincipal" />
-            </pm:header>
-            <pm:header title="Asociar transformador" rendered="#{inventario.asociartransformador}">
-                <p:commandButton icon="back" value="atrás" action="pm:luminaria" />
             </pm:header>
             <pm:content id="c">
                 <h:form id="formMap">
@@ -153,7 +150,7 @@
                 </h:form>
             </pm:content>
             <pm:footer style="text-align: right;" fixed="true">
-                <p:commandButton value="Agregar y continuar" action="pm:ubicacionpunto" actionListener="#{mapaControl.adicionarMarker}" icon="arrow-r" iconPos="right" />
+                <p:commandButton value="Agregar y continuar" action="pm:ubicacionpunto" actionListener="#{mapaControl.adicionarMarker}" update=":formUbicacionPunto:panelGridUbicacionPunto" icon="arrow-r" iconPos="right" />
             </pm:footer>
         </pm:view>
     </pm:page>

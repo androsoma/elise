@@ -9,11 +9,7 @@
 
     <h:panelGrid id="DetallePunto"  style="font-size: 10pt;"> 
         <h:commandButton value="X" onclick="PF('layoutUnitAdministrarPuntoLuz').hide()" style="float: right;" action="#{administracionControl.esconderDetalle}"/>
-        <p:panelGrid id="panelGridMedicionesLuminaria" 
-                     rendered="#{(not empty administracionControl.puntoLuzSeleccionado.luminaria) or (not empty administracionControl.puntoLuzSeleccionado.transformador)}">
-            <p:lineChart id="lineChartLuminaria" value="#{administracionControl.lineChartModelo}"
-                         title="Mediciones luminaria"  animate="true" legendPosition="e" style="height: 250px;" showMarkers="true" />
-        </p:panelGrid>
+
         <p:accordionPanel style="width: 100%;">
 
             <p:tab title="Transformador" rendered="#{not empty administracionControl.puntoLuzSeleccionado.transformador}">

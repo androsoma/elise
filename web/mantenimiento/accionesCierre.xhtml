@@ -13,21 +13,14 @@
             <center>
                 <h:form id="formAccionesCierre">
                     <p:panelGrid id="panelGridAccionesCierre" columns="1" style="width: 100%;">
-                        <h:outputLabel for="selectOneMenuAccionCierre" value="Acción de cierre" />
-                        <h:selectOneMenu id="selectOneMenuAccionCierre" value="">
-                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
-                            <f:selectItem itemValue="1" itemLabel="Reparación de acometida" />
-                            <f:selectItem itemValue="2" itemLabel="Cambio de fusible" />
-                            <f:selectItem itemValue="3" itemLabel="Cambio de bombillo" />
+                        <h:outputLabel for="selectManyChackboxAccionesCierre" value="Seleccione las acciones ejecutadas para el cierre de incidencia: " />
+                        <p:selectManyCheckbox id="selectManyChackboxAccionesCierre" value="#{mantenimientoControl.accionesCierreSeleccionadas}" style="width: 100%;">
+                            <f:selectItems value="#{mantenimientoControl.accionesCierreDisponibles}" var="accionCierre" itemValue="#{accionCierre.id}" itemLabel="#{accionCierre.descripcion}" />
                             
-                            <p:ajax event="change" listener="#{inventario.accionSeleccionada()}" immediate="true" oncomplete="pm:nuevaaccion"  />
-                        </h:selectOneMenu>
+                            <p:ajax event="select" />
+                        </p:selectManyCheckbox>
                         
-                        <p:dataTable id="dataTableAcciones" emptyMessage="Noy hay acciones registradas">
-                            
-                        </p:dataTable>
-                        
-                        <p:commandButton id="commandButtonCerrarIncidencia" value="Cerrar incidencia" action="pm:reporte" immediate="true" />
+                        <p:commandButton id="commandButtonCerrarIncidencia" value="Cerrar incidencia" action="pm:reporte" actionListener="#{mantenimientoControl.imprimirSeleccionadas}" update=":formReportes:panelGridIncidentesReportados" immediate="true" />
                     </p:panelGrid>
                 </h:form>
             </center>

@@ -16,6 +16,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import org.primefaces.component.chart.CartesianChart;
 import org.primefaces.component.chart.line.LineChart;
@@ -44,9 +45,11 @@ public class AdministracionControl implements Serializable {
     private boolean verdetallepunto = false;
     private CartesianChartModel lineChartModelo;
     private boolean incidenteadmin;
-    private IncidenteControl incidentecontrol;
     private int slidpuntoluz;
     private List<TipoBalasto> lsttipobalasto;
+    
+    @ManagedProperty(name = "inventarioControl", value = "#{inventario}")
+    private InventarioControl inventarioControl;
 
     @EJB
     @Inject
@@ -162,6 +165,14 @@ public class AdministracionControl implements Serializable {
 
     public void setLsttipobalasto(List<TipoBalasto> lsttipobalasto) {
         this.lsttipobalasto = lsttipobalasto;
+    }
+
+    public InventarioControl getInventarioControl() {
+        return inventarioControl;
+    }
+
+    public void setInventarioControl(InventarioControl inventarioControl) {
+        this.inventarioControl = inventarioControl;
     }
 
     public PuntoLuzFacade getPuntoLuzFacade() {
@@ -309,6 +320,7 @@ public class AdministracionControl implements Serializable {
     public void editarLuminaria() {
 
         lsttipobalasto = tipobalastoFacade.findAll();
+        inventarioControl.inicializarTiposLuminaria();
         System.out.println("lista balasto " + lsttipobalasto.size());
 
     }

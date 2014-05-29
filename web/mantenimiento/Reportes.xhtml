@@ -1,10 +1,11 @@
-<f:view 
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:pm="http://primefaces.org/mobile"
-    contentType="text/html">
+<f:view renderKitId="PRIMEFACES_MOBILE"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        contentType="text/html">
 
     <pm:view id="reporte">
         <pm:header title="Reportes">
@@ -13,16 +14,26 @@
 
         <pm:content>
             <center>
-                <h:panelGrid id="formReportes">
-                    <h:panelGrid id="panelGridReportesIncidentes" columns="1" style="width: 100%;">
-                        <pm:buttonGroup>
-                            <p:commandButton value="[Daño lámpara] Carrera 2 19-13, Manizales" action="pm:ubicacionpuntoreporte" icon="arrow-r" iconPos="right" />
-                            <p:commandButton value="[Robo cables] Carrera 23 68-15, Manizales" action="pm:ubicacionpuntoreporte" icon="arrow-r" iconPos="right" />
-                            <p:commandButton value="[Daño sensor] Calle 45 37B-60, Manizales" action="pm:ubicacionpuntoreporte" icon="arrow-r" iconPos="right" />
-                            <p:commandButton value="[Daño poste] Av. Santander Calle 55, Manizales" action="pm:ubicacionpuntoreporte" icon="arrow-r" iconPos="right" />
-                        </pm:buttonGroup>
-                    </h:panelGrid>
-                </h:panelGrid>>
+                <h:form id="formReportes">
+                    <p:panelGrid id="panelGridIncidentesReportados" columns="1" style="width: 100%;">
+
+                        <h:dataTable value="#{mantenimientoControl.incidentes}" var="incidente" border="1" style="border-collapse: collapse;" width="100%">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo de incidente" />
+                                </f:facet>
+
+                                <h:outputText value="#{incidente.tipoIncidente.descripcion}" />
+                                <p:commandButton value="Seleccionar" 
+                                                 action="pm:ubicacionpuntoreporte" icon="arrow-r" iconPos="right"
+                                                 actionListener="#{mantenimientoControl.seleccionarIncidente(incidente)}"
+                                                 update=":formUbicacionPuntoReporte" immediate="true" inline="true" style="float: right;" />
+                            </h:column>
+                        </h:dataTable>
+
+                        <h:outputText value="No hay incidentes reportados." rendered="#{empty mantenimientoControl.incidentes}" />
+                    </p:panelGrid>                    
+                </h:form>
             </center>
         </pm:content>
     </pm:view>

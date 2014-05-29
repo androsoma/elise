@@ -15,7 +15,7 @@
                     <p:panelGrid id="panelGridMenuPrincipal" columns="1" style="width: 100%;">
                         <pm:buttonGroup>
                             <p:commandButton id="commandButtonNuevoPunto" value="Nuevo punto" action="pm:map" icon="arrow-r" iconPos="right" />
-                            <p:commandButton id="commandButtonConsultarPuntos" value="Incidentes reportados" action="pm:reporte" actionListener="#{mantenimientoControl.generarReportes()}" icon="arrow-r" iconPos="right" />
+                            <p:commandButton id="commandButtonConsultarPuntos" value="Incidentes reportados" action="pm:reporte" actionListener="#{mantenimientoControl.generarReportes}" update=":formReportes:panelGridIncidentesReportados" icon="arrow-r" iconPos="right" />
                         </pm:buttonGroup>
                     </p:panelGrid>                    
                 </h:form>

@@ -8,6 +8,7 @@ package control.inventario;
 import ejb.inventario.AlturaPosteFacade;
 import ejb.inventario.ArrancadorFacade;
 import ejb.inventario.BarrioFacade;
+import ejb.inventario.BombilloFacade;
 import ejb.inventario.BrazoLuminariaFacade;
 import ejb.inventario.ClasePrecisionFacade;
 import ejb.inventario.FabricanteFacade;
@@ -15,6 +16,9 @@ import ejb.inventario.FaseFacade;
 import ejb.inventario.FrecuenciaFacade;
 import ejb.inventario.LuminariaFacade;
 import ejb.inventario.MaterialPosteFacade;
+import ejb.inventario.MedidorEnergiaFacade;
+import ejb.inventario.MunicipioFacade;
+import ejb.inventario.PosteFacade;
 import ejb.inventario.PotenciaFacade;
 import ejb.inventario.PuntoLuzFacade;
 import ejb.inventario.TipoArrancadorFacade;
@@ -27,6 +31,7 @@ import ejb.inventario.TipoMedidorFacade;
 import ejb.inventario.TipoProteccionFacade;
 import ejb.inventario.TipoTransformadorFacade;
 import ejb.inventario.TransformadorFacade;
+import ejb.inventario.UbicacionPuntoFacade;
 import ejb.inventario.VoltajeFacade;
 import entidades.inventario.AlturaPoste;
 import entidades.inventario.Arrancador;
@@ -159,6 +164,26 @@ public class InventarioControl {
     @EJB
     @Inject
     PuntoLuzFacade puntoLuzFacade;
+
+    @EJB
+    @Inject
+    MunicipioFacade municipioFacade;
+
+    @EJB
+    @Inject
+    UbicacionPuntoFacade ubicacionPuntoFacade;
+
+    @EJB
+    @Inject
+    BombilloFacade bombilloFacade;
+
+    @EJB
+    @Inject
+    PosteFacade posteFacade;
+
+    @EJB
+    @Inject
+    MedidorEnergiaFacade medidorEnergiaFacade;
 
     List<Barrio> barrios = null;
     List<TipoTransformador> tiposTransformador = null;
@@ -376,6 +401,46 @@ public class InventarioControl {
         this.puntoLuzFacade = puntoLuzFacade;
     }
 
+    public MunicipioFacade getMunicipioFacade() {
+        return municipioFacade;
+    }
+
+    public void setMunicipioFacade(MunicipioFacade municipioFacade) {
+        this.municipioFacade = municipioFacade;
+    }
+
+    public UbicacionPuntoFacade getUbicacionPuntoFacade() {
+        return ubicacionPuntoFacade;
+    }
+
+    public void setUbicacionPuntoFacade(UbicacionPuntoFacade ubicacionPuntoFacade) {
+        this.ubicacionPuntoFacade = ubicacionPuntoFacade;
+    }
+
+    public BombilloFacade getBombilloFacade() {
+        return bombilloFacade;
+    }
+
+    public void setBombilloFacade(BombilloFacade bombilloFacade) {
+        this.bombilloFacade = bombilloFacade;
+    }
+
+    public PosteFacade getPosteFacade() {
+        return posteFacade;
+    }
+
+    public void setPosteFacade(PosteFacade posteFacade) {
+        this.posteFacade = posteFacade;
+    }
+
+    public MedidorEnergiaFacade getMedidorEnergiaFacade() {
+        return medidorEnergiaFacade;
+    }
+
+    public void setMedidorEnergiaFacade(MedidorEnergiaFacade medidorEnergiaFacade) {
+        this.medidorEnergiaFacade = medidorEnergiaFacade;
+    }
+
     public List<Barrio> getBarrios() {
         return barrios;
     }
@@ -540,7 +605,7 @@ public class InventarioControl {
         puntoLuz = new PuntoLuz();
 
         puntoLuz.setUbicacionPunto(new UbicacionPunto());
-        puntoLuz.getUbicacionPunto().setMunicipio(new Municipio());
+        puntoLuz.getUbicacionPunto().setMunicipio(municipioFacade.find(1L));
         puntoLuz.getUbicacionPunto().setBarrio(new Barrio());
 
         puntoLuz.setTransformador(new Transformador());
@@ -748,7 +813,143 @@ public class InventarioControl {
     }
 
     public void guardarPuntoLuz() {
+        verificarSeleccionParametricas();
+
         getPuntoLuzFacade().create(puntoLuz);
+    }
+
+    private void verificarSeleccionParametricas() {
+        if (puntoLuz.getUbicacionPunto().getBarrio().getId() == null) {
+            puntoLuz.getUbicacionPunto().setBarrio(null);
+        }
+
+        if (puntoLuz.getUbicacionPunto().getMunicipio().getId() == null) {
+            puntoLuz.getUbicacionPunto().setMunicipio(null);
+        }
+
+        if (puntoLuz.getTransformador().getTipoTransformador().getId() == null) {
+            puntoLuz.getTransformador().setTipoTransformador(null);
+        }
+
+        if (puntoLuz.getTransformador().getFabricante().getId() == 0) {
+            puntoLuz.getTransformador().setFabricante(null);
+        }
+
+        if (puntoLuz.getTransformador().getFrecuencia().getId() == null) {
+            puntoLuz.getTransformador().setFrecuencia(null);
+        }
+
+        if (puntoLuz.getTransformador().getFase().getId() == null) {
+            puntoLuz.getTransformador().setFase(null);
+        }
+
+        if (puntoLuz.getTransformador().getTipoConexionTransformador().getId() == null) {
+            puntoLuz.getTransformador().setTipoConexionTransformador(null);
+        }
+
+        if (puntoLuz.getTransformador().getVoltajeAlta().getId() == null) {
+            puntoLuz.getTransformador().setVoltajeAlta(null);
+        }
+
+        if (puntoLuz.getTransformador().getVoltajeBaja().getId() == null) {
+            puntoLuz.getTransformador().setVoltajeBaja(null);
+        }
+
+        if (puntoLuz.getTransformador().getPotencia().getId() == null) {
+            puntoLuz.getTransformador().setPotencia(null);
+        }
+
+        if (puntoLuz.getLuminaria().getArrancador().getFabricante().getId() == 0) {
+            puntoLuz.getLuminaria().getArrancador().setFabricante(null);
+        }
+
+        if (puntoLuz.getLuminaria().getArrancador().getTipoArrancador().getId() == 0) {
+            puntoLuz.getLuminaria().getArrancador().setTipoArrancador(null);
+        }
+
+        if (puntoLuz.getLuminaria().getBalasto().getFabricante().getId() == 0) {
+            puntoLuz.getLuminaria().getBalasto().setFabricante(null);
+        }
+
+        if (puntoLuz.getLuminaria().getBalasto().getTipoBalasto().getId() == null) {
+            puntoLuz.getLuminaria().getBalasto().setTipoBalasto(null);
+        }
+
+        if (puntoLuz.getLuminaria().getBalasto().getTipoProteccion().getId() == null) {
+            puntoLuz.getLuminaria().getBalasto().setTipoProteccion(null);
+        }
+
+        if (puntoLuz.getLuminaria().getFabricante().getId() == 0) {
+            puntoLuz.getLuminaria().setFabricante(null);
+        }
+
+        if (puntoLuz.getLuminaria().getTipoHerraje().getId() == null) {
+            puntoLuz.getLuminaria().setTipoHerraje(null);
+        }
+
+        if (puntoLuz.getLuminaria().getPotencia().getId() == null) {
+            puntoLuz.getLuminaria().setPotencia(null);
+        }
+
+        if (puntoLuz.getBombillo().getFabricante().getId() == 0) {
+            puntoLuz.getBombillo().setFabricante(null);
+        }
+
+        if (puntoLuz.getBombillo().getTipoBombillo().getId() == null) {
+            puntoLuz.getBombillo().setTipoBombillo(null);
+        }
+
+        if (puntoLuz.getBombillo().getPotencia().getId() == null) {
+            puntoLuz.getBombillo().setPotencia(null);
+        }
+
+        if (puntoLuz.getPoste().getFabricante().getId() == 0) {
+            puntoLuz.getPoste().setFabricante(null);
+        }
+
+        if (puntoLuz.getPoste().getMaterial().getId() == null) {
+            puntoLuz.getPoste().setMaterial(null);
+        }
+
+        if (puntoLuz.getPoste().getAlturaPoste().getId() == null) {
+            puntoLuz.getPoste().setAlturaPoste(null);
+        }
+
+        if (puntoLuz.getMedidorEnergia().getFabricante().getId() == 0) {
+            puntoLuz.getMedidorEnergia().setFabricante(null);
+        }
+
+        if (puntoLuz.getMedidorEnergia().getTipoMedidor().getId() == null) {
+            puntoLuz.getMedidorEnergia().setTipoMedidor(null);
+        }
+
+        if (puntoLuz.getMedidorEnergia().getFrecuencia().getId() == null) {
+            puntoLuz.getMedidorEnergia().setFrecuencia(null);
+        }
+
+        if (puntoLuz.getMedidorEnergia().getClasePrecision().getId() == null) {
+            puntoLuz.getMedidorEnergia().setClasePrecision(null);
+        }
+        
+        if (puntoLuz.getMedidorEnergia().getTipoConexionMedidor().getId() == null) {
+            puntoLuz.getMedidorEnergia().setTipoConexionMedidor(null);
+        }
+
+        if (puntoLuz.getMedidorEnergia().getVoltajeAlta().getId() == null) {
+            puntoLuz.getMedidorEnergia().setVoltajeAlta(null);
+        }
+
+        if (puntoLuz.getMedidorEnergia().getVoltajeBaja().getId() == null) {
+            puntoLuz.getMedidorEnergia().setVoltajeBaja(null);
+        }
+
+        if (puntoLuz.getMedidorEnergia().getPotenciaMaxima().getId() == null) {
+            puntoLuz.getMedidorEnergia().setPotenciaMaxima(null);
+        }
+
+        if (puntoLuz.getMedidorEnergia().getTipoProteccion().getId() == null) {
+            puntoLuz.getMedidorEnergia().setTipoProteccion(null);
+        }
     }
 
     public void inicializarArrancador() {
@@ -763,5 +964,11 @@ public class InventarioControl {
 
             puntoLuz.getLuminaria().getArrancador().setFabricante(new Fabricante());
         }
+    }
+
+    public void imprimirUbicacion() {
+        System.out.println("Barrio = " + puntoLuz.getUbicacionPunto().getBarrio().getId());
+        System.out.println("Barrio = " + puntoLuz.getUbicacionPunto().getMunicipio().getId());
+        System.out.println("Barrio = " + puntoLuz.getUbicacionPunto().getDireccion());
     }
 }

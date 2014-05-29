@@ -44,6 +44,10 @@
         <managed-bean-name>administracionControl</managed-bean-name>
         <managed-bean-class>control.inventario.AdministracionControl</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>inventarioControl</property-name>
+            <value>#{inventario}</value>
+        </managed-property>
     </managed-bean>
     
     <navigation-rule>

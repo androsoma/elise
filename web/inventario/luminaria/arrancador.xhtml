@@ -19,6 +19,7 @@
                         <h:selectOneMenu id="selectOneMenuTipoArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.tipoArrancador.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.tiposArrancador}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
@@ -26,6 +27,7 @@
                         <h:selectOneMenu id="selectOneMenuFabricanteArrancador" value="#{inventario.puntoLuz.luminaria.arrancador.fabricante.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 

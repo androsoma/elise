@@ -19,6 +19,7 @@
                         <h:selectOneMenu id="selectOneMenuTipoBalasto" value="#{inventario.puntoLuz.luminaria.balasto.tipoBalasto.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.tiposBalasto}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
@@ -26,6 +27,7 @@
                         <h:selectOneMenu id="selectOneMenuFabricanteBalasto" value="#{inventario.puntoLuz.luminaria.balasto.fabricante.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
 
@@ -38,6 +40,7 @@
                         <h:selectOneMenu id="selectOneMenuTipoProteccion" value="#{inventario.puntoLuz.luminaria.balasto.tipoProteccion.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{inventario.tiposProteccion}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+                            
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
                     </p:panelGrid>

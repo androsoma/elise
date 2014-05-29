@@ -9,6 +9,7 @@
         <h:form id="frmModalEditarPuntoLuz">
             <p:scrollPanel style="height:550px">
                 <h:panelGrid id="panelGridLuminariaEditar" columns="1" >
+                    <f:facet name="header"><h:outputText value="Luminaria" /></f:facet>
                     <p:panelGrid columns="2" style="width: 100%">
                         <h:outputLabel value="Brazo" style="font-weight: bold;"  />
                         <p:spacer />
@@ -23,46 +24,77 @@
                     <p:panelGrid columns="2" style="width: 100%">
                         <h:outputLabel value="Balasto" style="font-weight: bold;" />
                         <p:spacer />
-                        <h:outputLabel for="selectOneMenuTipoBalastoEditar" value="Tipo balasto lámpara" />
+                        <h:outputLabel for="selectOneMenuTipoBalastoEditar" value="Tipo balasto: " style="font-weight: bold;" />
                         <h:selectOneMenu id="selectOneMenuTipoBalastoEditar" value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.tipoBalasto.id}" >
                             <f:selectItem itemLabel="Seleccione..." itemValue="" />
                             <f:selectItems value="#{administracionControl.lsttipobalasto}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+
                             <p:ajax event="change"  />
                         </h:selectOneMenu>
-                        
-                        <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
-                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.fabricante.nombre}"/>
+
+                        <h:outputLabel for="selectOneMenuFabricanteBalastoEditar" value="Fabricante: " style="font-weight: bold;" />
+                        <h:selectOneMenu id="selectOneMenuFabricanteEditar" value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.fabricante.id}" >
+                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
+                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
+
+                            <p:ajax event="change"  />
+                        </h:selectOneMenu>
 
                         <h:outputLabel value="Referencia: " style="font-weight: bold;" />
                         <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.referencia}"/>
 
-                        <h:outputLabel value="Tipo protección: " style="font-weight: bold;" />
-                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.tipoProteccion.descripcion}"/>
+                        <h:outputLabel for="selectOneMenuProteccionBalastoEditar" value="Tipo de protección: " style="font-weight: bold;" />
+                        <h:selectOneMenu id="selectOneMenuProteccionBalastoEditar" value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.tipoProteccion.id}" >
+                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
+                            <f:selectItems value="#{inventario.tiposProteccion}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+
+                            <p:ajax event="change"  />
+                        </h:selectOneMenu>
                     </p:panelGrid>
 
                     <p:panelGrid  columns="2" style="width: 100%">
                         <h:outputLabel value="Arrancador" style="font-weight: bold;" />
                         <p:spacer />
 
-                        <h:outputLabel value="Tipo arrancador: " style="font-weight: bold;" />
-                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.tipoArrancador.descripcion}"/>
+                        <h:outputLabel for="selectOneMenuTipoArrancadorEditar" value="Tipo arrancador: " style="font-weight: bold;" />
+                        <h:selectOneMenu id="selectOneMenuTipoArrancadorEditar" value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.tipoArrancador.id}" >
+                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
+                            <f:selectItems value="#{inventario.tiposArrancador}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
 
-                        <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
-                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.fabricante.nombre}"/>
+                            <p:ajax event="change"  />
+                        </h:selectOneMenu>
+
+                        <h:outputLabel for="selectOneMenuFabricanteArrancadorEditar" value="Fabricante: " style="font-weight: bold;" />
+                        <h:selectOneMenu id="selectOneMenuFabricanteArrancadorEditar" value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.fabricante.id}" >
+                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
+                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
+
+                            <p:ajax event="change" />
+                        </h:selectOneMenu>
 
                         <h:outputLabel value="Referencia: " style="font-weight: bold;" />
                         <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.arrancador.referencia}"/>
                     </p:panelGrid>
 
                     <p:panelGrid columns="2" style="width: 100%" >
-                        <h:outputLabel value="Fabricante: " style="font-weight: bold;" />
-                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.fabricante.nombre}"/>
+                        <h:outputLabel for="selectOneMenuFabricanteLuminariaEditar" value="Fabricante: " style="font-weight: bold;" />
+                        <h:selectOneMenu id="selectOneMenuFabricanteLuminariaEditar" value="#{administracionControl.puntoLuzSeleccionado.luminaria.fabricante.id}" >
+                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
+                            <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
+
+                            <p:ajax event="change" />
+                        </h:selectOneMenu>
 
                         <h:outputLabel value="Referencia: " style="font-weight: bold;" />
                         <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.referencia}"/>
 
-                        <h:outputLabel value="Tipo herraje: " style="font-weight: bold;" />
-                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.tipoHerraje.descripcion}"/>
+                        <h:outputLabel for="selectOneMenuTipoHerrajeLuminariaEditar" value="Tipo herraje: " style="font-weight: bold;" />
+                        <h:selectOneMenu id="selectOneMenuTipoHerrajeLuminariaEditar" value="#{administracionControl.puntoLuzSeleccionado.luminaria.tipoHerraje.id}" >
+                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
+                            <f:selectItems value="#{inventario.tiposHerraje}" var="tipo" itemValue="#{tipo.id}" itemLabel="#{tipo.descripcion}" />
+
+                            <p:ajax event="change" />
+                        </h:selectOneMenu>
 
                         <h:outputLabel value="Altura " style="font-weight: bold;" />
                         <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.altura}"/>
@@ -70,8 +102,13 @@
                         <h:outputLabel value="Nivel de iluminación: " style="font-weight: bold;" />
                         <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.nivelIluminacion}"/>
 
-                        <h:outputLabel value="Potencia: " style="font-weight: bold;" />
-                        <h:inputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.potencia.descripcion}"/>
+                        <h:outputLabel for="selectOneMenuPotenciaLuminariaEditar" value="Potencia: " style="font-weight: bold;" />
+                        <h:selectOneMenu id="selectOneMenuPotenciaLuminariaEditar" value="#{administracionControl.puntoLuzSeleccionado.luminaria.potencia.id}" >
+                            <f:selectItem itemValue="" itemLabel="Seleccione..." />
+                            <f:selectItems value="#{inventario.potencias}" var="potencia" itemValue="#{potencia.id}" itemLabel="#{potencia.descripcion}" />
+
+                            <p:ajax event="change" />
+                        </h:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton value="Modificar" style="float: right;" onclick="PF('dlgEditarPuntoLuz').hide();" actionListener="#{administracionControl.modificarPuntoLuz}" ajax="@form" update=":DetallePunto:panelGridLuminariaDetalle"/>
                 </h:panelGrid>
