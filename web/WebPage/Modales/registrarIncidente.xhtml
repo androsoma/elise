@@ -13,10 +13,13 @@
                 <h:outputLabel for="selectOneMenuAdminRegistroTipoIncidente" value="Tipo incidente:"/>
                 <h:selectOneMenu id="selectOneMenuAdminRegistroTipoIncidente" value="#{incidenteControl.incidente.tipoIncidente.id}" style="width: 100%;">
                     <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                    <f:selectItems value="#{incidenteControl.listatipoincidente}" var="incidente" itemLabel="#{incidente.descripcion}" itemValue="#{incidente.id}" />
+                    <f:selectItems value="#{incidenteControl.listatipoincidente}" var="incidente" itemLabel="#{incidente.descripcion}" itemValue="#{incidente.id}" />                    
+                    <p:ajax event="change" />
                 </h:selectOneMenu>
                 <h:outputLabel for="inputTextareaAdminObservaciones" value="Observaciones:" />
-                <p:inputTextarea id="inputTextareaAdminObservaciones" rows="5"  queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observaciones}" style="width: 95%;" />
+                <p:inputTextarea id="inputTextareaAdminObservaciones" rows="5"  queryDelay="750" minQueryLength="4" value="#{incidenteControl.incidente.observaciones}" style="width: 95%;" >
+                    <p:ajax event="blur"/>
+                </p:inputTextarea>
                 <p:commandButton value="Registrar incidente" actionListener="#{incidenteControl.guardarIncidente()}" ajax="frmModalRegistrarIncidente" immediate="true" />
             </h:panelGrid>
         </h:form> 

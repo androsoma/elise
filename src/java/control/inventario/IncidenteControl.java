@@ -201,6 +201,9 @@ public class IncidenteControl {
         } else {
             if (!"".equals(incidente.getObservaciones())) {
                 incidente.setFechaIncidencia(new Date());
+                incidente.getCiudadano().getTercero().setNombres("Administrador");
+                incidente.getCiudadano().getTercero().setApellidos("Administrador");
+                incidente.getCiudadano().getTercero().setEmail("cdgutierrez6@gmail.com");
                 incidente.setPuntoLuz(puntoluzseleccionado);
                 getReportepuntoluzfacade().create(incidente);
                 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Incidnete registrado", "El incidente ha sido registrado con éxito");
