@@ -33,7 +33,7 @@
                         </h:selectOneMenu>
 
                         <h:outputLabel for="selectOneMenuFabricanteBalastoEditar" value="Fabricante: " style="font-weight: bold;" />
-                        <h:selectOneMenu id="selectOneMenuFabricanteEditar" value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.fabricante.id}" >
+                        <h:selectOneMenu id="selectOneMenuFabricanteBalastoEditar" value="#{administracionControl.puntoLuzSeleccionado.luminaria.balasto.fabricante.id}" >
                             <f:selectItem itemValue="" itemLabel="Seleccione..." />
                             <f:selectItems value="#{inventario.fabricantes}" var="fabricante" itemValue="#{fabricante.id}" itemLabel="#{fabricante.nombre}" />
 
