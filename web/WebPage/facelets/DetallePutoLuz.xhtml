@@ -115,7 +115,7 @@
                         <h:outputLabel value="Potencia: " style="font-weight: bold;" />
                         <h:outputText value="#{administracionControl.puntoLuzSeleccionado.luminaria.potencia.descripcion}"/>
                     </p:panelGrid>
-                    <p:commandButton value="Editar" style="float: right;" onclick="PF('dlgEditarPuntoLuz').show();"/>
+                    <p:commandButton value="Editar" style="float: right;" oncomplete="PF('dlgEditarPuntoLuz').show();" actionListener="#{administracionControl.editarLuminaria}" update=":frmModalEditarPuntoLuz"/>
                 </h:panelGrid>
             </p:tab>
 

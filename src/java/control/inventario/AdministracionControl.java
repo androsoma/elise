@@ -7,8 +7,10 @@ package control.inventario;
 
 import ejb.inventario.ConfiguracionFacade;
 import ejb.inventario.PuntoLuzFacade;
+import ejb.inventario.TipoBalastoFacade;
 import ejb.mantenimiento.ReportePuntoLuzFacade;
 import entidades.inventario.PuntoLuz;
+import entidades.inventario.TipoBalasto;
 import entidades.mantenimiento.ReportePuntoLuz;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -44,6 +46,7 @@ public class AdministracionControl implements Serializable {
     private boolean incidenteadmin;
     private IncidenteControl incidentecontrol;
     private int slidpuntoluz;
+    private List<TipoBalasto> lsttipobalasto;
 
     @EJB
     @Inject
@@ -56,6 +59,10 @@ public class AdministracionControl implements Serializable {
     @EJB
     @Inject
     private ConfiguracionFacade configuracionFacade;
+
+    @EJB
+    @Inject
+    private TipoBalastoFacade tipobalastoFacade;
 
     public AdministracionControl() {
         opcion = 1;
@@ -149,6 +156,14 @@ public class AdministracionControl implements Serializable {
         this.slidpuntoluz = slidpuntoluz;
     }
 
+    public List<TipoBalasto> getLsttipobalasto() {
+        return lsttipobalasto;
+    }
+
+    public void setLsttipobalasto(List<TipoBalasto> lsttipobalasto) {
+        this.lsttipobalasto = lsttipobalasto;
+    }
+
     public PuntoLuzFacade getPuntoLuzFacade() {
         return puntoLuzFacade;
     }
@@ -171,6 +186,14 @@ public class AdministracionControl implements Serializable {
 
     public void setConfiguracionFacade(ConfiguracionFacade configuracionFacade) {
         this.configuracionFacade = configuracionFacade;
+    }
+
+    public TipoBalastoFacade getTipobalastoFacade() {
+        return tipobalastoFacade;
+    }
+
+    public void setTipobalastoFacade(TipoBalastoFacade tipobalastoFacade) {
+        this.tipobalastoFacade = tipobalastoFacade;
     }
 
     public void cargarPuntosMapa() {
@@ -274,7 +297,6 @@ public class AdministracionControl implements Serializable {
                 if (getSlidpuntoluz() >= 0 && getSlidpuntoluz() <= 49) {
                     String iconomarcadorLuminariaMitad = configuracionFacade.obtenerValorConfiguracionPorNombre("marcadorLuminariaApagada");
                     m.setIcon(iconomarcadorLuminariaMitad);
-//                getMapaModelo().addOverlay(m);
                 } else {
                     String iconomarcadorLuminariaMitad = configuracionFacade.obtenerValorConfiguracionPorNombre("marcadorLuminariaEncendida");
                     m.setIcon(iconomarcadorLuminariaMitad);
@@ -284,4 +306,15 @@ public class AdministracionControl implements Serializable {
         }
     }
 
+    public void editarLuminaria() {
+
+        lsttipobalasto = tipobalastoFacade.findAll();
+        System.out.println("lista balasto " + lsttipobalasto.size());
+
+    }
+
+    public void modificarPuntoLuz() {
+        puntoLuzFacade.edit(puntoLuzSeleccionado);
+
+    }
 }
